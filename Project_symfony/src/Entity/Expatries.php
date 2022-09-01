@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\ExpatrieRepository;
+use App\Repository\ExpatriesRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ExpatrieRepository::class)]
-class Expatrie
+#[ORM\Entity(repositoryClass: ExpatriesRepository::class)]
+class Expatries
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

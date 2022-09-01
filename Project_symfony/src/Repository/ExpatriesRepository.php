@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Expatrie;
+use App\Entity\Expatries;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Expatrie>
+ * @extends ServiceEntityRepository<Expatries>
  *
- * @method Expatrie|null find($id, $lockMode = null, $lockVersion = null)
- * @method Expatrie|null findOneBy(array $criteria, array $orderBy = null)
- * @method Expatrie[]    findAll()
- * @method Expatrie[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Expatries|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Expatries|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Expatries[]    findAll()
+ * @method Expatries[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ExpatrieRepository extends ServiceEntityRepository
+class ExpatriesRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Expatrie::class);
+        parent::__construct($registry, Expatries::class);
     }
 
-    public function add(Expatrie $entity, bool $flush = false): void
+    public function add(Expatries $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class ExpatrieRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Expatrie $entity, bool $flush = false): void
+    public function remove(Expatries $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class ExpatrieRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Expatrie[] Returns an array of Expatrie objects
+//     * @return Expatries[] Returns an array of Expatries objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class ExpatrieRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Expatrie
+//    public function findOneBySomeField($value): ?Expatries
 //    {
 //        return $this->createQueryBuilder('e')
 //            ->andWhere('e.exampleField = :val')
