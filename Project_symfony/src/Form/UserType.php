@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -23,7 +24,7 @@ class UserType extends AbstractType
             ->add('Picture')
             ->add('Biography')
             ->add('isExpat')
-            ->add('created_at')
+            ->add('created_at', DateTimeType::class)
             ->add('groupe')
             ->add('Publication')
             ->add('Form')
