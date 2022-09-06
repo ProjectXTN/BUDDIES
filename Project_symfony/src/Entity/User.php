@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -41,6 +44,43 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255)]
     private ?string $city = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $language = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $Picture = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $Biography = null;
+
+    #[ORM\Column]
+    private ?bool $isExpat = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $created_at = null;
+
+    #[ORM\ManyToMany(targetEntity: Group::class, inversedBy: 'users')]
+    private Collection $groupe;
+
+
+
+    #[ORM\ManyToMany(targetEntity: Publication::class, inversedBy: 'users')]
+    private Collection $Publication;
+
+    #[ORM\ManyToMany(targetEntity: Form::class, inversedBy: 'users')]
+    private Collection $Form;
+
+    #[ORM\ManyToMany(targetEntity: Review::class, inversedBy: 'users')]
+    private Collection $Reviews;
+
+    public function __construct()
+    {
+        $this->groupe = new ArrayCollection();
+        $this->Form = new ArrayCollection();
+        $this->Publication = new ArrayCollection();
+        $this->Reviews = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -175,6 +215,165 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCity(string $city): self
     {
         $this->city = $city;
+
+        return $this;
+    }
+
+    public function getLanguage(): ?string
+    {
+        return $this->language;
+    }
+
+    public function setLanguage(string $language): self
+    {
+        $this->language = $language;
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->Picture;
+    }
+
+    public function setPicture(?string $Picture): self
+    {
+        $this->Picture = $Picture;
+
+        return $this;
+    }
+
+    public function getBiography(): ?string
+    {
+        return $this->Biography;
+    }
+
+    public function setBiography(?string $Biography): self
+    {
+        $this->Biography = $Biography;
+
+        return $this;
+    }
+
+    public function isIsExpat(): ?bool
+    {
+        return $this->isExpat;
+    }
+
+    public function setIsExpat(bool $isExpat): self
+    {
+        $this->isExpat = $isExpat;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $created_at): self
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+
+    /**
+     * @return Collection<int, Group>
+     */
+    public function getGroupe(): Collection
+    {
+        return $this->groupe;
+    }
+
+    public function addGroupe(Group $groupe): self
+    {
+        if (!$this->groupe->contains($groupe)) {
+            $this->groupe->add($groupe);
+        }
+
+        return $this;
+    }
+
+    public function removeGroupe(Group $groupe): self
+    {
+        $this->groupe->removeElement($groupe);
+
+        return $this;
+    }
+
+
+
+    /**
+     * @return Collection<int, Publication>
+     */
+    public function getPublication(): Collection
+    {
+        return $this->Publication;
+    }
+
+    public function addPublication(Publication $publication): self
+    {
+        if (!$this->Publication->contains($publication)) {
+            $this->Publication->add($publication);
+        }
+
+        return $this;
+    }
+
+    public function removePublication(Publication $publication): self
+    {
+        $this->Publication->removeElement($publication);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Form>
+     */
+    public function getForm(): Collection
+    {
+        return $this->Form;
+    }
+
+    public function addForm(Form $form): self
+    {
+        if (!$this->Form->contains($form)) {
+            $this->Form->add($form);
+        }
+
+        return $this;
+    }
+
+    public function removeForm(Form $form): self
+    {
+        $this->Form->removeElement($form);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Review>
+     */
+    public function getReviews(): Collection
+    {
+        return $this->Reviews;
+    }
+
+    public function addReview(Review $review): self
+    {
+        if (!$this->Reviews->contains($review)) {
+            $this->Reviews->add($review);
+        }
+
+        return $this;
+    }
+
+    public function removeReview(Review $review): self
+    {
+        $this->Reviews->removeElement($review);
 
         return $this;
     }
