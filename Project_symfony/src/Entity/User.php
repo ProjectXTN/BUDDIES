@@ -279,6 +279,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    // Ne marche pas pour edite le crud
+    public function __toString()
+    {
+        return $this->firstName.' '.$this->lastName.' '.$this->country.' '.$this->city.' '.$this->language.' '.$this->Picture.' '.$this->Biography;
+    }
 
     /**
      * @return Collection<int, Group>
