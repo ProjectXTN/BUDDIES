@@ -56,7 +56,11 @@
             "ref": "fb7e19da7f013d0d422fa9bce16f5c510e27609b"
         },
         "files": [
+<<<<<<< Updated upstream
             "./config/packages/sensio_framework_extra.yaml"
+=======
+            "config/packages/sensio_framework_extra.yaml"
+>>>>>>> Stashed changes
         ]
     },
     "symfony/console": {
