@@ -7,22 +7,22 @@
 
     <table class="table">
         <tbody>
-            <tr>
+{#             <tr>
                 <th>Id</th>
                 <td>{{ user.id }}</td>
-            </tr>
+            </tr> #}
             <tr>
                 <th>Email</th>
                 <td>{{ user.email }}</td>
             </tr>
-            <tr>
+{#             <tr>
                 <th>Roles</th>
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
+            </tr> #}
+{#             <tr>
                 <th>Password</th>
                 <td>{{ user.password }}</td>
-            </tr>
+            </tr> #}
             <tr>
                 <th>FirstName</th>
                 <td>{{ user.firstName }}</td>
@@ -55,10 +55,10 @@
                 <th>IsExpat</th>
                 <td>{{ user.isExpat ? 'Yes' : 'No' }}</td>
             </tr>
-            <tr>
+{#             <tr>
                 <th>Created_at</th>
                 <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
+            </tr> #}
         </tbody>
     </table>
 
