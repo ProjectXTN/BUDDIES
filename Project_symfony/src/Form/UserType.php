@@ -40,11 +40,19 @@ class UserType extends AbstractType
                     'data_class' => null])
             ->add('Biography')
             ->add('isExpat')
+<<<<<<< Updated upstream
             //->add('created_at')
             //->add('groupe')
             //->add('Publication')
             //->add('Form')
             //->add('Reviews')
+=======
+            ->add('created_at')
+            ->add('groupe')
+            ->add('Publication')
+            ->add('Form')
+            ->add('Reviews')
+>>>>>>> Stashed changes
         ;
     }
 
