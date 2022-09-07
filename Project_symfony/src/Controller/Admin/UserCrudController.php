@@ -29,6 +29,7 @@ class UserCrudController extends AbstractCrudController
             EmailField::new('email'),
             TextField::new('firstName'),
             TextField::new('lastName'),
+            TextField::new('password'),
             DateTimeField::new('created_at'),
             ChoiceField::new('city')->setChoices([
                 'Paris' => 'Paris',
