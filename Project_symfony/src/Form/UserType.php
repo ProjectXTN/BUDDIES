@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,7 +15,14 @@ class UserType extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('roles')
+            ->add('roles', ChoiceType::class, [
+                'choices'  => [
+                    'Utilisateur' => 'ROLE_USER',
+                    'Moderateur' => 'ROLE_MODERATOR',
+                    'Administrateur' => 'ROLE_ADMINISTRATOR'
+                ],
+                'multiple' => true
+            ])
             ->add('password')
             ->add('firstName')
             ->add('lastName')
@@ -24,11 +32,11 @@ class UserType extends AbstractType
             ->add('Picture')
             ->add('Biography')
             ->add('isExpat')
-            ->add('created_at', DateTimeType::class)
-            ->add('groupe')
-            ->add('Publication')
-            ->add('Form')
-            ->add('Reviews')
+            ->add('created_at')
+            //->add('groupe')
+            //->add('Publication')
+            //->add('Form')
+            //->add('Reviews')
         ;
     }
 
