@@ -31,8 +31,6 @@ class UserType extends AbstractType
                 new File([
                     'maxSize' => '1024k',
                     'mimeTypes' => [
-                        'application/pdf',
-                        'application/x-pdf',
                         'image/jpeg',
                         'image/jpg',
                         'image/pgn',

@@ -81,17 +81,39 @@
 
             <tr>
             <th>Mes Publications</th>
-            <td>
-                {# Boucle pour faire la affichage des Publication #}
-            {% for publication in user.publication %}
-                 <div>{{ user.firstName }}</div><br>
-                 <div>{{ publication.dateAt ? publication.dateAt|date('Y-m-d H:i:s') : '' }}</div> 
-                 <img src="/data/{{user.Picture}}" ></img><br>
-                 <div>{{ publication.post}}</div><br>
-                 
-            {% endfor %}
-            </td>
-        </tr>
+                <td>
+                    {# Boucle pour faire la affichage des Publication #}
+                {% for publication in user.publication %}
+                    <div>{{ user.firstName }}</div><br>
+                    <div>{{ publication.dateAt ? publication.dateAt|date('Y-m-d H:i:s') : '' }}</div> 
+                    <img src="/data/{{user.Picture}}" ></img><br>
+                    <div>{{ publication.post}}</div><br>
+                    
+                {% endfor %}
+                </td>
+            </tr>
+
+            <tr>
+            <th>Mes centres d'intérêts</th>
+                <td>
+                    {# Boucle pour faire la affichage les centres d'interes #}
+                {% for activity in user.activitieUsers %}
+                    <div>{{ activity.activitie.name }}</div><br>
+                    <img>{{ activity.activitie.image }}</img><br>
+                {% endfor %}
+                </td>
+            </tr>
+
+{#             <tr>
+            <th>Les activités que j'aimerai faire</th>
+                <td> #}
+                    {# Boucle pour faire la affichage des Activites #}
+{#                 {% for activity in user.activitieUsers%}
+                    <div>{{ activity.name }}</div><br>
+                    <img>{{ activity.image }}</img><br>
+                {% endfor %}
+                </td>
+            </tr> #}
 {#              <tr>
                 <th>Created_at</th>
                 <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>

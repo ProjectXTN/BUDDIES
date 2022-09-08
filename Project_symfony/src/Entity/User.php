@@ -87,6 +87,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $review_received;
 
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: ActivitieUser::class)]
+    private Collection $activitieUsers;
+
+
     public function __construct()
     {
         $this->groupe = new ArrayCollection();
@@ -97,6 +101,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->messenger_received = new ArrayCollection();
         $this->review_sender = new ArrayCollection();
         $this->review_received = new ArrayCollection();
+        $this->activities = new ArrayCollection();
+        $this->activitieUsers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -508,6 +514,37 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($reviewReceived->getReceivedId() === $this) {
                 $reviewReceived->setReceivedId(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+    /**
+     * @return Collection<int, ActivitieUser>
+     */
+    public function getActivitieUsers(): Collection
+    {
+        return $this->activitieUsers;
+    }
+
+    public function addActivitieUser(ActivitieUser $activitieUser): self
+    {
+        if (!$this->activitieUsers->contains($activitieUser)) {
+            $this->activitieUsers->add($activitieUser);
+            $activitieUser->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeActivitieUser(ActivitieUser $activitieUser): self
+    {
+        if ($this->activitieUsers->removeElement($activitieUser)) {
+            // set the owning side to null (unless already changed)
+            if ($activitieUser->getUser() === $this) {
+                $activitieUser->setUser(null);
             }
         }
 
