@@ -29,9 +29,18 @@ class UserCrudController extends AbstractCrudController
             EmailField::new('email'),
             TextField::new('firstName'),
             TextField::new('lastName'),
-            // Il faut metre le date de creation de utilisateur
+            TextField::new('password'),
             DateTimeField::new('created_at'),
-            // il faut ajouter le ville
+            ChoiceField::new('city')->setChoices([
+                'Paris' => 'Paris',
+                'Marseille' => 'Marseille',
+                'Toulouse' => 'Toulouse',
+                'Nice' => 'Nice',
+                'Nantes' => 'Nantes',
+                'Montpellier' => 'Montpellier',
+                'Strasbourg' => 'Strasbourg',
+                'Lille' => 'Lille',
+            ]),
             CountryField::new('country'),
             // il faut ajouter d'autres langue
             LanguageField::new('language')->useAlpha3Codes(),
