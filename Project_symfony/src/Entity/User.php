@@ -74,12 +74,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Review::class, inversedBy: 'users')]
     private Collection $Reviews;
 
+    #[ORM\OneToMany(mappedBy: 'sender', targetEntity: Messenger::class)]
+    private Collection $messengers;
+
+    #[ORM\OneToMany(mappedBy: 'receiver', targetEntity: Messenger::class)]
+    private Collection $messenger_received;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $Isconnected = null;
+
+
     public function __construct()
     {
         $this->groupe = new ArrayCollection();
         $this->Form = new ArrayCollection();
         $this->Publication = new ArrayCollection();
         $this->Reviews = new ArrayCollection();
+        $this->messengers = new ArrayCollection();
+        $this->messenger_received = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -279,6 +291,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    // Ne marche pas pour edite le crud
+    public function __toString()
+    {
+        return $this->firstName.' '.$this->lastName.' '.$this->country.' '.$this->city.' '.$this->language.' '.$this->Picture.' '.$this->Biography;
+    }
 
     /**
      * @return Collection<int, Group>
@@ -377,4 +394,77 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Messenger>
+     */
+    public function getMessengers(): Collection
+    {
+        return $this->messengers;
+    }
+
+    public function addMessenger(Messenger $messenger): self
+    {
+        if (!$this->messengers->contains($messenger)) {
+            $this->messengers->add($messenger);
+            $messenger->setSender($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessenger(Messenger $messenger): self
+    {
+        if ($this->messengers->removeElement($messenger)) {
+            // set the owning side to null (unless already changed)
+            if ($messenger->getSender() === $this) {
+                $messenger->setSender(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Messenger>
+     */
+    public function getMessengerReceived(): Collection
+    {
+        return $this->messenger_received;
+    }
+
+    public function addMessengerReceived(Messenger $messengerReceived): self
+    {
+        if (!$this->messenger_received->contains($messengerReceived)) {
+            $this->messenger_received->add($messengerReceived);
+            $messengerReceived->setReceiver($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessengerReceived(Messenger $messengerReceived): self
+    {
+        if ($this->messenger_received->removeElement($messengerReceived)) {
+            // set the owning side to null (unless already changed)
+            if ($messengerReceived->getReceiver() === $this) {
+                $messengerReceived->setReceiver(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getIsconnected(): ?\DateTimeInterface
+    {
+        return $this->Isconnected;
+    }
+
+    public function setIsconnected(\DateTimeInterface $Isconnected): self
+    {
+        $this->Isconnected = $Isconnected;
+
+        return $this;
+    }
+
 }
