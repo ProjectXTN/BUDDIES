@@ -321,6 +321,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+/*     public function deleteImage(){
+        if(unlink('../data/')){
+
+        }
+    } */
+
 
 
     /**

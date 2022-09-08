@@ -11,10 +11,15 @@
 <div class="example-wrapper">
     <h1>Hello Jammers</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/pedro/OneDrive/Documents/GitHub/Project_LaPasserelle/Project_symfony/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/pedro/OneDrive/Documents/GitHub/Project_LaPasserelle/Project_symfony/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
+
+
+    {# Button pour y alle vers la page Register #}
+    <a href="{{path('app_register')}}"><button>Page - Register</button></a>
+    {# Button pour y alle vers la page Login #}
+    <a href="{{path('app_login')}}"><button>Page - Login</button></a>
+    {# Button pour y alle vers la page User #}
+    <a href="{{path('app_user_show')}}"><button>Page - User</button></a>
+    {# Button pour y alle vers la page Admin #}
+    <a href="{{path('admin')}}"><button>Page - Admin</button></a>
 </div>
 {% endblock %}
