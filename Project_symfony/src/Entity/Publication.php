@@ -25,8 +25,10 @@ class Publication
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'Publication')]
     private Collection $users;
 
-    #[ORM\OneToMany(mappedBy: 'publication', targetEntity: Group::class)]
-    private Collection $groupe;
+    #[ORM\ManyToOne(inversedBy: 'publication')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Group $groupe = null;
+
 
     public function __construct()
     {
@@ -90,33 +92,16 @@ class Publication
         return $this;
     }
 
-    /**
-     * @return Collection<int, Group>
-     */
-    public function getGroupe(): Collection
+    public function getGroupe(): ?Group
     {
         return $this->groupe;
     }
 
-    public function addGroupe(Group $groupe): self
+    public function setGroupe(?Group $groupe): self
     {
-        if (!$this->groupe->contains($groupe)) {
-            $this->groupe->add($groupe);
-            $groupe->setPublication($this);
-        }
+        $this->groupe = $groupe;
 
         return $this;
     }
 
-    public function removeGroupe(Group $groupe): self
-    {
-        if ($this->groupe->removeElement($groupe)) {
-            // set the owning side to null (unless already changed)
-            if ($groupe->getPublication() === $this) {
-                $groupe->setPublication(null);
-            }
-        }
-
-        return $this;
-    }
 }

@@ -26,13 +26,15 @@ class Group
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'groupe')]
     private Collection $users;
 
-    #[ORM\ManyToOne(inversedBy: 'groupe')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Publication $publication = null;
+    #[ORM\OneToMany(mappedBy: 'groupe', targetEntity: Publication::class)]
+    private Collection $publication;
+
+
 
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->publication = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -91,14 +93,32 @@ class Group
         return $this;
     }
 
-    public function getPublication(): ?Publication
+    /**
+     * @return Collection<int, Publication>
+     */
+    public function getPublication(): Collection
     {
         return $this->publication;
     }
 
-    public function setPublication(?Publication $publication): self
+    public function addPublication(Publication $publication): self
     {
-        $this->publication = $publication;
+        if (!$this->publication->contains($publication)) {
+            $this->publication->add($publication);
+            $publication->setGroupe($this);
+        }
+
+        return $this;
+    }
+
+    public function removePublication(Publication $publication): self
+    {
+        if ($this->publication->removeElement($publication)) {
+            // set the owning side to null (unless already changed)
+            if ($publication->getGroupe() === $this) {
+                $publication->setGroupe(null);
+            }
+        }
 
         return $this;
     }
