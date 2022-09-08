@@ -71,17 +71,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Form::class, inversedBy: 'users')]
     private Collection $Form;
 
-    #[ORM\ManyToMany(targetEntity: Review::class, inversedBy: 'users')]
-    private Collection $Reviews;
-
     #[ORM\OneToMany(mappedBy: 'sender', targetEntity: Messenger::class)]
     private Collection $messengers;
 
     #[ORM\OneToMany(mappedBy: 'receiver', targetEntity: Messenger::class)]
     private Collection $messenger_received;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $Isconnected = null;
+
+    #[ORM\OneToMany(mappedBy: 'sender_id', targetEntity: Review::class)]
+    private Collection $review_sender;
+
+    #[ORM\OneToMany(mappedBy: 'received_id', targetEntity: Review::class)]
+    private Collection $review_received;
 
 
     public function __construct()
@@ -92,6 +95,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->Reviews = new ArrayCollection();
         $this->messengers = new ArrayCollection();
         $this->messenger_received = new ArrayCollection();
+        $this->review_sender = new ArrayCollection();
+        $this->review_received = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -378,30 +383,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Review>
-     */
-    public function getReviews(): Collection
-    {
-        return $this->Reviews;
-    }
-
-    public function addReview(Review $review): self
-    {
-        if (!$this->Reviews->contains($review)) {
-            $this->Reviews->add($review);
-        }
-
-        return $this;
-    }
-
-    public function removeReview(Review $review): self
-    {
-        $this->Reviews->removeElement($review);
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, Messenger>
      */
     public function getMessengers(): Collection
@@ -472,5 +453,67 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Review>
+     */
+    public function getReviewSender(): Collection
+    {
+        return $this->review_sender;
+    }
+
+    public function addReviewSender(Review $reviewSender): self
+    {
+        if (!$this->review_sender->contains($reviewSender)) {
+            $this->review_sender->add($reviewSender);
+            $reviewSender->setSenderId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReviewSender(Review $reviewSender): self
+    {
+        if ($this->review_sender->removeElement($reviewSender)) {
+            // set the owning side to null (unless already changed)
+            if ($reviewSender->getSenderId() === $this) {
+                $reviewSender->setSenderId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Review>
+     */
+    public function getReviewReceived(): Collection
+    {
+        return $this->review_received;
+    }
+
+    public function addReviewReceived(Review $reviewReceived): self
+    {
+        if (!$this->review_received->contains($reviewReceived)) {
+            $this->review_received->add($reviewReceived);
+            $reviewReceived->setReceivedId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReviewReceived(Review $reviewReceived): self
+    {
+        if ($this->review_received->removeElement($reviewReceived)) {
+            // set the owning side to null (unless already changed)
+            if ($reviewReceived->getReceivedId() === $this) {
+                $reviewReceived->setReceivedId(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 
 }

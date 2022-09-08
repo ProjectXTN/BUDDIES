@@ -26,7 +26,7 @@ class Publication
     private Collection $users;
 
     #[ORM\ManyToOne(inversedBy: 'publication')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Group $groupe = null;
 
 

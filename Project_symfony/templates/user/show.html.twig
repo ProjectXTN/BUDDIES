@@ -45,7 +45,7 @@
             </tr>
             <tr>
                 <th>Picture</th>
-                <td><img src="/data/{{user.Picture}}" ></td>
+                <td><img src="/data/{{user.Picture}}" ></img></td>
             </tr>
             <tr>
                 <th>Biography</th>
@@ -55,10 +55,47 @@
                 <th>IsExpat</th>
                 <td>{{ user.isExpat ? 'Yes' : 'No' }}</td>
             </tr>
-{#             <tr>
+            <tr>
+                <th>Mes communautés</th>
+                <td>
+                    {# Boucle pour faire la affichage des groups #}
+                {% for groupe in user.groupe %}
+                    <div>{{ groupe.image }}</div>
+                    <div>{{ groupe.name }}</div>
+                    <div>{{ groupe.description }}</div><br>
+                {% endfor %}
+            </td>
+            </tr>
+            <tr>
+                <th>Mes Avis</th>
+                <td>
+                    {# Boucle pour faire la affichage des avis #}
+                {% for review in user.reviewReceived %}
+                    <div><strong>{{ review.senderId.firstName }}</strong></div><br>
+                     <div>{{review.dateAt ? review.dateAt|date('Y-m-d H:i:s') : '' }}</div> 
+                    <div><img src="/data/{{ review.senderId.Picture }}"></img></div><br>
+                    <div><strong>{{ review.comment }}</strong></div><br>
+                {% endfor %}
+                </td>
+            </tr>
+
+            <tr>
+            <th>Mes Publications</th>
+            <td>
+                {# Boucle pour faire la affichage des Publication #}
+            {% for publication in user.publication %}
+                 <div>{{ user.firstName }}</div><br>
+                 <div>{{ publication.dateAt ? publication.dateAt|date('Y-m-d H:i:s') : '' }}</div> 
+                 <img src="/data/{{user.Picture}}" ></img><br>
+                 <div>{{ publication.post}}</div><br>
+                 
+            {% endfor %}
+            </td>
+        </tr>
+{#              <tr>
                 <th>Created_at</th>
                 <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr> #}
+            </tr>  #}
         </tbody>
     </table>
 

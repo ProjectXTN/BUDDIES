@@ -22,12 +22,18 @@ class Review
     #[ORM\Column]
     private ?\DateTimeImmutable $date_at = null;
 
-    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'Reviews')]
-    private Collection $users;
+    #[ORM\ManyToOne(inversedBy: 'review_sender')]
+    private ?User $sender_id = null;
+
+    #[ORM\ManyToOne(inversedBy: 'review_received')]
+    private ?User $received_id = null;
+
 
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->sender_id = new ArrayCollection();
+        $this->received_id = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -59,30 +65,31 @@ class Review
         return $this;
     }
 
-    /**
-     * @return Collection<int, User>
-     */
-    public function getUsers(): Collection
+    public function getSenderId(): ?User
     {
-        return $this->users;
+        return $this->sender_id;
     }
 
-    public function addUser(User $user): self
+    public function setSenderId(?User $sender_id): self
     {
-        if (!$this->users->contains($user)) {
-            $this->users->add($user);
-            $user->addReview($this);
-        }
+        $this->sender_id = $sender_id;
 
         return $this;
     }
 
-    public function removeUser(User $user): self
+    public function getReceivedId(): ?User
     {
-        if ($this->users->removeElement($user)) {
-            $user->removeReview($this);
-        }
+        return $this->received_id;
+    }
+
+    public function setReceivedId(?User $received_id): self
+    {
+        $this->received_id = $received_id;
 
         return $this;
     }
+
+
+
+  
 }

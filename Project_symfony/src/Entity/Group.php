@@ -29,6 +29,9 @@ class Group
     #[ORM\OneToMany(mappedBy: 'groupe', targetEntity: Publication::class)]
     private Collection $publication;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
+
 
 
     public function __construct()
@@ -119,6 +122,18 @@ class Group
                 $publication->setGroupe(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
