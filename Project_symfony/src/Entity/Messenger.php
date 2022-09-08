@@ -20,6 +20,18 @@ class Messenger
     #[ORM\Column]
     private ?\DateTimeImmutable $sentAt = null;
 
+    #[ORM\Column]
+    private ?\DateTimeImmutable $receivedAt = null;
+
+    #[ORM\ManyToOne(inversedBy: 'messengers')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $sender = null;
+
+    #[ORM\ManyToOne(inversedBy: 'messenger_received')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $receiver = null;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -48,4 +60,42 @@ class Messenger
 
         return $this;
     }
+
+    public function getReceivedAt(): ?\DateTimeImmutable
+    {
+        return $this->receivedAt;
+    }
+
+    public function setReceivedAt(\DateTimeImmutable $receivedAt): self
+    {
+        $this->receivedAt = $receivedAt;
+
+        return $this;
+    }
+
+    public function getSender(): ?User
+    {
+        return $this->sender;
+    }
+
+    public function setSender(?User $sender): self
+    {
+        $this->sender = $sender;
+
+        return $this;
+    }
+
+    public function getReceiver(): ?User
+    {
+        return $this->receiver;
+    }
+
+    public function setReceiver(?User $receiver): self
+    {
+        $this->receiver = $receiver;
+
+        return $this;
+    }
+
+
 }

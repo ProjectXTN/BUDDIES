@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Messenger;
 use App\Form\MessengerType;
 use App\Repository\MessengerRepository;
-use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,17 +22,13 @@ class MessengerController extends AbstractController
     }
 
     #[Route('/new', name: 'app_messenger_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, UserRepository $userRepository, MessengerRepository $messengerRepository): Response
+    public function new(Request $request, MessengerRepository $messengerRepository): Response
     {
         $messenger = new Messenger();
         $form = $this->createForm(MessengerType::class, $messenger);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $sender = $userRepository->findOneById(1) ;
-            $receiver = $userRepository->findOneById(2);
-            $messenger->setSender($sender);
-            $messenger->setReceiver($receiver);
             $messengerRepository->add($messenger, true);
 
             return $this->redirectToRoute('app_messenger_index', [], Response::HTTP_SEE_OTHER);
