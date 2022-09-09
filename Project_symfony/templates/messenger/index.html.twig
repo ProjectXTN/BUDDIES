@@ -23,8 +23,10 @@
                 <td>{{ messenger.sentAt ? messenger.sentAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ messenger.receivedAt ? messenger.receivedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_messenger_show', {'id': messenger.id}) }}">show</a>
-                    <a href="{{ path('app_messenger_edit', {'id': messenger.id}) }}">edit</a>
+                    
+                    <a href="{{ path('app_messenger_show', {'id': messenger.id}) }}">afficher</a>
+                    <a href="{{ path('app_messenger_edit', {'id': messenger.id}) }}">modifier</a>
+                    
                 </td>
             </tr>
         {% else %}
@@ -35,5 +37,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_messenger_new') }}">Create new</a>
+    <a href="{{ path('app_messenger_new') }}">Nouveau message</a>
 {% endblock %}
