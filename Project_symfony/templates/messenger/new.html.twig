@@ -1,11 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Messenger{% endblock %}
+{% block title %}Nouveau message{% endblock %}
 
 {% block body %}
-    <h1>Create new Messenger</h1>
+    <div id="liste_messages">
+        
+    </div>
+
+    {# pour ajouter le bouton parcourir #}
+    {# <input type="file" id="input"> #}
 
     {{ include('messenger/_form.html.twig') }}
 
-    <a href="{{ path('app_messenger_index') }}">back to list</a>
+    {# <a href="{{ path('app_messenger_index') }}">back to list</a> #}
+{% endblock %}
+
+{% block javascripts %}
+<script>
+
+
+let idSender = 1;
+let idReceiver = 2;
+
+function loadMsg(){
+    let messages = document.getElementById("liste_messages");
+
+    fetch('/messenger/listmessage/'+idSender+'/'+idReceiver)
+    .then(response=> response.text())
+    .then(text=> messages.innerHTML = text);
+
+    setTimeout(function(){
+        loadMsg();
+    }, 5000);
+
+}
+
+loadMsg();
+
+
+
+</script>
 {% endblock %}

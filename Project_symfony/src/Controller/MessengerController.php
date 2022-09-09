@@ -5,6 +5,9 @@ namespace App\Controller;
 use App\Entity\Messenger;
 use App\Form\MessengerType;
 use App\Repository\MessengerRepository;
+use App\Repository\UserRepository;
+use DateTimeImmutable;
+use Doctrine\DBAL\Types\DateImmutableType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,14 +25,20 @@ class MessengerController extends AbstractController
     }
 
     #[Route('/new', name: 'app_messenger_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, MessengerRepository $messengerRepository): Response
+    public function new(UserRepository $userRepository,Request $request, MessengerRepository $messengerRepository): Response
     {
         $messenger = new Messenger();
         $form = $this->createForm(MessengerType::class, $messenger);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $messengerRepository->add($messenger, true);
+                $sender = $userRepository->findOneById(1) ;
+                $receiver = $userRepository->findOneById(2);
+                $messenger->setSender($sender);
+                $messenger->setReceiver($receiver);
+                $messenger->setSentAt(new DateTimeImmutable());
+                $messenger->setReceivedAt(new DateTimeImmutable());
+                $messengerRepository->add($messenger, true);
 
             return $this->redirectToRoute('app_messenger_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -74,5 +83,15 @@ class MessengerController extends AbstractController
         }
 
         return $this->redirectToRoute('app_messenger_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/listmessage/{idSender}/{idReceiver}', name: 'app_messenger_list_message', methods: ['GET'])]
+    public function list_message($idSender, $idReceiver, MessengerRepository $messengerRepository): Response
+    {
+        $messengerData = $messengerRepository->getConversation($idSender);
+        
+
+        return $this->renderForm('messenger/list_message.html.twig', ["messengerData" => $messengerData
+        ]);
     }
 }

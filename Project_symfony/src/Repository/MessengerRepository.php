@@ -39,6 +39,16 @@ class MessengerRepository extends ServiceEntityRepository
         }
     }
 
+    public function getConversation($id){
+        return $this->createQueryBuilder('m')
+            ->where('m.sender = :val')
+            ->orWhere('m.receiver = :val')
+            ->setParameter('val', $id)
+            ->orderBy('m.sentAt', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Messenger[] Returns an array of Messenger objects
 //     */
