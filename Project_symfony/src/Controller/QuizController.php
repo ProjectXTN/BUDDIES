@@ -14,6 +14,7 @@ class QuizController extends AbstractController
     {
         $form = $formRepository->findByStep(1);
         return $this->render('quiz/step.html.twig', [
+            'form' => $form,
             'step1' => true,
             'step2' => false,
             'step3' => false,
@@ -25,8 +26,12 @@ class QuizController extends AbstractController
     #[Route('/quiz/step2', name: 'app_quiz_2')]
     public function stepTwo(FormRepository $formRepository): Response
     {
+        //traitement du form1
+
+
         $form = $formRepository->findByStep(2);
         return $this->render('quiz/step.html.twig', [
+            'form' => $form,
             'step2' => true,
             'step1' => false,
             'step3' => false,
@@ -38,9 +43,11 @@ class QuizController extends AbstractController
     {
         $form = $formRepository->findByStep(3);
         return $this->render('quiz/step.html.twig', [
+            'form' => $form,
             'step1' => false,
             'step2' => false,
             'step3' => true,
+           
         ]);
     }
 }
