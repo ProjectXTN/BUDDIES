@@ -17,7 +17,7 @@ class QuizController extends AbstractController
             'form' => $form,
             'step1' => true,
             'step2' => false,
-            'step3' => false,
+            'step3' => false
         ]);
     }
 
@@ -26,7 +26,7 @@ class QuizController extends AbstractController
     #[Route('/quiz/step2', name: 'app_quiz_2')]
     public function stepTwo(FormRepository $formRepository): Response
     {
-        //traitement du form1
+        //traitement du form1 
 
 
         $form = $formRepository->findByStep(2);
@@ -34,7 +34,7 @@ class QuizController extends AbstractController
             'form' => $form,
             'step2' => true,
             'step1' => false,
-            'step3' => false,
+            'step3' => false
         ]);
     }
 
@@ -46,7 +46,7 @@ class QuizController extends AbstractController
             'form' => $form,
             'step1' => false,
             'step2' => false,
-            'step3' => true,
+            'step3' => true
            
         ]);
     }
