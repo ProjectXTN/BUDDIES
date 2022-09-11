@@ -56,12 +56,12 @@ class EditionActivitiesController extends AbstractController
     
                 $activity = $activitieRepository->findOneById($val);
     
-                $userActivity = new ActivitieUser();
-                $userActivity->setActivitie($activity);
-                $userActivity->setUser($this->getUser());
-                $userActivity->setIsActivitie(false);
+                $userInterets = new ActivitieUser();
+                $userInterets->setActivitie($activity);
+                $userInterets->setUser($this->getUser());
+                $userInterets->setIsActivitie(false);
     
-                $em->persist($userActivity);
+                $em->persist($userInterets);
             }
             $em->flush();
             
