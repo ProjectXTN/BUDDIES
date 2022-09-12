@@ -21,7 +21,6 @@ class QuizController extends AbstractController
         ]);
     }
 
-    
 
     #[Route('/quiz/step2', name: 'app_quiz_2')]
     public function stepTwo(FormRepository $formRepository): Response

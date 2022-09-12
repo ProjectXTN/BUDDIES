@@ -49,6 +49,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $language = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    private ?string $language2 = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $language3 = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $Picture = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
@@ -302,7 +308,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    // Ne marche pas pour edite le crud
     public function __toString()
     {
         return $this->firstName.' '.$this->lastName.' '.$this->country.' '.$this->city.' '.$this->language.' '.$this->Picture.' '.$this->Biography;
@@ -551,6 +556,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function getLanguage2(): ?string
+    {
+        return $this->language2;
+    }
 
+    public function setLanguage2(?string $language2): self
+    {
+        $this->language2 = $language2;
+
+        return $this;
+    }
+
+    public function getLanguage3(): ?string
+    {
+        return $this->language3;
+    }
+
+    public function setLanguage3(?string $language3): self
+    {
+        $this->language3 = $language3;
+
+        return $this;
+    }
 
 }
