@@ -31,7 +31,7 @@ class MatchController extends AbstractController
         foreach($getAllUser as $otherUsers){
 
             $increment = 0;
-
+            
             if($otherUsers->getId() != $myInformation->getId()){
                 foreach($otherUsers->getForm() as $formOtherUser){
                     
@@ -48,7 +48,9 @@ class MatchController extends AbstractController
 
 
 //dd($tabUserInterets);
-                //si le form du user correspond au form de l'autre user alors match
+
+
+        //Sorts array in place in descending order, such that its keys maintain their correlation with the values they are associated with. 
         arsort($tabOtherUser);
      
         dd($tabOtherUser);
