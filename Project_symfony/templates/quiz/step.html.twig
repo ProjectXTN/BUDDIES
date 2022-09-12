@@ -11,35 +11,37 @@
 
 {% if step1 %}
 
-  <label class="text"> Ton sport préféré ? </label>
+  <label class="text"> Ton sport préféré : </label>
   <form action="{{ path('app_quiz_2') }}">
        
 {% endif %} 
 
 {% if step2 %}
 
-  <label class="text"> Le samedi soir t'es plutot : </label>   
+  <label class="text"> Ton activité préférée le samedi soir : </label>   
   <form action="{{ path('app_quiz_3') }}">
        
 {% endif %} 
 
 {% if step3 %}
   
-  <label class="text"> Ta drogue préférée ? </label>
-  <form action="{{ path('app_quiz_3') }}">
+  <label class="text"> Ton plat préféré : </label>
+  <form action="{{ path('app_quiz_4') }}">
        
 {% endif %} 
 
-<!-- <label class="text"> Questions </label>-->
+
+
+
 
 {% for formprops in form %}
 <div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="{{ formprops.id }}">
+  <input class="form-check-input" type="checkbox" name="valueCheckbox[]" id="inlineCheckbox1" value="{{ formprops.id }}">
   <label class="form-check-label" for="inlineCheckbox1">{{ formprops.interestedIn }}</label>
 </div>
 {% endfor %}
 
-<input type="submit"></input>
+<input type="submit"></input> 
 
 </form>
     
