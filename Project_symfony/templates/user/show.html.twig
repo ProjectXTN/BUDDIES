@@ -26,7 +26,7 @@
             </tr> #}
             <tr>
                 <th>FirstName</th>
-                <td>{{ user.firstName }}</td>
+                <td onclick="findForm()">{{ user.firstName }}</td>
             </tr>
             <tr>
                 <th>LastName</th>
@@ -118,7 +118,7 @@
                     {# <img>{{ activity.activitie.image }}</img><br> #}
                     {% endif %}  
                 {% endfor %}
-            <button onclick="lunchModal()">Edit</button>
+            <button onclick="lunchModalFalse()">Edit</button>
                 </td>
             </tr>
              <tr>
@@ -132,7 +132,7 @@
     {# Remove button back to list #}
     {# <a href="{{ path('app_user_index') }}">back to list</a> #}
 
-    <!-- Modal -->
+    <!-- Modal saveActivity -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <div class="modal-dialog" role="document">
   <div class="modal-content">
@@ -147,13 +147,14 @@
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      <button type="button"  class="btn btn-primary" onclick="saveActivity()">Save changes</button>
+      <button type="button"  class="btn btn-primary" onclick="saveActivity()" data-dismiss="modal">Save changes</button>
     
     </div>
   </div>
-
-  <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+</div>
+</div>
+  <!-- Modal saveInterets -->
+<div class="modal fade" id="exampleModalFalse" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <div class="modal-dialog" role="document">
   <div class="modal-content">
     <div class="modal-header">
@@ -162,12 +163,12 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <div class="modal-body" id="contentModal">
+    <div class="modal-body" id="contentModalFalse">
       ...
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      <button type="button"  class="btn btn-primary" onclick="saveInterets()">Save changes</button>
+      <button type="button"  class="btn btn-primary" onclick="saveInterets()" data-dismiss="modal">Save changes</button>
     
     </div>
   </div>
@@ -193,11 +194,11 @@
         });
     }
 
-{#     function lunchModalFalse(){
-        jQuery('#contentModal').load('/edition/activities', function(){
-            jQuery('#exampleModal').modal('show');
+     function lunchModalFalse(){
+        jQuery('#contentModalFalse').load('/edition/activities', function(){
+            jQuery('#exampleModalFalse').modal('show');
         });
-    } #}
+    } 
 
     function saveActivity(){
 
@@ -238,8 +239,22 @@
         })
         .then(function(headers){return headers.json()})
         .then(function(body){
-            console.log(body);
         })
+    }
+
+
+/* script onclick ajoute sur le first name pour teste */
+    function findForm(){
+        tabIdForm = [];
+
+        fetch('/finduserform', {
+            method: 'GET',
+            body: JSON.stringify({'data':tabIdForm})
+        })
+        .then(function(headers){return header.json()})
+        .then(function(body){
+        })
+        console.log(body)
     }
 </script>
 {% endblock %}
