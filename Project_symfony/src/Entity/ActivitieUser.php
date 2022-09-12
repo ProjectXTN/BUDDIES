@@ -62,4 +62,9 @@ class ActivitieUser
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->activitie.' '.$this->user;
+    }
 }
