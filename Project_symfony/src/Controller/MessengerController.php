@@ -88,10 +88,12 @@ class MessengerController extends AbstractController
     #[Route('/listmessage/{idSender}/{idReceiver}', name: 'app_messenger_list_message', methods: ['GET'])]
     public function list_message($idSender, $idReceiver, MessengerRepository $messengerRepository): Response
     {
-        $messengerData = $messengerRepository->getConversation($idSender);
+        $messengerData = $messengerRepository->getConversation($idSender, $idReceiver);
         
 
         return $this->renderForm('messenger/list_message.html.twig', ["messengerData" => $messengerData
         ]);
     }
+
+    
 }
