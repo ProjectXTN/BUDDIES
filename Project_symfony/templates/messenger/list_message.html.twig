@@ -1,6 +1,11 @@
 {% 
     for message in messengerData
 %}
+<img src="/data/{{message.sender.picture}}" />
  {{message.text}}<br>
+ envoyé par : {{message.sender.firstName}} {{message.sender.lastName}}<br>
+ recu par : {{message.receiver.firstName}} {{message.receiver.lastName}}<br>
  =================<br>
+<br>
+
 {% endfor %}

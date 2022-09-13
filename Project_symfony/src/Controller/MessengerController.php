@@ -3,12 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Messenger;
+use App\Entity\User;
 use App\Form\MessengerType;
 use App\Repository\MessengerRepository;
 use App\Repository\UserRepository;
 use DateTimeImmutable;
 use Doctrine\DBAL\Types\DateImmutableType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -88,10 +90,35 @@ class MessengerController extends AbstractController
     #[Route('/listmessage/{idSender}/{idReceiver}', name: 'app_messenger_list_message', methods: ['GET'])]
     public function list_message($idSender, $idReceiver, MessengerRepository $messengerRepository): Response
     {
-        $messengerData = $messengerRepository->getConversation($idSender);
-        
+        $messengerData = $messengerRepository->getConversation($idSender, $idReceiver);
 
-        return $this->renderForm('messenger/list_message.html.twig', ["messengerData" => $messengerData
+        return $this->renderForm('messenger/list_message.html.twig', [
+            "messengerData" => $messengerData
         ]);
     }
+
+    #[Route('/save/{id}', name: 'app_messenger_save', methods: ['POST'])]
+    public function saveMessage(User $user, Request $request, MessengerRepository $messengerRepository, UserRepository $userRepository): JsonResponse
+    {
+        
+        $content = $request->getContent();
+        $idReceiver = json_decode($content)->idReceiver;
+        $message = json_decode($content)->message;
+
+        $userReceiver = $userRepository->findOneById($idReceiver);
+
+        $messager = new Messenger();
+        $messager->setText($message);
+        $messager->setSender($this->getUser());
+        $messager->setReceiver($userReceiver);
+        $messager->setSentAt(new DateTimeImmutable());
+        $messager->setReceivedAt(new DateTimeImmutable());
+
+        $messengerRepository->add($messager, true);
+
+        return new JsonResponse(['result' => 'ok']);
+
+    }
+
+    
 }
