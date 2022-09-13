@@ -96,6 +96,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: ActivitieUser::class)]
     private Collection $activitieUsers;
 
+    #[ORM\ManyToMany(targetEntity: self::class, inversedBy: 'friends')]
+    private Collection $friends;
+
 
     public function __construct()
     {
@@ -109,6 +112,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->review_received = new ArrayCollection();
         $this->activities = new ArrayCollection();
         $this->activitieUsers = new ArrayCollection();
+        $this->friends = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -576,6 +580,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLanguage3(?string $language3): self
     {
         $this->language3 = $language3;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, self>
+     */
+    public function getFriends(): Collection
+    {
+        return $this->friends;
+    }
+
+    public function addFriend(self $friend): self
+    {
+        if (!$this->friends->contains($friend)) {
+            $this->friends->add($friend);
+        }
+
+        return $this;
+    }
+
+    public function removeFriend(self $friend): self
+    {
+        $this->friends->removeElement($friend);
 
         return $this;
     }

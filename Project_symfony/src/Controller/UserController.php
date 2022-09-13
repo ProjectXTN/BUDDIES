@@ -59,6 +59,14 @@ class UserController extends AbstractController
         ]);
     }
 
+    #[Route('/details/{id}', name: 'app_user_details', methods: ['GET'])]
+    public function details(User $user): Response
+    {
+        return $this->render('user/detail_user.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
     #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, UserRepository $userRepository, SluggerInterface $slugger): Response
     {
@@ -103,6 +111,28 @@ class UserController extends AbstractController
         }
 
         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/add_friends/{id}', name: 'app_add_friends')]
+    public function friendRequest(User $user, UserRepository $userRepository): Response
+    {
+        $myUser = $this->getUser();
+        $myUser->addFriend($user);
+        $userRepository->add($myUser, true);
+        
+
+        return $this->redirectToRoute('app_user_details', ['id'=>$user->getId()], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/remove_friends/{id}', name: 'app_remove_friends')]
+    public function removeFriend(User $user, UserRepository $userRepository): Response
+    {
+        $myUser = $this->getUser();
+        $myUser->removeFriend($user);
+        $userRepository->add($myUser, true);
+        
+
+        return $this->redirectToRoute('app_user_details', ['id'=>$user->getId()], Response::HTTP_SEE_OTHER);
     }
     
 }
