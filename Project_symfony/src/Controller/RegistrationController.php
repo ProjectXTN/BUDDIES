@@ -12,6 +12,9 @@ use App\Form\RegistrationStep5;
 use App\Form\RegistrationStep6;
 use App\Form\RegistrationStep7;
 use App\Form\RegistrationStep8;
+use App\Form\RegistrationStep9;
+use App\Form\RegistrationStep10;
+use App\Form\RegistrationStep11;
 use App\Repository\ActivitieRepository;
 use App\Repository\ActivitieUserRepository;
 use App\Repository\FormRepository;
@@ -19,12 +22,14 @@ use App\Repository\UserRepository;
 use App\Security\AppAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class RegistrationController extends AbstractController
 { //Route to creation compte EMAIL
@@ -303,9 +308,9 @@ class RegistrationController extends AbstractController
            
         ]);
     }
-
+    // traitement du step8 pour la foto de profil
     #[Route('/step8', name: 'app_register_step8')]
-    public function step8(Request $request, RequestStack $requestStack, EntityManagerInterface $entityManagerInterface): Response
+    public function step8(Request $request, RequestStack $requestStack, EntityManagerInterface $entityManagerInterface, SluggerInterface $slugger, UserRepository $userRepository): Response
     {
     
         $session = $requestStack->getSession();
@@ -315,18 +320,27 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
     
         if ($form->isSubmitted() && $form->isValid()) {
-            //dd($user);
-            $user->setPicture(
-                $form->get('Picture')->getData())
-            ;
-    
-            $session->set('user', $user);
-            $entityManagerInterface->persist($user);
-            $entityManagerInterface->flush();
-            
-            //redirection
-            return $this->redirectToRoute('app_login', [], Response::HTTP_SEE_OTHER);
-    
+            $pictureFile = $form->get('Picture')->getData();
+
+            if ($pictureFile) {
+                $originalFilename = pathinfo($pictureFile->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $pictureFile->guessExtension();
+
+                try {
+                    $pictureFile->move(
+                        "./data/",
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                }
+
+                $user->setPicture($newFilename);
+            }
+            $userRepository->add($user, true);
+
+            return $this->redirectToRoute('app_register_step9', [], Response::HTTP_SEE_OTHER);
         }
     
         return $this->render('registration/step8.html.twig', [
@@ -334,27 +348,87 @@ class RegistrationController extends AbstractController
         ]); 
     }
 
-    
+            //Route to formulaire match step9 button
+            #[Route('/step9', name: 'app_register_step9')]
+            public function step9(Request $request, RequestStack $requestStack): Response
+            {
+        
+                $session = $requestStack->getSession();
+        
+                $user = $session->get('user');
+                $form = $this->createForm(RegistrationStep9::class, $user);
+                $form->handleRequest($request);
+        
+                if ($form->isSubmitted()) {
+                    
+                    //redirection
+                    return $this->redirectToRoute('app_register_step10', [], Response::HTTP_SEE_OTHER);
+        
+                }
+        
+                return $this->render('registration/step9.html.twig', [
+                    'registrationForm' => $form->createView(),
+                ]); 
+            }
 
+            //Route to formulaire match step10 Age
+            #[Route('/step10', name: 'app_register_step10')]
+            public function step10(Request $request, RequestStack $requestStack, UserRepository $userRepository): Response
+            {
+        
+                $session = $requestStack->getSession();
+        
+                $user = $session->get('user');
+                $form = $this->createForm(RegistrationStep10::class, $user);
+                $form->handleRequest($request);
+
+                if ($form->isSubmitted() && $form->isValid()) {
+                    dd($request);
+                    $user->setMatchAgeMin(
+                        $form->get('match_age_min')->getData());
+
+                    $user->setMatchAgeMax(
+                        $form->get('match_age_max')->getData());
+        
+                    $session->set('user', $user);
+                    
+                    //redirection
+                    return $this->redirectToRoute('app_register_step11', [], Response::HTTP_SEE_OTHER);
+        
+                }
+        
+                return $this->render('registration/step10.html.twig', [
+                    'registrationForm' => $form->createView(),
+                ]); 
+            }
+            
+            //Route to formulaire match step11 Age
+            #[Route('/step11', name: 'app_register_step11')]
+            public function step11(Request $request, RequestStack $requestStack): Response
+            {
+        
+                $session = $requestStack->getSession();
+
+                $user = $session->get('user');
+                $form = $this->createForm(RegistrationStep5::class, $user);
+                $form->handleRequest($request);
+
+                if ($form->isSubmitted() && $form->isValid()) {
+                    //dd($user);
+                    $user->setGenre(
+                        $form->get('genre')->getData())
+                    ;
+
+                    $session->set('user', $user);
+                    
+                    
+                    //redirection
+                    return $this->redirectToRoute('app_register_step12', [], Response::HTTP_SEE_OTHER);
+        
+                }
+        
+                return $this->render('registration/step11.html.twig', [
+                    'registrationForm' => $form->createView(),
+                ]); 
+            }
 }
-
-/* // encode the plain password
-$user->setPassword(
-    $userPasswordHasher->hashPassword(
-        $user,
-        $form->get('plainPassword')->getData()
-    )
-);
-
-$entityManager->persist($user);
-$entityManager->flush();
-// do anything else you need here, like send an email
-
-return $userAuthenticator->authenticateUser(
-    $user,
-    $authenticator,
-    $request
-); */
-
-
-
