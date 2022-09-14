@@ -15,6 +15,12 @@ use App\Form\RegistrationStep8;
 use App\Form\RegistrationStep9;
 use App\Form\RegistrationStep10;
 use App\Form\RegistrationStep11;
+use App\Form\RegistrationStep12;
+use App\Form\RegistrationStep13;
+use App\Form\RegistrationStep14;
+use App\Form\RegistrationStep15;
+use App\Form\RegistrationStep16;
+use App\Form\RegistrationStep17;
 use App\Repository\ActivitieRepository;
 use App\Repository\ActivitieUserRepository;
 use App\Repository\FormRepository;
@@ -222,16 +228,72 @@ class RegistrationController extends AbstractController
             $session->set('user', $user);
             
             //redirection
-            return $this->redirectToRoute('app_quiz', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_register_step16', [], Response::HTTP_SEE_OTHER);
 
         }
 
         return $this->render('registration/step7.html.twig', [
             'registrationForm' => $form->createView(),
         ]); 
-    } 
+    }
+    //MUDANDO QUIZ ADEL STEP 1 INTERETS
+    #[Route('/step16', name: 'app_register_step16')]
+    public function step16(Request $request, RequestStack $requestStack): Response
+    {
 
-    #[Route('/quiz', name: 'app_quiz')]
+        $session = $requestStack->getSession();
+
+        $user = $session->get('user');
+        $form = $this->createForm(RegistrationStep16::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            //dd($user);
+            $user->setInterets(
+                $form->get('Interets')->getData())
+            ;
+
+            $session->set('user', $user);
+            
+            //redirection
+            return $this->redirectToRoute('app_register_step17', [], Response::HTTP_SEE_OTHER);
+
+        }
+
+        return $this->render('registration/step16.html.twig', [
+            'registrationForm' => $form->createView(),
+        ]); 
+    }
+
+        //MUDANDO QUIZ ADEL STEP 2 INTERETS
+        #[Route('/step17', name: 'app_register_step17')]
+        public function step17(Request $request, RequestStack $requestStack): Response
+        {
+    
+            $session = $requestStack->getSession();
+    
+            $user = $session->get('user');
+            $form = $this->createForm(RegistrationStep16::class, $user);
+            $form->handleRequest($request);
+    
+            if ($form->isSubmitted() && $form->isValid()) {
+                //dd($user);
+                $user->setActivities(
+                    $form->get('Activities')->getData());
+    
+                $session->set('user', $user);
+                
+                //redirection
+                return $this->redirectToRoute('app_register_step8', [], Response::HTTP_SEE_OTHER);
+    
+            }
+    
+            return $this->render('registration/step17.html.twig', [
+                'registrationForm' => $form->createView(),
+            ]); 
+        } 
+
+/*     #[Route('/quiz', name: 'app_quiz')]
     public function stepOne( ActivitieRepository $activitieRepository  ): Response
     {
         $form = $activitieRepository->findByStep(1);
@@ -259,8 +321,6 @@ class RegistrationController extends AbstractController
             $activityUser->setUser($user);
             $activityUser->setIsActivitie(false);
 
-            $activitieUserRepository->add($activityUser);
-
             $user->addActivitieUser($activityUser);
         }
 
@@ -281,23 +341,6 @@ class RegistrationController extends AbstractController
     public function stepThree(Request $request, RequestStack $requestStack ,ActivitieUserRepository $activitieUserRepository, ActivitieRepository $activitieRepository): Response
     {
 
-        $session = $requestStack->getSession();
-        $user = $session->get('user');      
-        
-        foreach($request->get('valueCheckbox') as $row){
-            $activity = $activitieRepository->findOneById($row);
-            $activityUser = new ActivitieUser();
-            $activityUser->setActivitie($activity);
-            $activityUser->setUser($user);
-            $activityUser->setIsActivitie(true);
-
-            $activitieUserRepository->add($activityUser);
-
-            $user->addActivitieUser($activityUser);
-        }
-
-        $session->set('user', $user);
-
         $form = $activitieRepository->findByStep(3);
         return $this->render('registration/step.html.twig', [
             'form' => $form,
@@ -307,13 +350,29 @@ class RegistrationController extends AbstractController
             'step4' => false
            
         ]);
-    }
+    } */
+
     // traitement du step8 pour la foto de profil
     #[Route('/step8', name: 'app_register_step8')]
-    public function step8(Request $request, RequestStack $requestStack, EntityManagerInterface $entityManagerInterface, SluggerInterface $slugger, UserRepository $userRepository): Response
+    public function step8(Request $request, RequestStack $requestStack,  SluggerInterface $slugger, ActivitieRepository $activitieRepository): Response
     {
     
         $session = $requestStack->getSession();
+        $user = $session->get('user');      
+        
+        foreach($request->get('valueCheckbox') as $row){
+            $activity = $activitieRepository->findOneById($row);
+            $activityUser2 = new ActivitieUser();
+            $activityUser2->setActivitie($activity);
+            $activityUser2->setUser($user);
+            $activityUser2->setIsActivitie(true);
+
+            $user->addActivitieUser($activityUser2);
+
+
+        }
+
+        $session->set('user', $user);
     
         $user = $session->get('user');
         $form = $this->createForm(RegistrationStep8::class, $user);
@@ -338,7 +397,8 @@ class RegistrationController extends AbstractController
 
                 $user->setPicture($newFilename);
             }
-            $userRepository->add($user, true);
+            //$userRepository->add($user, true);
+            $session->set('user', $user);
 
             return $this->redirectToRoute('app_register_step9', [], Response::HTTP_SEE_OTHER);
         }
@@ -377,13 +437,13 @@ class RegistrationController extends AbstractController
             {
         
                 $session = $requestStack->getSession();
-        
+
                 $user = $session->get('user');
                 $form = $this->createForm(RegistrationStep10::class, $user);
                 $form->handleRequest($request);
 
-                if ($form->isSubmitted() && $form->isValid()) {
-                    dd($request);
+                if ($form->isSubmitted()  && $form->isValid() ) {
+                    //dd($request);
                     $user->setMatchAgeMin(
                         $form->get('match_age_min')->getData());
 
@@ -402,7 +462,7 @@ class RegistrationController extends AbstractController
                 ]); 
             }
             
-            //Route to formulaire match step11 Age
+            //Route to formulaire match step11 genre
             #[Route('/step11', name: 'app_register_step11')]
             public function step11(Request $request, RequestStack $requestStack): Response
             {
@@ -410,13 +470,13 @@ class RegistrationController extends AbstractController
                 $session = $requestStack->getSession();
 
                 $user = $session->get('user');
-                $form = $this->createForm(RegistrationStep5::class, $user);
+                $form = $this->createForm(RegistrationStep11::class, $user);
                 $form->handleRequest($request);
 
                 if ($form->isSubmitted() && $form->isValid()) {
                     //dd($user);
-                    $user->setGenre(
-                        $form->get('genre')->getData())
+                    $user->setMatchGenre(
+                        $form->get('match_genre')->getData())
                     ;
 
                     $session->set('user', $user);
@@ -430,5 +490,129 @@ class RegistrationController extends AbstractController
                 return $this->render('registration/step11.html.twig', [
                     'registrationForm' => $form->createView(),
                 ]); 
+            }
+
+            //Route to formulaire match step12 echange le langue
+            #[Route('/step12', name: 'app_register_step12')]
+            public function step12(Request $request, RequestStack $requestStack): Response
+            {
+        
+                $session = $requestStack->getSession();
+
+                $user = $session->get('user');
+                $form = $this->createForm(RegistrationStep12::class, $user);
+                $form->handleRequest($request);
+
+                if ($form->isSubmitted() && $form->isValid()) {
+                    //dd($user);
+                    $user->setMatchLangue(
+                        $form->get('match_langue')->getData())
+                    ;
+
+                    $session->set('user', $user);
+                    
+                    
+                    //redirection
+                    return $this->redirectToRoute('app_register_step13', [], Response::HTTP_SEE_OTHER);
+        
+                }
+        
+                return $this->render('registration/step12.html.twig', [
+                    'registrationForm' => $form->createView(),
+                ]); 
+            }
+
+                        //Route to formulaire match step12 echange le langue
+            #[Route('/step13', name: 'app_register_step13')]
+            public function step13(Request $request, RequestStack $requestStack): Response
+            {
+        
+                $session = $requestStack->getSession();
+
+                $user = $session->get('user');
+                $form = $this->createForm(RegistrationStep13::class, $user);
+                $form->handleRequest($request);
+
+                if ($form->isSubmitted() && $form->isValid()) {
+                    //dd($user);
+                    $user->setMatchPolitique(
+                        $form->get('match_politique')->getData())
+                    ;
+
+                    $session->set('user', $user);
+                    
+                    
+                    //redirection
+                    return $this->redirectToRoute('app_register_step14', [], Response::HTTP_SEE_OTHER);
+        
+                }
+        
+                return $this->render('registration/step13.html.twig', [
+                    'registrationForm' => $form->createView(),
+                ]); 
+            }
+
+            //Route to formulaire match step14 break the ice
+            #[Route('/step14', name: 'app_register_step14')]
+            public function step14(Request $request, RequestStack $requestStack): Response
+            {
+        
+                $session = $requestStack->getSession();
+
+                $user = $session->get('user');
+                $form = $this->createForm(RegistrationStep14::class, $user);
+                $form->handleRequest($request);
+
+                if ($form->isSubmitted() && $form->isValid()) {
+                    //dd($user);
+                    $user->setMatchBreakTheIce(
+                        $form->get('match_break_the_ice')->getData())
+                    ;
+
+                    $session->set('user', $user);
+                    
+                    
+                    //redirection
+                    return $this->redirectToRoute('app_register_step15', [], Response::HTTP_SEE_OTHER);
+        
+                }
+        
+                return $this->render('registration/step14.html.twig', [
+                    'registrationForm' => $form->createView(),
+                ]); 
+            }
+
+                        //Route to formulaire match step15 break the ice
+            #[Route('/step15', name: 'app_register_step15')]
+            public function step15(Request $request, RequestStack $requestStack, UserRepository $userRepository, EntityManagerInterface $em): Response
+            {
+        
+                $session = $requestStack->getSession();
+
+                $user = $session->get('user');
+                $form = $this->createForm(RegistrationStep15::class, $user);
+                $form->handleRequest($request);
+
+                if ($form->isSubmitted() && $form->isValid()) {
+                    //dd($user);
+                    $user->setMatchPerfectAfternoon(
+                        $form->get('match_perfect_afternoon')->getData())
+                    ;
+
+                    $session->set('user', $user);
+                    //dd($session);
+
+                    // code para enviar os dados do formulario na base de dados
+                    $em->persist($user);
+                    $em->flush();
+                    //redirection
+                    return $this->redirectToRoute('app_login', [], Response::HTTP_SEE_OTHER);
+        
+                }
+            
+                return $this->render('registration/step15.html.twig', [
+                    'registrationForm' => $form->createView(),
+                ]); 
+                $userRepository->add($user, true);
             }
 }

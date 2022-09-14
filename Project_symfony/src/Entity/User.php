@@ -123,6 +123,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $match_perfect_afternoon = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $Activities = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $Interets = null;
+
 
     public function __construct()
     {
@@ -711,6 +717,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setMatchPerfectAfternoon(?string $match_perfect_afternoon): self
     {
         $this->match_perfect_afternoon = $match_perfect_afternoon;
+
+        return $this;
+    }
+
+    public function getActivities(): ?string
+    {
+        return $this->Activities;
+    }
+
+    public function setActivities(?string $Activities): self
+    {
+        $this->Activities = $Activities;
+
+        return $this;
+    }
+
+    public function getInterets(): ?string
+    {
+        return $this->Interets;
+    }
+
+    public function setInterets(?string $Interets): self
+    {
+        $this->Interets = $Interets;
 
         return $this;
     }

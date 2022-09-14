@@ -11,12 +11,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
 
 
-class RegistrationStep11 extends AbstractType
+class RegistrationStep12 extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('match_genre', ChoiceType::class, ['multiple' => false, 'expanded' => true, 'choices'=>['Femme'=> 'Femme', 'Homme'=> 'Homme','Agenre'=> 'Agenre','Bigenre'=> 'Bigenre', 'Genre Fluide'=> 'Genre Fluide', 'Genderqueer'=> 'Genderqueer', 'Genre non conforme'=> 'Genre non conforme', 'Intersexe'=> 'Intersexe', 'Non binaire'=> 'Non binaire', 'Autre'=> 'Autre', 'Pangenre'=> 'Pangenre','Transféminin'=> 'Transféminin', 'Transgenre'=>'Transgenre', 'Hommes trans' => 'Hommes trans', 'Transmaculin' => 'Transmaculin', 'Transsexuel' => 'Transsexuel', 'Femme trans' => 'Femme trans']]);
+        ->add('match_langue',ChoiceType::class, ['choices' => ['Francais'=> 'Francais', 'Anglais'=> 'Anglais','Portugais'=> 'Portugais','Japonais'=> 'Japonais', 'Espagnol'=> 'Espagnol', 'Italien'=> 'Italien', 'Russe'=> 'Russe', 'Allemand'=> 'Allemand', 'Irlandais'=> 'Irlandais', 'Créole haïtien'=> 'Créole haïtien', 'Arménien'=> 'Arménien','Coréen'=> 'Coréen', 'Polonais'=>'Polonais', 'Suédois' => 'Suédois', 'Corse' => 'Corse', 'Écossais' => 'Écossais', 'Nederlands' => 'Nederlands', 'Slovaque' => 'Slovaque', 'Ukrainien' => 'Ukrainien']]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
