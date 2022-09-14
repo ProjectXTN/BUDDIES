@@ -17,7 +17,7 @@ class RegistrationStep17 extends AbstractType
     {
         $builder
         ->add('Activities',ChoiceType::class, [
-            'multiple' => true, 
+            'multiple' => false, 
             'expanded' => true, 
             'choices'=>['Exposition '=> 'Exposition', 'Dégustation'=> 'Dégustation',' Sport'=> 'Sport', 'Découverte'=> 'Découverte', 'Randonnée'=> 'Randonnée', 'Bowling'=> 'Bowling', 'Pique-nique'=> 'Pique-nique', 'Jeux de société'=> 'Jeux de société']]);
     }

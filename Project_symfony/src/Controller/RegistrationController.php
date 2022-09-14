@@ -273,7 +273,7 @@ class RegistrationController extends AbstractController
             $session = $requestStack->getSession();
     
             $user = $session->get('user');
-            $form = $this->createForm(RegistrationStep16::class, $user);
+            $form = $this->createForm(RegistrationStep17::class, $user);
             $form->handleRequest($request);
     
             if ($form->isSubmitted() && $form->isValid()) {
@@ -354,23 +354,23 @@ class RegistrationController extends AbstractController
 
     // traitement du step8 pour la foto de profil
     #[Route('/step8', name: 'app_register_step8')]
-    public function step8(Request $request, RequestStack $requestStack,  SluggerInterface $slugger, ActivitieRepository $activitieRepository): Response
+    public function step8(Request $request, RequestStack $requestStack,  SluggerInterface $slugger): Response
     {
     
         $session = $requestStack->getSession();
         $user = $session->get('user');      
         
-        foreach($request->get('valueCheckbox') as $row){
+/*         foreach($request->get('valueCheckbox') as $row){
             $activity = $activitieRepository->findOneById($row);
-            $activityUser2 = new ActivitieUser();
-            $activityUser2->setActivitie($activity);
-            $activityUser2->setUser($user);
-            $activityUser2->setIsActivitie(true);
+            $activityUser = new ActivitieUser();
+            $activityUser->setActivitie($activity);
+            $activityUser->setUser($user);
+            $activityUser->setIsActivitie(true);
 
-            $user->addActivitieUser($activityUser2);
+            $user->addActivitieUser($activityUser);
 
 
-        }
+        } */
 
         $session->set('user', $user);
     
@@ -441,22 +441,25 @@ class RegistrationController extends AbstractController
                 $user = $session->get('user');
                 $form = $this->createForm(RegistrationStep10::class, $user);
                 $form->handleRequest($request);
-
+                
+                
                 if ($form->isSubmitted()  && $form->isValid() ) {
-                    //dd($request);
-                    $user->setMatchAgeMin(
-                        $form->get('match_age_min')->getData());
-
-                    $user->setMatchAgeMax(
-                        $form->get('match_age_max')->getData());
-        
-                    $session->set('user', $user);
-                    
-                    //redirection
-                    return $this->redirectToRoute('app_register_step11', [], Response::HTTP_SEE_OTHER);
+                    //dd($user);
+                    if($user->getMatchAgeMin() < $user->getMatchAgeMax()){
+                        $user->setMatchAgeMin(
+                            $form->get('match_age_min')->getData());
+    
+                        $user->setMatchAgeMax(
+                            $form->get('match_age_max')->getData());
+            
+                        $session->set('user', $user);
+                        
+                        //redirection
+                        return $this->redirectToRoute('app_register_step11', [], Response::HTTP_SEE_OTHER);
+                    }
         
                 }
-        
+                
                 return $this->render('registration/step10.html.twig', [
                     'registrationForm' => $form->createView(),
                 ]); 

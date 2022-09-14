@@ -17,7 +17,7 @@ class RegistrationStep16 extends AbstractType
     {
         $builder
         ->add('Interets',ChoiceType::class, [
-            'multiple' => true, 
+            'multiple' => false, 
             'expanded' => true, 
             'choices'=>['Cinema '=> 'Cinema', 'Musique'=> 'Musique',' Sport'=> 'Sport', 'Cuisine'=> 'Cuisine', 'Art'=> 'Art', 'Lecture'=> 'Lecture', 'Photo'=> 'Photo', 'Jeux'=> 'Jeux', 'Visite'=> 'Visite']]);
     }
