@@ -26,12 +26,12 @@
             </tr> #}
             <tr>
                 <th>FirstName</th>
-                <td onclick="findForm()">{{ user.firstName }}</td>
+                <td {# onclick="findForm()" #}>{{ user.firstName }}</td>
             </tr>
-            <tr>
+{#             <tr>
                 <th>LastName</th>
                 <td>{{ user.lastName }}</td>
-            </tr>
+            </tr> #}
             <tr>
                 <th>Country</th>
                 <td>{{ user.country }}</td>
@@ -244,7 +244,7 @@
 
 
 /* script onclick ajoute sur le first name pour teste */
-    function findForm(){
+{#     function findForm(){
         tabIdForm = [];
 
         fetch('/finduserform', {
@@ -255,6 +255,6 @@
         .then(function(body){
         })
         console.log(body)
-    }
+    } #}
 </script>
 {% endblock %}

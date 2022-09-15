@@ -25,6 +25,9 @@ class Activitie
     #[ORM\OneToMany(mappedBy: 'activitie', targetEntity: ActivitieUser::class)]
     private Collection $activitieUsers;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $step = null;
+
     public function __construct()
     {
         $this->User = new ArrayCollection();
@@ -94,5 +97,17 @@ class Activitie
     public function __toString()
     {
         return $this->name.' '.$this->image;
+    }
+
+    public function getStep(): ?int
+    {
+        return $this->step;
+    }
+
+    public function setStep(?int $step): self
+    {
+        $this->step = $step;
+
+        return $this;
     }
 }

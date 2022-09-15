@@ -74,7 +74,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Publication::class, inversedBy: 'users')]
     private Collection $Publication;
 
-    #[ORM\ManyToMany(targetEntity: Form::class, inversedBy: 'users')]
+    #[ORM\ManyToMany(targetEntity: Form::class, inversedBy: 'users', cascade:["persist"])]
     private Collection $Form;
 
     #[ORM\OneToMany(mappedBy: 'sender', targetEntity: Messenger::class)]
@@ -93,11 +93,41 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $review_received;
 
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: ActivitieUser::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: ActivitieUser::class, cascade:["persist"])]
     private Collection $activitieUsers;
 
-    #[ORM\ManyToMany(targetEntity: self::class, inversedBy: 'friends')]
-    private Collection $friends;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $genre = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $birthDate = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $match_age_min = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $match_age_max = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $match_genre = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $match_langue = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $match_politique = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $match_break_the_ice = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $match_perfect_afternoon = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $Activities = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $Interets = null;
 
 
     public function __construct()
@@ -584,26 +614,134 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, self>
-     */
-    public function getFriends(): Collection
+    public function getGenre(): ?string
     {
-        return $this->friends;
+        return $this->genre;
     }
 
-    public function addFriend(self $friend): self
+    public function setGenre(?string $genre): self
     {
-        if (!$this->friends->contains($friend)) {
-            $this->friends->add($friend);
-        }
+        $this->genre = $genre;
 
         return $this;
     }
 
-    public function removeFriend(self $friend): self
+    public function getBirthDate(): ?\DateTimeInterface
     {
-        $this->friends->removeElement($friend);
+        return $this->birthDate;
+    }
+
+    public function setBirthDate(?\DateTimeInterface $birthDate): self
+    {
+        $this->birthDate = $birthDate;
+
+        return $this;
+    }
+
+    public function getMatchAgeMin(): ?int
+    {
+        return $this->match_age_min;
+    }
+
+    public function setMatchAgeMin(?int $match_age_min): self
+    {
+        $this->match_age_min = $match_age_min;
+
+        return $this;
+    }
+
+    public function getMatchAgeMax(): ?int
+    {
+        return $this->match_age_max;
+    }
+
+    public function setMatchAgeMax(?int $match_age_max): self
+    {
+        $this->match_age_max = $match_age_max;
+
+        return $this;
+    }
+
+    public function getMatchGenre(): ?string
+    {
+        return $this->match_genre;
+    }
+
+    public function setMatchGenre(?string $match_genre): self
+    {
+        $this->match_genre = $match_genre;
+
+        return $this;
+    }
+
+    public function getMatchLangue(): ?string
+    {
+        return $this->match_langue;
+    }
+
+    public function setMatchLangue(?string $match_langue): self
+    {
+        $this->match_langue = $match_langue;
+
+        return $this;
+    }
+
+    public function isMatchPolitique(): ?bool
+    {
+        return $this->match_politique;
+    }
+
+    public function setMatchPolitique(?bool $match_politique): self
+    {
+        $this->match_politique = $match_politique;
+
+        return $this;
+    }
+
+    public function getMatchBreakTheIce(): ?string
+    {
+        return $this->match_break_the_ice;
+    }
+
+    public function setMatchBreakTheIce(?string $match_break_the_ice): self
+    {
+        $this->match_break_the_ice = $match_break_the_ice;
+
+        return $this;
+    }
+
+    public function getMatchPerfectAfternoon(): ?string
+    {
+        return $this->match_perfect_afternoon;
+    }
+
+    public function setMatchPerfectAfternoon(?string $match_perfect_afternoon): self
+    {
+        $this->match_perfect_afternoon = $match_perfect_afternoon;
+
+        return $this;
+    }
+
+    public function getActivities(): ?string
+    {
+        return $this->Activities;
+    }
+
+    public function setActivities(?string $Activities): self
+    {
+        $this->Activities = $Activities;
+
+        return $this;
+    }
+
+    public function getInterets(): ?string
+    {
+        return $this->Interets;
+    }
+
+    public function setInterets(?string $Interets): self
+    {
+        $this->Interets = $Interets;
 
         return $this;
     }

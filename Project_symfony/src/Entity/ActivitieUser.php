@@ -13,7 +13,7 @@ class ActivitieUser
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'activitieUsers')]
+    #[ORM\ManyToOne(inversedBy: 'activitieUsers', cascade:["persist"])]
     private ?Activitie $activitie = null;
 
     #[ORM\ManyToOne(inversedBy: 'activitieUsers')]
