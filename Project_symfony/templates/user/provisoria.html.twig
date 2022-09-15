@@ -1,0 +1,306 @@
+{% block body %}
+
+{# PAGE USER_SHOW --PROFILE #}
+
+
+    <h1 class="text-center">Profile</h1>
+    <div class='container'>
+        <div class='row'>
+        <table class="table">
+        <tbody>
+{#             <tr>
+                <th>Id</th>
+                <td>{{ user.id }}</td>
+            </tr> #}
+{#             <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr> #}
+{#             <tr>
+                <th>Roles</th>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+            </tr> #}
+{#             <tr>
+                <th>Password</th>
+                <td>{{ user.password }}</td>
+            </tr> #}
+            <tr>
+                <th>FirstName</th>
+                <td {# onclick="findForm()" #}>{{ user.firstName }}</td>
+            </tr>
+{#             <tr>
+                <th>LastName</th>
+                <td>{{ user.lastName }}</td>
+            </tr> #}
+            <tr>
+                <th>Country</th>
+                <td>{{ user.country }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ user.city }}</td>
+            </tr>
+            <tr>
+                <th>Language</th>
+                <td>{{ user.language }} {{ user.language2 }} {{ user.language3 }} </td>
+            </tr>
+            <tr>
+                <th>Picture</th>
+                <td><img src="/data/{{user.Picture}}" ></img></td>
+            </tr>
+            <tr>
+                <th>Biography</th>
+                <td>{{ user.Biography }}</td>
+            </tr>
+            <tr>
+                <th>IsExpat</th>
+                <td>{{ user.isExpat ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Mes communautés</th>
+                <td>
+                    {# Boucle pour faire la affichage des groups #}
+                {% for groupe in user.groupe %}
+                    <div>{{ groupe.image }}</div>
+                    <div>{{ groupe.name }}</div>
+                    <div>{{ groupe.description }}</div><br>
+                {% endfor %}
+            </td>
+            </tr>
+            <tr>
+                <th>Mes Avis</th>
+                <td>
+                    {# Boucle pour faire la affichage des avis #}
+                {% for review in user.reviewReceived %}
+                    <div><strong>{{ review.senderId.firstName }}</strong></div><br>
+                     <div>{{review.dateAt ? review.dateAt|date('Y-m-d H:i:s') : '' }}</div> 
+                    <div><img src="/data/{{ review.senderId.Picture }}"></img></div><br>
+                    <div><strong>{{ review.comment }}</strong></div><br>
+                {% endfor %}
+                </td>
+            </tr>
+
+            <tr>
+            <th>Mes Publications</th>
+                <td>
+                    {# Boucle pour faire la affichage des Publication #}
+                {% for publication in user.publication %}
+                    <div>{{ user.firstName }}</div><br>
+                    <div>{{ publication.dateAt ? publication.dateAt|date('Y-m-d H:i:s') : '' }}</div> 
+                    <img src="/data/{{user.Picture}}" ></img><br>
+                    <div>{{ publication.post}}</div><br>
+                    
+                {% endfor %}
+                </td>
+            </tr>
+
+            <tr>
+            <th>Mes centres d'intérêts</th>
+                <td>
+                    {# Boucle pour faire la affichage les centres d'interes #}
+                {% for activity in user.activitieUsers %}
+                    {%  if activity.isActivitie %}        
+                    <div>{{ activity.activitie.name }}</div><br>
+                    {# <img>{{ activity.activitie.image }}</img><br> #}
+                    {% endif %}
+                {% endfor %}
+            <button onclick="lunchModal()">Edit</button>
+                </td>
+            </tr>
+
+             <tr>
+            <th>Les activités que j'aimerai faire</th>
+                <td>
+                    {# Boucle pour faire la affichage les centres d'interes #}
+                {% for activity in user.activitieUsers %}
+                   {%  if activity.isActivitie == false %}  
+                    <div>{{ activity.activitie.name }}</div><br>
+                    {# <img>{{ activity.activitie.image }}</img><br> #}
+                    {% endif %}  
+                {% endfor %}
+            <button onclick="lunchModalFalse()">Edit</button>
+                </td>
+            </tr>
+             <tr>
+{#              <tr>
+                <th>Created_at</th>
+                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>  #}
+        </tbody>
+    </table>
+
+    {# Remove button back to list #}
+    {# <a href="{{ path('app_user_index') }}">back to list</a> #}
+
+    <!-- Modal saveActivity -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" id="contentModal">
+      ...
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <button type="button"  class="btn btn-primary" onclick="saveActivity()" data-dismiss="modal">Save changes</button>
+    
+    </div>
+  </div>
+</div>
+</div>
+  <!-- Modal saveInterets -->
+<div class="modal fade" id="exampleModalFalse" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" id="contentModalFalse">
+      ...
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <button type="button"  class="btn btn-primary" onclick="saveInterets()" data-dismiss="modal">Save changes</button>
+    
+    </div>
+  </div>
+</div>
+</div>
+
+        
+        </div>
+    </div>
+
+<button><a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a></button>
+
+    {{ include('user/_delete_form.html.twig') }}
+    
+{% endblock %}
+
+{# Javascript para abrir funcção modal com jQuery #}
+{% block javascripts %}
+<script>
+    function lunchModal(){
+        jQuery('#contentModal').load('/edition/activities', function(){
+            jQuery('#exampleModal').modal('show');
+        });
+    }
+
+     function lunchModalFalse(){
+        jQuery('#contentModalFalse').load('/edition/activities', function(){
+            jQuery('#exampleModalFalse').modal('show');
+        });
+    } 
+
+    function saveActivity(){
+
+        let tabId = [];
+
+        jQuery('.checkActivity').each(function(element, i){
+            if(jQuery(i).is(':checked')){
+                tabId.push(jQuery(i).data('id'));
+            };
+
+        })
+
+        fetch('/saveactivity', {
+            method: 'POST',
+            body: JSON.stringify({'data':tabId})
+        })
+        .then(function(headers){return headers.json()})
+        .then(function(body){
+            console.log(body);
+        })
+
+    }
+
+    function saveInterets(){
+
+        let tabId = [];
+
+        jQuery('.checkActivity').each(function(element, i){
+            if(jQuery(i).is(':checked')){
+                tabId.push(jQuery(i).data('id'));
+            };
+
+        })
+
+        fetch('/saveinterets', {
+            method: 'POST',
+            body: JSON.stringify({'data':tabId})
+        })
+        .then(function(headers){return headers.json()})
+        .then(function(body){
+        })
+    }
+
+
+/* script onclick ajoute sur le first name pour teste */
+{#     function findForm(){
+        tabIdForm = [];
+
+        fetch('/finduserform', {
+            method: 'GET',
+            body: JSON.stringify({'data':tabIdForm})
+        })
+        .then(function(headers){return header.json()})
+        .then(function(body){
+        })
+        console.log(body)
+    } #}
+</script>
+
+
+
+
+
+{# *********************** PAGE LOGIN *********************** #}
+
+
+
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <label for="inputEmail">Email</label>
+    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+    <label for="inputPassword">Password</label>
+    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
+
+    {#
+        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+        See https://symfony.com/doc/current/security/remember_me.html
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me"> Remember me
+            </label>
+        </div>
+    #}
+
+    <button class="btn btn-lg btn-primary" type="submit">
+        Sign in
+    </button>
+        {# Button pour y alle vers la page Register #}
+    <button><a href="{{path('app_register')}}">Crée un compte</a></button>
+</form>

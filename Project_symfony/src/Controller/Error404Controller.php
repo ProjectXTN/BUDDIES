@@ -6,17 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
-
-class HomeController extends AbstractController
+class Error404Controller extends AbstractController
 {
-    #[Route('/communite', name: 'app_home')]
+    #[Route('/error404', name: 'app_error404')]
     public function index(): Response
     {
-        return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
+        return $this->render('error404/index.html.twig', [
+            'controller_name' => 'Error404Controller',
         ]);
     }
-
-  
 }
