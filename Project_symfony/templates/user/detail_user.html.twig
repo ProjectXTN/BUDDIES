@@ -26,7 +26,7 @@
             </tr> #}
             <tr>
                 <th>FirstName</th>
-                <td onclick="findForm()">{{ user.firstName }}</td>
+                <td>{{ user.firstName }}</td>
             </tr>
             <tr>
                 <th>LastName</th>
@@ -51,24 +51,22 @@
             <tr>
                     <th>Biography</th>
                     <td>{{ user.Biography }}</td>
-
-                
             </tr>
-            <tr>
+           {#  <tr>
                 <th>IsExpat</th>
                 <td>{{ user.isExpat ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
+            </tr> #}
+            {# <tr>
                 <th>Mes communautés</th>
-                <td>
+                <td> #}
                     {# Boucle pour faire la affichage des groups #}
-                {% for groupe in user.groupe %}
+                {# {% for groupe in user.groupe %}
                     <div>{{ groupe.image }}</div>
                     <div>{{ groupe.name }}</div>
                     <div>{{ groupe.description }}</div><br>
                 {% endfor %}
             </td>
-            </tr>
+            </tr> #}
             <tr>
                 <th>Mes Avis</th>
                 <td>
@@ -82,19 +80,19 @@
                 </td>
             </tr>
 
-            <tr>
+            {# <tr>
             <th>Mes Publications</th>
-                <td>
+                <td> #}
                     {# Boucle pour faire la affichage des Publication #}
-                {% for publication in user.publication %}
-                    <div>{{ user.firstName }}</div><br>
+                {# {% for publication in user.publication %} #}
+                    {# <div>{{ user.firstName }}</div><br>
                     <div>{{ publication.dateAt ? publication.dateAt|date('Y-m-d H:i:s') : '' }}</div> 
                     <img src="/data/{{user.Picture}}" ></img><br>
                     <div>{{ publication.post}}</div><br>
                     
                 {% endfor %}
                 </td>
-            </tr>
+            </tr> #}
 
             <tr>
             <th>Mes centres d'intérêts</th>
@@ -129,12 +127,23 @@
         </tbody>
     </table>
 
-    <a href="{{path('app_add_friends', {'id':user.id})}}"><button type="button">Ajouter ami(e)</button></a>
+    {% if showButtonFriend %}
+    <a href="{{path('app_add_friends', {'id':user.id})}}"><button type="button" id="add_friend">Ajouter ami(e)</button></a>
+    {% else %}
     <a href="{{path('app_remove_friends', {'id':user.id})}}"><button type="button">Retirer ami(e)</button></a>
-
+{% endif %}
     {# Remove button back to list #}
     {# <a href="{{ path('app_user_index') }}">back to list</a> #}
 
     
 {% endblock %}
 
+{% block javascript %}
+
+    <script>
+
+   
+
+    </script>
+
+  {% endblock %}

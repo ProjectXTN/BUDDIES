@@ -62,8 +62,26 @@ class UserController extends AbstractController
     #[Route('/details/{id}', name: 'app_user_details', methods: ['GET'])]
     public function details(User $user): Response
     {
+        $test = $this->getUser();
+        if($user->getId() == $test->getId())
+        {
+            return $this->redirectToRoute('app_home');
+        }
+
+        $tabFriends = [];
+        foreach($this->getUser()->getFriends() as $row){
+            array_push($tabFriends, $row->getId());
+        }
+
+        $showButtonFriend = true;
+        if(in_array($user->getId(), $tabFriends)){
+            $showButtonFriend = false;
+        }
+
+
         return $this->render('user/detail_user.html.twig', [
             'user' => $user,
+            'showButtonFriend' => $showButtonFriend
         ]);
     }
 
