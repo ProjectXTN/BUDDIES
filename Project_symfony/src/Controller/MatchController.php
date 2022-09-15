@@ -2,11 +2,13 @@
 
 namespace App\Controller;
 
+use App\Repository\ActivitieRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping\Id;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\Length;
 
 class MatchController extends AbstractController
 {
@@ -23,41 +25,106 @@ class MatchController extends AbstractController
 
 
         $tabMyIdForm = [];
-        foreach($myInformation->getForm() as $rowForm){
-            $tabMyIdForm[] = $rowForm->getId();
-        }
+        $tabMyOthersUser = [];
 
+        //dd($myInformation->getActivities());
+        //foreach($myInformation as $rowForm){
+            $tabMyIdForm['minAge'] = $myInformation->getMatchAgeMin();
+            $tabMyIdForm['maxAge'] = $myInformation->getMatchAgeMax();
+            $tabMyIdForm['langue'] = $myInformation->getMatchLangue();
+            $tabMyIdForm['politique'] = $myInformation->isMatchPolitique();
+            $tabMyIdForm['breakTheIce'] = $myInformation->getMatchBreakTheIce();
+            $tabMyIdForm['perfectAfterNoon'] = $myInformation->getMatchPerfectAfternoon();
+            $tabMyIdForm['activity'] = explode(',', $myInformation->getActivities());
+            $tabMyIdForm['interest'] = explode(',', $myInformation->getInterets());
+        //}
+        //dd($tabMyIdForm);
 
-        foreach($getAllUser as $otherUsers){
+        foreach($getAllUser as $formOtherUser){
 
             $increment = 0;
             
-            if($otherUsers->getId() != $myInformation->getId()){
-                foreach($otherUsers->getForm() as $formOtherUser){
+            if($formOtherUser->getId() != $myInformation->getId() && $formOtherUser->isIsExpat() != $myInformation->isIsExpat()){
+   
+                    $tabMyOthersUser[$formOtherUser->getId()]['id'] = $formOtherUser->getId();
+                    $tabMyOthersUser[$formOtherUser->getId()]['minAge'] = $formOtherUser->getMatchAgeMin();
+                    $tabMyOthersUser[$formOtherUser->getId()]['maxAge'] = $formOtherUser->getMatchAgeMax();
+                    $tabMyOthersUser[$formOtherUser->getId()]['langue'] = $formOtherUser->getMatchLangue();
+                    $tabMyOthersUser[$formOtherUser->getId()]['politique'] = $formOtherUser->isMatchPolitique();
+                    $tabMyOthersUser[$formOtherUser->getId()]['breakTheIce'] = $formOtherUser->getMatchBreakTheIce();
+                    $tabMyOthersUser[$formOtherUser->getId()]['perfectAfterNoon'] = $formOtherUser->getMatchPerfectAfternoon();
+                    $tabMyOthersUser[$formOtherUser->getId()]['activity'] = explode(',', $formOtherUser->getActivities());
+                    $tabMyOthersUser[$formOtherUser->getId()]['interest'] = explode(',', $formOtherUser->getInterets());
                     
-                   if(in_array($formOtherUser->getId(), $tabMyIdForm)){
+                    $incrementTotal = 0;
+                    foreach($tabMyOthersUser[$formOtherUser->getId()]['activity'] as $row){
+                        if($row != "" && in_array($row, $tabMyIdForm['activity'])){
+                            $increment++;
+                        }
+                    }
+
+                    foreach($tabMyOthersUser[$formOtherUser->getId()]['interest'] as $row){
+                        if($row != "" && in_array($row, $tabMyIdForm['interest'])){
+                            $increment++;
+                        }
+                    }
+
+                    if($tabMyOthersUser[$formOtherUser->getId()]['langue'] == $tabMyIdForm['langue']){
                         $increment++;
                     }
 
-                }
-            }
+                    if($tabMyOthersUser[$formOtherUser->getId()]['politique'] == $tabMyIdForm['politique']){
+                        $increment++;
+                    }
 
-            $tabOtherUser[$otherUsers->getId()] = $increment;
-            
+                    if($tabMyOthersUser[$formOtherUser->getId()]['breakTheIce'] == $tabMyIdForm['breakTheIce']){
+                        $increment++;
+                    }
+
+                    if($tabMyOthersUser[$formOtherUser->getId()]['perfectAfterNoon'] == $tabMyIdForm['perfectAfterNoon']){
+                        $increment++;
+                    }
+
+                    if($tabMyOthersUser[$formOtherUser->getId()]['minAge'] >= $tabMyIdForm['minAge']  && $tabMyOthersUser[$formOtherUser->getId()]['maxAge'] <= $tabMyIdForm['maxAge']  ){
+                        $increment++;
+                    }
+                    
+                    //dd($tabMyOthersUser);
+                    $tabMyOthersUser[$formOtherUser->getId()]['match']= $increment;
+            }            
+        }
+        uasort($tabMyOthersUser, function($a, $b) {return $a['match'] < $b['match'];});
+
+
+        // Result all matchs
+        //dd($tabMyOthersUser);
+
+        //Valeur total des match
+        //dd($tabMyOthersUser[$formOtherUser->getId()]['match']);
+
+        //Function Pour la pourcentage de MATCH
+        foreach($tabMyOthersUser as $row){
+
+            //Valeur des interets UTILISATEUR connected
+            $valeurUserIteres = count($tabMyIdForm['activity']) + count($tabMyIdForm['interest']) + 5;
+            //dd($tabMyIdForm);
+            //Valeur de la première comparaison du match
+            $valeurUserMatch = $tabMyOthersUser[$row['id']]['match'];
+
+
+            $tabMyOthersUser[$row['id']]['pourcent'] = ($valeurUserMatch / $valeurUserIteres) * 100;
         }
 
+        //Afiche la pourcentage des match
+        dd($tabMyOthersUser);
 
-//dd($tabUserInterets);
+
+        //dd($pourcentageUtilisateur);
 
 
         //Sorts array in place in descending order, such that its keys maintain their correlation with the values they are associated with. 
-        arsort($tabOtherUser);
-     
-        dd($tabOtherUser);
         return $this->render('match/index.html.twig', [
             'controller_name' => 'MatchController',
         ]);
     }
-
-
 }

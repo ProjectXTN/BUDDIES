@@ -210,9 +210,11 @@ class RegistrationController extends AbstractController
     public function step7(Request $request, RequestStack $requestStack): Response
     {
         $session = $requestStack->getSession();
-        $user = $session->get('user');              
-        
+    
+        $user = $session->get('user');                  
         $form = $this->createForm(RegistrationStep7::class, $user);
+
+
 
         if (isset($request->get('registration_step7')["language"])) {
 
@@ -225,10 +227,14 @@ class RegistrationController extends AbstractController
                 $i++;
             }
             
-            $session->set('user', $user);
+            //il faut ajouter le country sur le form
+/*             $user->setCountry(
+            $form->get('country')->getData());
+
+            $session->set('user', $user); */
             
             //redirection
-            return $this->redirectToRoute('app_register_step16', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_quiz', [], Response::HTTP_SEE_OTHER);
 
         }
 
@@ -236,64 +242,8 @@ class RegistrationController extends AbstractController
             'registrationForm' => $form->createView(),
         ]); 
     }
-    //MUDANDO QUIZ ADEL STEP 1 INTERETS
-    #[Route('/step16', name: 'app_register_step16')]
-    public function step16(Request $request, RequestStack $requestStack): Response
-    {
 
-        $session = $requestStack->getSession();
-
-        $user = $session->get('user');
-        $form = $this->createForm(RegistrationStep16::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            //dd($user);
-            $user->setInterets(
-                $form->get('Interets')->getData())
-            ;
-
-            $session->set('user', $user);
-            
-            //redirection
-            return $this->redirectToRoute('app_register_step17', [], Response::HTTP_SEE_OTHER);
-
-        }
-
-        return $this->render('registration/step16.html.twig', [
-            'registrationForm' => $form->createView(),
-        ]); 
-    }
-
-        //MUDANDO QUIZ ADEL STEP 2 INTERETS
-        #[Route('/step17', name: 'app_register_step17')]
-        public function step17(Request $request, RequestStack $requestStack): Response
-        {
-    
-            $session = $requestStack->getSession();
-    
-            $user = $session->get('user');
-            $form = $this->createForm(RegistrationStep17::class, $user);
-            $form->handleRequest($request);
-    
-            if ($form->isSubmitted() && $form->isValid()) {
-                //dd($user);
-                $user->setActivities(
-                    $form->get('Activities')->getData());
-    
-                $session->set('user', $user);
-                
-                //redirection
-                return $this->redirectToRoute('app_register_step8', [], Response::HTTP_SEE_OTHER);
-    
-            }
-    
-            return $this->render('registration/step17.html.twig', [
-                'registrationForm' => $form->createView(),
-            ]); 
-        } 
-
-/*     #[Route('/quiz', name: 'app_quiz')]
+    #[Route('/quiz', name: 'app_quiz')]
     public function stepOne( ActivitieRepository $activitieRepository  ): Response
     {
         $form = $activitieRepository->findByStep(1);
@@ -314,17 +264,20 @@ class RegistrationController extends AbstractController
         $user = $session->get('user');       
 
         //traitement du form1 ( Recupere les choix du step 1)
+        $tabActivityFalse = [];
         foreach($request->get('valueCheckbox') as $row){
             $activity = $activitieRepository->findOneById($row);
-            $activityUser = new ActivitieUser();
+            /*$activityUser = new ActivitieUser();
             $activityUser->setActivitie($activity);
             $activityUser->setUser($user);
-            $activityUser->setIsActivitie(false);
+            $activityUser->setIsActivitie(false);*/
 
-            $user->addActivitieUser($activityUser);
+            $tabActivityFalse[] = $activity;
+
         }
 
         $session->set('user', $user);
+        $session->set('activityFalse', $tabActivityFalse);
 
 
         $form = $activitieRepository->findByStep(2);
@@ -350,29 +303,29 @@ class RegistrationController extends AbstractController
             'step4' => false
            
         ]);
-    } */
+    }
 
     // traitement du step8 pour la foto de profil
     #[Route('/step8', name: 'app_register_step8')]
-    public function step8(Request $request, RequestStack $requestStack,  SluggerInterface $slugger): Response
+    public function step8(Request $request, RequestStack $requestStack, ActivitieRepository $activitieRepository,  SluggerInterface $slugger): Response
     {
     
         $session = $requestStack->getSession();
         $user = $session->get('user');      
         
-/*         foreach($request->get('valueCheckbox') as $row){
+        $tabActivityTrue = [];
+        foreach($request->get('valueCheckbox') as $row){
             $activity = $activitieRepository->findOneById($row);
-            $activityUser = new ActivitieUser();
+            /*$activityUser = new ActivitieUser();
             $activityUser->setActivitie($activity);
             $activityUser->setUser($user);
-            $activityUser->setIsActivitie(true);
+            $activityUser->setIsActivitie(true);*/
 
-            $user->addActivitieUser($activityUser);
-
-
-        } */
+            $tabActivityTrue[] = $activity;
+        } 
 
         $session->set('user', $user);
+        $session->set('activityTrue', $tabActivityTrue);
     
         $user = $session->get('user');
         $form = $this->createForm(RegistrationStep8::class, $user);
@@ -607,7 +560,44 @@ class RegistrationController extends AbstractController
 
                     // code para enviar os dados do formulario na base de dados
                     $em->persist($user);
+                    
+
+                    $tabActivityTrue = $session->get('activityTrue');
+                    $stringTabActivityTrue = "";
+                    foreach($tabActivityTrue as $rowActivityTrue){
+
+                        if($stringTabActivityTrue != ""){
+                            $stringTabActivityTrue .= ",";
+                        }
+                        $stringTabActivityTrue .= $rowActivityTrue->getId();
+
+
+                        /*$activityUser = new ActivitieUser();
+                        $activityUser->setActivitie($rowActivityTrue);
+                        $activityUser->setUser($user);
+                        $activityUser->setIsActivitie(true);
+                        $em->persist($activityUser);*/
+                    }
+
+                    $user->setActivities($stringTabActivityTrue);
+
+                    $tabActivityFalse = $session->get('activityFalse');
+                    $stringTabActivityFalse = "";
+                    foreach($tabActivityFalse as $rowActivityFalse){
+                        if($stringTabActivityFalse != ""){
+                            $stringTabActivityFalse .= ",";
+                        }
+                        $stringTabActivityFalse .= $rowActivityFalse->getId();
+                        /*$activityUser = new ActivitieUser();
+                        $activityUser->setActivitie($rowActivityFalse);
+                        $activityUser->setUser($user);
+                        $activityUser->setIsActivitie(false);
+                        $em->persist($activityUser);*/
+                    }
+                    $user->setInterets($stringTabActivityFalse);
+
                     $em->flush();
+
                     //redirection
                     return $this->redirectToRoute('app_login', [], Response::HTTP_SEE_OTHER);
         
