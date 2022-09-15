@@ -2,28 +2,299 @@
 
 {% block title %}Hello HomeController!{% endblock %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="/css/community-acc.css">
+{% endblock %}
+
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+  <!-- DEBUT NAV -->
+<nav class="navbar navbar-expand-lg">
+        
+    <div class="container-fluid">
+  
+      <a class="navbar-brand" href="/dashboard.html"> <img src="img/logo-buddies_1.svg" alt=""> </a>
+  
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+  
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+  
+          <li class="nav-item">
+            <a id="icon-active" class="nav-link d-flex align-items-center justify-content-center me-3" aria-current="page" href="/community-acc.html"><img src="/img/icones/icones-nav/commu-orange.svg"></a>
+          </li>
+  
+          <li class="nav-item">
+            <a id="icon" class="nav-link d-flex align-items-center justify-content-center me-3" href="/liste-amis.html"><img src="/img/icones/icones-nav/amis.svg"></a>
+          </li>
+  
+          <li id="notif" class="nav-item dropdown">
+            <a id="icon" class="nav-link d-flex align-items-center justify-content-center me-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="/img/icones/icones-nav/cloche.svg">
+            </a>
+            <ul class="dropdown-menu">
+              <li class="my-3 mx-4">
+                <a class="dropdown-item" href="#">
+                  <div class="card">
+                    <p>je suis une card notification</p>
+                  </div>
+                </a>
+              </li>
+              <li class="my-3 mx-4">
+                <a class="dropdown-item" href="#">
+                  <div class="card">
+                    <p>je suis une card notification</p>
+                  </div>
+                </a>
+              </li>
+              <li class="my-3 mx-4">
+                <a class="dropdown-item" href="#">
+                  <div class="card">
+                    <p>je suis une card notification</p>
+                  </div>
+                </a>
+              </li>
+            </ul>
+  
+            <li class="nav-item dropdown">
+              <a id="icon" class="nav-link d-flex align-items-center justify-content-center me-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="img/icones/icones-nav/profil.svg">
+              </a>
+              <ul class="dropdown-menu">
+                <li class="my-3 mx-4">
+                  <a class="dropdown-item" href="/profil.html">
+                    <img class="me-2" src="/img/icones/icones-menu-profil/profil.svg" alt="">
+                  Mon profil
+                  </a>
+                </li>
+                <li class="my-3 mx-4">
+                  <a class="dropdown-item" href="/faq.html">
+                    <img class="me-2" src="/img/icones/icones-menu-profil/aide.svg" alt="">
+                  Aide
+                  </a>
+                </li>
+                <li class="my-3 mx-4">
+                  <a class="dropdown-item" href="/charte.html">
+                    <img class="me-2" src="/img/icones/icones-menu-profil/charte.svg" alt=""> 
+                    Charte BUDDIES
+                  </a>
+                </li>
+                <li class="my-3 mx-4">
+                  <a class="dropdown-item" href="/mentions-legales.html">
+                    <img class="me-2" src="/img/icones/icones-menu-profil/mentions-legales.svg" alt=""> 
+                    Mentions légales
+                  </a>
+                </li>
+                <li class="my-3 mx-4">
+                  <a class="dropdown-item" href="#">
+                    <img class="me-2" src="/img/icones/icones-menu-profil/deconnexion.svg" alt=""> 
+                    Déconnexion
+                  </a>
+                </li>
+              
+              </ul>
+            
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- FIN NAV -->
 
-<div class="example-wrapper">
-    <h1>Hello Jammers</h1>
+    <!-- DEBUT HEADER -->
+    <header class="container-fluid text-center">
+        <h1> Welcome to the community !</h1>
+    </header>
+    <!-- FIN HEADER -->
 
+    <main>
+       
+        <section id="mes-commu" class="container">
 
+          <i class="sticker sticker-right sticker-be-kind"></i>
 
-    {# Button pour y alle vers la page Register #}
-    <a href="{{path('app_register')}}"><button>Page - Register</button></a>
-    {# Button pour y alle vers la page Login #}
-    <a href="{{path('app_login')}}"><button>Page - Login</button></a>
-    {# Button pour y alle vers la page User #}
-    <a href="{{path('app_user_show')}}"><button>Page - User</button></a>
-    {# Button pour y alle vers la page Admin #}
-    <a href="{{path('admin')}}"><button>Page - Admin</button></a>
-    {# Button pour y alle vers la page Quiz #}
-{#     <a href="{{path('app_quiz')}}"><button>Page - Quiz</button></a> #}
-    {# Button pour y alle vers la page Match #}
-    <a href="{{path('app_match')}}"><button>Page - Match</button></a>
-</div>
+          <i class="sticker sticker-left sticker-cat"></i>
+
+            <h2>Mes communautés</h2>
+            <article class="d-flex flex-row justify-content-between">
+
+                <!-- DEBUT CARDS COMMU -->
+
+                <div class="card col-3">
+                <a href="/community-page.html">
+
+                <div class="thumbnail d-flex justify-content-center align-items-center">
+
+                  <img src="/img/thumbnails-commu/art-lovers.jpg" alt="">
+
+                  <h5 class="card-title">Art lovers</h5>
+                </div>
+                <div class="card-body d-flex flex-column align-items-end px-4">
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  
+                  <div class="d-flex flex-row align-items-center">
+                    <img src="/img/icones/people.svg" alt="">
+                    <p class="mb-0 ms-3">4864 membres</p> 
+                  </div>
+                </div>
+                </a>
+            </div>
+
+            <div class="card col-3">
+              <a href="/community-page.html">
+
+              <div class="thumbnail d-flex justify-content-center align-items-center">
+
+                <img src="/img/thumbnails-commu/foodies.jpg" alt="">
+
+                <h5 class="card-title">Foodies</h5>
+              </div>
+              <div class="card-body d-flex flex-column align-items-end px-4">
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                
+                <div class="d-flex flex-row align-items-center">
+                  <img src="/img/icones/people.svg" alt="">
+                  <p class="mb-0 ms-3">3567 membres</p> 
+                </div>
+              </div>
+              </a>
+          </div>
+
+           <div class="card col-3">
+                <a href="/community-page.html">
+
+                <div class="thumbnail d-flex justify-content-center align-items-center">
+
+                  <img src="/img/thumbnails-commu/film-club.jpg" alt="">
+
+                  <h5 class="card-title">Film Club</h5>
+                </div>
+                <div class="card-body d-flex flex-column align-items-end px-4">
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  
+                  <div class="d-flex flex-row align-items-center">
+                    <img src="/img/icones/people.svg" alt="">
+                    <p class="mb-0 ms-3">8663 membres</p> 
+                  </div>
+                </div>
+                </a>
+            </div>
+
+            <div class="card col-3">
+              <a href="/community-page.html">
+
+              <div class="thumbnail d-flex justify-content-center align-items-center">
+
+                <img src="/img/thumbnails-commu/cat-person.jpg" alt="">
+
+                <h5 class="card-title">Cat Person</h5>
+              </div>
+              <div class="card-body d-flex flex-column align-items-end px-4">
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                
+                <div class="d-flex flex-row align-items-center">
+                  <img src="/img/icones/people.svg" alt="">
+                  <p class="mb-0 ms-3">6583 membres</p> 
+                </div>
+              </div>
+              </a>
+            </div>
+          </article>
+        </section>
+
+        <section id="commu-pop" class="container">
+
+          <i class="sticker sticker-center-left sticker-wow"></i>
+
+            <h2>Communauté populaires</h2>
+
+            <i class="sticker sticker-left sticker-smile"></i>
+
+            <article class="d-flex flex-row justify-content-between">
+              <div class="card col-3">
+                <a href="/community-page.html">
+
+                <div class="thumbnail d-flex justify-content-center align-items-center">
+
+                  <img src="/img/thumbnails-commu/art-lovers.jpg" alt="">
+
+                  <h5 class="card-title">Art lovers</h5>
+                </div>
+                <div class="card-body d-flex flex-column align-items-end px-4">
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  
+                  <div class="d-flex flex-row align-items-center">
+                    <img src="/img/icones/people.svg" alt="">
+                    <p class="mb-0 ms-3">4864 membres</p> 
+                  </div>
+                </div>
+                </a>
+            </div>
+
+            <div class="card col-3">
+              <a href="/community-page.html">
+
+              <div class="thumbnail d-flex justify-content-center align-items-center">
+
+                <img src="/img/thumbnails-commu/foodies.jpg" alt="">
+
+                <h5 class="card-title">Foodies</h5>
+              </div>
+              <div class="card-body d-flex flex-column align-items-end px-4">
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                
+                <div class="d-flex flex-row align-items-center">
+                  <img src="/img/icones/people.svg" alt="">
+                  <p class="mb-0 ms-3">3567 membres</p> 
+                </div>
+              </div>
+              </a>
+          </div>
+
+           <div class="card col-3">
+                <a href="/community-page.html">
+
+                <div class="thumbnail d-flex justify-content-center align-items-center">
+
+                  <img src="/img/thumbnails-commu/film-club.jpg" alt="">
+
+                  <h5 class="card-title">Film Club</h5>
+                </div>
+                <div class="card-body d-flex flex-column align-items-end px-4">
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  
+                  <div class="d-flex flex-row align-items-center">
+                    <img src="/img/icones/people.svg" alt="">
+                    <p class="mb-0 ms-3">8663 membres</p> 
+                  </div>
+                </div>
+                </a>
+            </div>
+
+            <div class="card col-3">
+              <a href="/community-page.html">
+
+              <div class="thumbnail d-flex justify-content-center align-items-center">
+
+                <img src="/img/thumbnails-commu/cat-person.jpg" alt="">
+
+                <h5 class="card-title">Cat Person</h5>
+              </div>
+              <div class="card-body d-flex flex-column align-items-end px-4">
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                
+                <div class="d-flex flex-row align-items-center">
+                  <img src="/img/icones/people.svg" alt="">
+                  <p class="mb-0 ms-3">6583 membres</p> 
+                </div>
+              </div>
+              </a>
+            </div>
+            </article>
+
+        </section>
+
+    </main>
+
 {% endblock %}

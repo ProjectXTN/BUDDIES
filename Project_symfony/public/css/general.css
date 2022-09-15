@@ -43,8 +43,12 @@ h3{
     font-family: 'Calistoga', cursive;
     font-size: 4rem;
     color: black;
-    padding-top: 3rem;
-    padding-bottom: 1rem;
+}
+
+h4{
+    font-family: 'Calistoga', cursive;
+    font-size: 2rem;
+    color: black;
 }
 
 h5{
@@ -64,6 +68,13 @@ p{
     color: black;
 }
 
+::placeholder{
+    font-family: 'Nunito Sans', sans-serif; ;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #606263;
+}
+
 
 /*************** BOUTONS *******************/ 
 
@@ -71,6 +82,18 @@ button{
     font-family: 'Nunito Sans', sans-serif;
     font-size: 1.6rem;
     background-color: #F1F0E6;
+    box-shadow: -1px 1px rgba(0,0,0,0), -2px 2px rgba(0,0,0,0), -3px 3px rgba(0,0,0,0), -4px 4px rgba(0,0,0,0);
+    border: solid 2px  rgba(0,0,0,0);
+}
+
+button:hover{
+    scale: 1.03;
+    box-shadow: -1px 1px #000, -2px 2px #000, -3px 3px #000, -4px 4px #000;
+    border: solid 2px black;
+}
+
+.accordion-button:hover{
+    scale: 1;
 }
 
 /*************** FORMULAIRES *******************/ 
@@ -183,6 +206,10 @@ footer .vr{
     opacity: 1;
 }
 
+footer a img{
+    height: 5rem;
+    width: 5rem;
+}
 
 #sous-footer{
     background-color: var(--bg-primary);
@@ -287,9 +314,6 @@ i.sticker-goodbye::before{
     background-image: url(../img/stickers/goodbye.png);
 }
 
-i.sticker-austin::before{
-    background-image: url(../img/stickers/Tampon-austin.svg);
-}
 
 i.sticker-flower::before{
     background-image: url(../img/stickers/flower.png);
@@ -297,14 +321,6 @@ i.sticker-flower::before{
 
 i.sticker-goodvibes1::before{
     background-image: url(../img/stickers/goodvibes.png);
-}
-
-i.sticker-goodvibes2::before{
-    background-image: url(../img/stickers/goodvibes2.png);
-}
-
-i.sticker-goodvibes3::before{
-    background-image: url(../img/stickers/goodvibes3.png);
 }
 
 i.sticker-airplaine::before{
@@ -348,7 +364,41 @@ i.sticker-guitare2::before{
     background-image: url(../img/stickers/guitare2.png);
 }
 
+i.sticker-good-day::before{
+    background-image: url(../img/stickers/good-day.svg);
+}
 
+i.sticker-good-day2::before{
+    background-image: url(../img/stickers/good-day2.svg);
+}
+
+i.sticker-hello::before{
+    background-image: url(../img/stickers/hello.svg);
+}
+
+i.sticker-smile::before{
+    background-image: url(../img/stickers/smile.svg);
+}
+
+i.sticker-be-kind::before{
+    background-image: url(../img/stickers/be-kind.svg);
+}
+
+i.sticker-dream::before{
+    background-image: url(../img/stickers/dream.svg);
+}
+
+i.sticker-good-luck::before{
+    background-image: url(../img/stickers/good-luck.svg);
+}
+
+i.sticker-win::before{
+    background-image: url(../img/stickers/win.svg);
+}
+
+i.sticker-wow::before{
+    background-image: url(../img/stickers/wow.svg);
+}
 
 i.sticker-paris::before{
     background-image: url(../img/stickers/paris.svg);
@@ -363,9 +413,6 @@ i.sticker-tampon-avion::before{
     background-image: url(../img/stickers/tampon-avion.svg);
 }
 
-i.sticker-tampon-london::before{
-    background-image: url(../img/stickers/londres.svg);
-}
 
 i.sticker-tampon-prague::before{
     background-image: url(../img/stickers/prague.svg);
@@ -377,4 +424,41 @@ i.sticker-tampon-grece::before{
 
 i.sticker-tampon-london::before{
     background-image: url(../img/stickers/londres.svg);
+}
+/************ CARD POST ***************/
+
+#card-post {
+    background-color: rgb(241, 240,230);
+    border: none;
+    border-radius: 1rem;
+}
+
+#card-post .card-img{
+    height: 6rem;
+    width:  6rem;
+    border-radius: 100px;
+}
+
+#card-post #photo-content img{
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+#card-post .card-content img{
+    height: 2rem;
+    width: 2rem;
+}
+
+#card-post .card-content{
+    margin: 1,6rem;
+}
+
+#card-post input{
+    background-color: #DEDED9;
+    width: 100%;
+}
+
+#card-post p{
+    margin: 0;
+    padding: 0;
 }
