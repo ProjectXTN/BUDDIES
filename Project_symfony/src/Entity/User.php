@@ -129,6 +129,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Interets = null;
 
+    #[ORM\ManyToMany(targetEntity: self::class, inversedBy: 'friends')]
+    private Collection $friends;
+
 
     public function __construct()
     {
@@ -742,6 +745,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setInterets(?string $Interets): self
     {
         $this->Interets = $Interets;
+
+        return $this;
+    }
+
+     /**
+     * @return Collection<int, self>
+     */
+    public function getFriends(): Collection
+    {
+        return $this->friends;
+    }
+
+    public function addFriend(self $friend): self
+    {
+        if (!$this->friends->contains($friend)) {
+            $this->friends->add($friend);
+        }
+
+        return $this;
+    }
+
+    public function removeFriend(self $friend): self
+    {
+        $this->friends->removeElement($friend);
 
         return $this;
     }
