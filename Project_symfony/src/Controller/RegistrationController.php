@@ -214,8 +214,6 @@ class RegistrationController extends AbstractController
         $user = $session->get('user');                  
         $form = $this->createForm(RegistrationStep7::class, $user);
 
-
-
         if (isset($request->get('registration_step7')["language"])) {
 
             $language = $request->get('registration_step7')["language"];
@@ -226,12 +224,11 @@ class RegistrationController extends AbstractController
                 $user->{'setLanguage'.$tab[$i]}($rowLanguage);
                 $i++;
             }
-            
-            //il faut ajouter le country sur le form
-/*             $user->setCountry(
-            $form->get('country')->getData());
 
-            $session->set('user', $user); */
+            //il faut ajouter le country sur le form
+            $user->setCountry(current($request->request->all())['country']);
+
+            $session->set('user', $user);
             
             //redirection
             return $this->redirectToRoute('app_quiz', [], Response::HTTP_SEE_OTHER);
