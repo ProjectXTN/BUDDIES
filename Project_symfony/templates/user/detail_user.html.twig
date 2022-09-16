@@ -1,6 +1,12 @@
 {% extends 'base.html.twig' %}
 
+
+
 {% block title %}User{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="/css/messenger.css">
+{% endblock %}
 
 {% block body %}
 {% set i = 0 %}
@@ -132,7 +138,6 @@
 
                     <div class="card-body d-flex flex-column align-items-end">
                     <p class="card-text px-4 py-4">{{ user.Biography|raw }}.</p>
-
 
                     <a href="{{ path('app_user_edit', {'id': user.id}) }}" class="btn px-4 py-2">
                       <img src="/img/icones/edit.svg" alt="">
