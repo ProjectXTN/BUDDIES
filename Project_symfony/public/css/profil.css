@@ -228,3 +228,9 @@ main section{
     border-radius: 100px;
 }
 
+
+/************ CARD Avis  Toggle Hide ***************/
+
+.hide {
+    display: none;
+}
