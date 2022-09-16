@@ -80,6 +80,8 @@ class UserController extends AbstractController
 
 
         return $this->render('user/detail_user.html.twig', [
+            'id' => $user->getId(),
+            'myId' => $this->getUser()->getId(),
             'user' => $user,
             'showButtonFriend' => $showButtonFriend
         ]);
