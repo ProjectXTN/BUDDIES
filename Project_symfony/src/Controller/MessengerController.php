@@ -46,6 +46,8 @@ class MessengerController extends AbstractController
         }
 
         return $this->renderForm('messenger/new.html.twig', [
+            //myId correspond à la personne qui est connecteé sur sa session
+            //id correspond à la personne à laquelle tu veux envoyer un message
             'id' => $id,
             'myId' => $this->getUser()->getId(),
             'messenger' => $messenger,
@@ -122,5 +124,4 @@ class MessengerController extends AbstractController
 
     }
 
-    
 }
