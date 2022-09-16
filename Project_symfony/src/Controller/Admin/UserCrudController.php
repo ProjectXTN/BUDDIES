@@ -41,7 +41,7 @@ class UserCrudController extends AbstractCrudController
                 'Strasbourg' => 'Strasbourg',
                 'Lille' => 'Lille',
             ]),
-            CountryField::new('country'),
+            ChoiceField::new('country')->setChoices([]),
             ChoiceField::new('language')->setChoices([
                 'Francais' => 'Francais',
                 'Anglais' => 'Anglais',
