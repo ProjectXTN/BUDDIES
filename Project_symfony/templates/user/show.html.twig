@@ -200,7 +200,7 @@
                     </div>
                     <div>
                       <h4 class="card-title">{{ review.senderId.firstName }}</h4>
-                      <p class="card-text"><small>{{review.dateAt ? review.dateAt|date('Y-m-d') : '' }}</small></p>
+                      <p class="card-text"><small>{{review.dateAt ? review.dateAt|date('d-m-Y') : '' }}</small></p>
                     </div>
                   </div>
                 
@@ -216,7 +216,7 @@
                         </div>
                         <div>
                           <h4 class="card-title">{{ review.senderId.firstName }}</h4>
-                          <p class="card-text"><small>{{review.dateAt ? review.dateAt|date('Y-m-d') : '' }}</small></p>
+                          <p class="card-text"><small>{{review.dateAt ? review.dateAt|date('d-m-Y') : '' }}</small></p>
                         </div>
                       </div>
                     
