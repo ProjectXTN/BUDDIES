@@ -2,70 +2,604 @@
 
 {% block title %}User{% endblock %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="/css/profil.css">
+{% endblock %}
+
+
 {% block body %}
-    <h1>Profile</h1>
+{% set i = 0 %}
+{% set i2 = 0 %}
 
-    <table class="table">
-        <tbody>
-{#             <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr> #}
-{#             <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr> #}
-{#             <tr>
-                <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-            </tr> #}
-{#             <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr> #}
-            <tr>
-                <th>FirstName</th>
-                <td>{{ user.firstName }}</td>
-            </tr>
-            <tr>
-                <th>LastName</th>
-                <td>{{ user.lastName }}</td>
-            </tr>
-            <tr>
-                <th>Country</th>
-                <td>{{ user.country }}</td>
-            </tr>
-            <tr>
-                <th>City</th>
-                <td>{{ user.city }}</td>
-            </tr>
-            <tr>
-                <th>Language</th>
-                <td>{{ user.language }}</td>
-            </tr>
-            <tr>
-                <th>Picture</th>
-                <td><img src="/data/{{user.Picture}}" ></td>
-            </tr>
-            <tr>
-                <th>Biography</th>
-                <td>{{ user.Biography }}</td>
-            </tr>
-            <tr>
-                <th>IsExpat</th>
-                <td>{{ user.isExpat ? 'Yes' : 'No' }}</td>
-            </tr>
-{#             <tr>
-                <th>Created_at</th>
-                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr> #}
-        </tbody>
-    </table>
+<!-- DEBUT NAV -->
+<nav class="navbar navbar-expand-lg">
+        
+  <div class="container-fluid">
 
-    {# Remove button back to list #}
-    {# <a href="{{ path('app_user_index') }}">back to list</a> #}
+    <a class="navbar-brand" href="/dashboard.html"> <img src="/img/logo-buddies_1.svg" alt=""> </a>
 
-    <button><a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a></button>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
 
-    {{ include('user/_delete_form.html.twig') }}
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+
+        <li class="nav-item">
+          <a id="icon" class="nav-link d-flex align-items-center justify-content-center me-3" aria-current="page" href="{{path('app_home')}}"><img src="/img/icones/icones-nav/commu.svg"></a>
+        </li>
+
+        <li class="nav-item">
+          <a id="icon" class="nav-link d-flex align-items-center justify-content-center me-3" href="/liste-amis.html"><img src="/img/icones/icones-nav/amis.svg"></a>
+        </li>
+
+        <li id="notif" class="nav-item dropdown">
+          <a id="icon" class="nav-link d-flex align-items-center justify-content-center me-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="/img/icones/icones-nav/cloche.svg">
+          </a>
+          <ul class="dropdown-menu">
+            <li class="my-3 mx-4">
+              <a class="dropdown-item" href="#">
+                <div class="card">
+                  <p>je suis une card notification</p>
+                </div>
+              </a>
+            </li>
+            <li class="my-3 mx-4">
+              <a class="dropdown-item" href="#">
+                <div class="card">
+                  <p>je suis une card notification</p>
+                </div>
+              </a>
+            </li>
+            <li class="my-3 mx-4">
+              <a class="dropdown-item" href="#">
+                <div class="card">
+                  <p>je suis une card notification</p>
+                </div>
+              </a>
+            </li>
+          </ul>
+
+          <li class="nav-item dropdown">
+            <a id="icon-active" class="nav-link d-flex align-items-center justify-content-center me-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="/img/icones/icones-nav/profil-orange.svg">
+            </a>
+            <ul class="dropdown-menu">
+              <li class="my-3 mx-4">
+                <a class="dropdown-item" href="{{path('app_user_show')}}">
+                  <img class="me-2" src="/img/icones/icones-menu-profil/profil.png" alt="">
+                Mon profil
+                </a>
+              </li>
+              <li class="my-3 mx-4">
+                <a class="dropdown-item" href="{{ path('app_faq') }}">
+                  <img class="me-2" src="/img/icones/icones-menu-profil/aide.svg" alt="">
+                Aide
+                </a>
+              </li>
+              <li class="my-3 mx-4">
+                <a class="dropdown-item" href="{{path('app_charte')}}">
+                  <img class="me-2" src="/img/icones/icones-menu-profil/charte.svg" alt=""> 
+                  Charte BUDDIES
+                </a>
+              </li>
+              <li class="my-3 mx-4">
+                <a class="dropdown-item" href="{{path('app_mentions_legales')}}">
+                  <img class="me-2" src="/img/icones/icones-menu-profil/mentions-legales.svg" alt=""> 
+                  Mentions légales
+                </a>
+              </li>
+              <li class="my-3 mx-4">
+                <a class="dropdown-item" href="{{ path('app_logout') }}">
+                  <img class="me-2" src="/img/icones/icones-menu-profil/deconnexion.svg" alt=""> 
+                  Déconnexion
+                </a>
+              </li>
+            
+            </ul>
+          
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- FIN NAV -->
+
+   <!-- DEBUT MAIN -->
+    <main class="container">
+    
+        <section class="d-flex flex-row">
+
+        <!-- DEBUT LEFT SIDE -->
+        <article id="left-side" class="d-flex flex-column col-4">
+        <!-- DEBUT CARD PROFIL -->
+            <section id="profil-card" class="">
+                <div id="profil" class="card">
+                    <div class="d-flex flex-row align-items-end px-5 pt-5">
+                        <img id="img-profil" src="/data/{{user.Picture}}" alt="">
+                    <div>
+                    <div class="d-flex flex-row">
+                      <img src="/img/icones/location.svg" alt="">
+                        <p class="ms-3">{{ user.city }}</p>
+                    </div>
+                    <div class="d-flex flex-row">
+                      <img src="/img/icones/flag.svg" alt="">
+                      <p class="ms-3">{{ user.country }}</p>
+                    </div>
+                    <div class="d-flex flex-row">
+                      <img src="/img/icones/langue.svg" alt="">
+                      <p class="ms-3">{{ user.language }} {{ user.language2 }} {{ user.language3 }} </p>
+                    </div>
+                        </div>
+                    </div>
+                    <h3 class="px-5 mt-5 mb-5">{{ user.firstName }}</h3>
+
+                    <div class="card-body d-flex flex-column align-items-end">
+                    <p class="card-text px-4 py-4">{{ user.Biography }}.</p>
+
+
+                    <a href="{{ path('app_user_edit', {'id': user.id}) }}" class="btn px-4 py-2">
+                      <img src="/img/icones/edit.svg" alt="">
+                    </a>
+
+                    </div>
+                </div>
+            </section>
+            <!-- FIN CARD PROFIL -->
+
+            <!-- DEBUT CARD COMMUNAUTES -->
+            <section id="my-communities" >
+                    <h3>Mes communautés</h3>
+                    <div class="row">
+                    {% for groupe in user.groupe %}
+                        <div class="col-6 mb-4 community">
+                            <img class="img-fluid" src="{{ groupe.image }}" alt="">
+                            <p>{{ groupe.name }}</p>
+                        </div>
+                    {% endfor %}
+
+
+                        {# Changement pour un boucle for #}
+
+{#                     {% for groupe in user.groupe %}
+                        <div class="col-6 mb-4 community">
+                            <img class="img-fluid" src="{{ groupe.image }}" alt="">
+                            <p>{{ groupe.name }}</p>
+                        </div>
+                    {% endfor %} #}
+
+                    {# Changement pour faire le boucle sur les COMMUNAUTES #}
+{#                         <div class="col-6 mb-4 community">
+                            <img class="img-fluid" src="/img/thumbnails-commu/film-club.jpg" alt="">
+                            <p>Film Club
+                            </p>
+                        </div>
+                        <div class="col-6 mb-4 community">
+                            <img class="img-fluid" src="/img/thumbnails-commu/art-lovers.jpg" alt="">
+                            <p>Art Lovers</p>
+                        </div>
+                        <div class="col-6 mb-4 community">
+                            <img class="img-fluid" src="/img/thumbnails-commu/film-club.jpg" alt="">
+                            <p>Film Club
+                            </p>
+                        </div> #}
+                    </div>
+            </section>
+            <!-- FIN CARD COMMUNAUTES -->
+
+            <!-- DEBUT CARDS AVIS -->
+            <section id="reviews" >
+                <h3>Mes avis</h3>
+                {% for review in user.reviewReceived %}
+                  {% if i < 3 %}
+                    <div id="avis1" class="card px-5 py-5 text-white show">
+                    <div class="d-flex align-items-center">
+                    <div class="me-4">
+                      <img src="/data/{{ review.senderId.Picture }}" class="card-img" alt="">
+                    </div>
+                    <div>
+                      <h4 class="card-title">{{ review.senderId.firstName }}</h4>
+                      <p class="card-text"><small>{{review.dateAt ? review.dateAt|date('Y-m-d') : '' }}</small></p>
+                    </div>
+                  </div>
+                
+                  <div class="card-content mt-4">
+                    <p class="card-text">{{ review.comment }} </p>
+                  </div>
+                </div>
+                    {% else %}
+                    <div id="avis1" class="card px-5 py-5 text-white cardRepear hide">
+                      <div class="d-flex align-items-center">
+                        <div class="me-4">
+                          <img src="/data/{{ review.senderId.Picture }}" class="card-img" alt="">
+                        </div>
+                        <div>
+                          <h4 class="card-title">{{ review.senderId.firstName }}</h4>
+                          <p class="card-text"><small>{{review.dateAt ? review.dateAt|date('Y-m-d') : '' }}</small></p>
+                        </div>
+                      </div>
+                    
+                      <div class="card-content mt-4">
+                        <p class="card-text">{{ review.comment }} </p>
+                      </div>
+                    </div>
+                  {% endif %}
+                  {% set i = i + 1 %}
+                {% endfor %}
+
+                {# Changement pour un boucle for #}
+
+               {#  <div id="avis2" class="card px-5 py-5 text-white">
+                  <div class="d-flex align-items-center">
+                    <div class="me-4">
+                      <img src="/img/profil/chris.jpg" class="card-img" alt="chris">
+                    </div>
+                    <div>
+                      <h4 class="card-title">Chris Dialo</h4>
+                      <p class="card-text"><small>Il y a un jour</small></p>
+                    </div>
+                  </div>
+
+                
+                  <div class="card-content mt-4">
+                    <p class="card-text">“To be human is to tinker, to envision a better condition, and decide to work toward it by
+                      shaping the world around us.” </p>
+                  </div>
+                </div>
+
+                <div id="avis3" class="card px-5 py-5 text-white">
+                  <div class="d-flex align-items-center">
+                    <div class="me-4">
+                      <img src="/img/profil/chris.jpg" class="card-img" alt="chris">
+                    </div>
+                    <div>
+                      <h4 class="card-title">Chris Dialo</h4>
+                      <p class="card-text"><small>Il y a un jour</small></p>
+                    </div>
+                  </div>
+                
+                  <div class="card-content mt-4">
+                    <p class="card-text">“To be human is to tinker, to envision a better condition, and decide to work toward it by
+                      shaping the world around us.” </p>
+                  </div>
+                </div> #}
+                
+                
+                <button id="clickVoirPlus"> Voir plus</button>
+        </section>
+        <!-- FIN CARDS AVIS -->
+
+        </article>
+        <!-- FIN LEFT SIDE -->
+
+
+        <!-- DEBUT RIGHT SIDE -->
+        <article id="right-side" class="d-flex flex-column col-7 offset-1">
+
+            <section id="interests">
+                <h2>Mes centres d'intérêts</h2> 
+                <div class="d-flex flex-row flex-wrap justify-content-between">
+                {% for activity in user.activitieUsers %}
+                    {%  if activity.isActivitie %} 
+                    <div class="text-center">
+                        <p>{{ activity.activitie.name }}</p>
+                        <img src="{{ activity.activitie.image }}" alt="">
+                    </div>
+                    {% endif %}
+                {% endfor %}
+
+                    {# Changement pour un boucle for #}
+
+
+                   {#  <div class="text-center">
+                        <p>Photographie</p>
+                        <img src="/img/badges-interets/ci-photo.svg" alt="">
+                    </div>
+                    <div class="text-center">
+                        <p>Musique</p>
+                        <img src="/img/badges-interets/ci-musique.svg" alt="">
+                    </div>
+                    <div class="text-center">
+                        <p>Cinéma</p>
+                        <img src="/img/badges-interets/ci-cinema.svg" alt="">
+                    </div>
+                    <div class="text-center">
+                        <p>Art</p>
+                        <img src="/img/badges-interets/ci-art.svg" alt="">
+                    </div> #}
+                </div>
+
+            </section>
+
+            <section id="activities">
+                <h2>Les activités que j'aimerais faire </h2>
+
+                <div class="d-flex flex-row flex-wrap justify-content-between">
+                {% for activity in user.activitieUsers %}
+                    {%  if activity.isActivitie == false %} 
+                    <div class="text-center">
+                        <p>{{ activity.activitie.name }}</p>
+                        <img src="{{ activity.activitie.image }}" alt="">
+                    </div>
+                    {% endif %}  
+                {% endfor %}
+
+
+
+                    {# Changement pour un boucle for #}
+            
+
+                    {# <div class="text-center">
+                        <p>Sport</p>
+                        <img src="/img/badges-activite/activite-sport.svg" alt="">
+                    </div>
+                    <div class="text-center">
+                        <p>Dégustation</p>
+                        <img src="/img/badges-activite/activite-degustation.svg" alt="">
+                    </div>
+                    <div class="text-center">
+                        <p>Découverte</p>
+                        <img src="/img/badges-activite/activite-devouverte.svg" alt="">
+                    </div>
+                    <div class="text-center">
+                        <p>Randonnée</p>
+                        <img src="/img/badges-activite/activite-randonnee.svg" alt="">
+                    </div> #}
+                </div>
+
+            </section>
+
+            <section id="my-posts">
+
+                <h2>Mes publications</h2>
+
+                <!-- card post -->
+                {% for publication in user.publication %}
+                {% if i2 < 3 %}
+                <div id="card-post" class="card px-5 pt-5 pb-3 show">
+                  <div class="d-flex flex-row align-items-center">
+            
+                      <img src="/data/{{user.Picture}}" class="card-img" alt="...">
+                      
+                      <div class="d-flex flex-column ms-3">
+                          <h4 class="card-title">{{ user.firstName }}</h4>
+                          <p class="card-text"><small class="text-muted">{{ publication.dateAt ? publication.dateAt|date('Y-m-d') : '' }}</small></p>
+                      </div>
+                  </div>
+                  <div class="card-content my-4">
+
+                    <div id="photo-content">
+                      <img src="{{ publication.image}}" alt="">
+                    </div>
+
+                      <p class="card-text my-4">{{ publication.post}}</p>
+
+                      <div id="interactions" class="d-flex justify-content-end align-items-center">
+
+                        <p class="me-4">21 Commentaire</p>
+
+                          <div class="d-flex align-items-center">
+                            <p class="me-2">135</p>
+                            <img class="card-icon" src="/img/icones/small-heart-black.png" alt="coeur-plein">
+                          </div>
+
+                      </div>
+
+                      <hr>
+
+                      <div class="d-flex row">
+                        <div class="d-flex align-items-center mb-4">
+                          <div class="d-flex align-items-center">
+                            <img class="card-icon" src="/img/icones/langue.svg" alt="icon-commentaire">
+                            <p class="me-4 ms-2">Commenter</p>
+                          </div>
+                          <div class="d-flex align-items-center">
+                            <img class="card-icon" src="/img/icones/small-thumbsup.svg" alt="icon-like">
+                            <p class="me-4 ms-2">Like</p>
+                          </div>
+                        </div>
+
+                        <input type="text" class="border-0 mb-7 py-3 px-3 rounded-pill" placeholder="Écrire un commentaire...">
+                        
+                      </div>
+                  </div>
+              </div>
+              {% else %}
+              <div id="card-post" class="card px-5 pt-5 pb-3 cardRepear hide">
+              <div class="d-flex flex-row align-items-center">
+        
+                  <img src="/data/{{user.Picture}}" class="card-img" alt="...">
+                  
+                  <div class="d-flex flex-column ms-3">
+                      <h4 class="card-title">{{ user.firstName }}</h4>
+                      <p class="card-text"><small class="text-muted">{{ publication.dateAt ? publication.dateAt|date('Y-m-d') : '' }}</small></p>
+                  </div>
+              </div>
+              <div class="card-content my-4">
+
+                <div id="photo-content">
+                  <img src="{{ publication.image}}" alt="">
+                </div>
+
+                  <p class="card-text my-4">{{ publication.post}}</p>
+
+                  <div id="interactions" class="d-flex justify-content-end align-items-center">
+
+                    <p class="me-4">21 Commentaire</p>
+
+                      <div class="d-flex align-items-center">
+                        <p class="me-2">135</p>
+                        <img class="card-icon" src="/img/icones/small-heart-black.png" alt="coeur-plein">
+                      </div>
+
+                  </div>
+
+                  <hr>
+
+                  <div class="d-flex row">
+                    <div class="d-flex align-items-center mb-4">
+                      <div class="d-flex align-items-center">
+                        <img class="card-icon" src="/img/icones/langue.svg" alt="icon-commentaire">
+                        <p class="me-4 ms-2">Commenter</p>
+                      </div>
+                      <div class="d-flex align-items-center">
+                        <img class="card-icon" src="/img/icones/small-thumbsup.svg" alt="icon-like">
+                        <p class="me-4 ms-2">Like</p>
+                      </div>
+                    </div>
+
+                    <input type="text" class="border-0 mb-7 py-3 px-3 rounded-pill" placeholder="Écrire un commentaire...">
+                    
+                  </div>
+              </div>
+          </div>
+            {% endif %}
+            {% set i2 = i2 + 1 %}
+
+              {% endfor %}
+
+              <!-- card post -->
+{# 
+              <div id="card-post" class="card px-5 pt-5 pb-3">
+                <div class="d-flex flex-row align-items-center">
+          
+                    <img src="/img/profil/sam.jpg" class="card-img" alt="...">
+                    
+                    <div class="d-flex flex-column ms-3">
+                        <h4 class="card-title">Sam Anderson</h4>
+                        <p class="card-text"><small class="text-muted">Il y a 39 minutes</small></p>
+                    </div>
+                </div>
+                <div class="card-content my-4">
+
+                    <p class="card-text my-4">“To be human is to tinker, to envision a better condition, and decide to work toward it by shaping the world around us.” ― Frank Chimero</p>
+
+                    <div id="interactions" class="d-flex justify-content-end align-items-center">
+
+                      <p class="me-4">21 Commentaire</p>
+
+                        <div class="d-flex align-items-center">
+                          <p class="me-2">135</p>
+                          <img class="card-icon" src="/img/icones/small-heart-black.png" alt="coeur-plein">
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <div class="d-flex row">
+                      <div class="d-flex align-items-center mb-4">
+                        <div class="d-flex align-items-center">
+                          <img class="card-icon" src="/img/icones/langue.svg" alt="icon-commentaire">
+                          <p class="me-4 ms-2">Commenter</p>
+                        </div>
+                        <div class="d-flex align-items-center">
+                          <img class="card-icon" src="/img/icones/small-thumbsup.svg" alt="icon-like">
+                          <p class="me-4 ms-2">Like</p>
+                        </div>
+                      </div>
+
+                      <input type="text" class="border-0 mb-7 py-3 px-3 rounded-pill" placeholder="Écrire un commentaire...">
+                      
+                    </div>
+                </div>
+            </div>
+
+            <div id="card-post" class="card px-5 pt-5 pb-3">
+              <div class="d-flex flex-row align-items-center">
+        
+                  <img src="/img/profil/sam.jpg" class="card-img" alt="...">
+                  
+                  <div class="d-flex flex-column ms-3">
+                      <h4 class="card-title">Sam Anderson</h4>
+                      <p class="card-text"><small class="text-muted">Il y a 39 minutes</small></p>
+                  </div>
+              </div>
+              <div class="card-content my-4">
+
+                  <p class="card-text my-4">“To be human is to tinker, to envision a better condition, and decide to work toward it by shaping the world around us.” ― Frank Chimero</p>
+
+                  <div id="interactions" class="d-flex justify-content-end align-items-center">
+
+                    <p class="me-4">21 Commentaire</p>
+
+                      <div class="d-flex align-items-center">
+                        <p class="me-2">135</p>
+                        <img class="card-icon" src="/img/icones/small-heart-black.png" alt="coeur-plein">
+                      </div>
+
+                  </div>
+
+                  <hr>
+
+                  <div class="d-flex row">
+                    <div class="d-flex align-items-center mb-4">
+                      <div class="d-flex align-items-center">
+                        <img class="card-icon" src="/img/icones/langue.svg" alt="icon-commentaire">
+                        <p class="me-4 ms-2">Commenter</p>
+                      </div>
+                      <div class="d-flex align-items-center">
+                        <img class="card-icon" src="/img/icones/small-thumbsup.svg" alt="icon-like">
+                        <p class="me-4 ms-2">Like</p>
+                      </div>
+                    </div>
+
+                    <input type="text" class="border-0 mb-7 py-3 px-3 rounded-pill" placeholder="Écrire un commentaire...">
+                    
+                  </div>
+              </div>
+          </div> #}
+
+                <button id="clickVoirPlusComment"> Voir plus</button>
+            </section>
+
+        </article>
+        <!-- FIN LEFT SIDE -->
+
+    </section>
+
+    </main>
+  <!-- FIN MAIN -->
+
+  <!-- DEBUT CHATBOX --> 
+
+      <aside id="chatbox" class="">
+
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+              <button id="btn-chat" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                Messagerie
+              </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body px-0 py-0">
+                <div id="messages" class="px-4 py-4">
+                  <div id="their-message" class="card flex-row">
+                    <img class="me-4" src="/img/profil/alice.jpg" alt="">
+                    <p class="px-4 py-4" >Hey! how are you ?</p>
+                  </div>
+                  <div id="my-message" class="card flex-row justify-content-end">
+                    <p class="px-4 py-4" >I'm good, how about you?</p>
+                    <img class="ms-4" src="/img/profil/sam.jpg" alt="">
+                  </div>
+                </div>
+
+                <div id="new-message" class="px-4 py-4">
+                  <input type="text" placeholder="nouveau message...">
+                </div>
+
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+
+      </aside>
+
+  <!-- FIN CHATBOX --> 
+{% endblock %}
+{% block javascripts %}
+   <script src="/js/scripts.js"></script>
 {% endblock %}

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Hôte : localhost:8889
--- Généré le : mar. 06 sep. 2022 à 13:52
--- Version du serveur :  5.7.34
--- Version de PHP : 8.0.8
+-- Host: 127.0.0.1
+-- Tempo de geração: 15/09/2022 às 22:45
+-- Versão do servidor: 10.4.24-MariaDB
+-- Versão do PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,71 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `buddies_data`
+-- Banco de dados: `buddies_data`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `doctrine_migration_versions`
+-- Estrutura para tabela `activitie`
+--
+
+CREATE TABLE `activitie` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `step` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `activitie`
+--
+
+INSERT INTO `activitie` (`id`, `name`, `image`, `step`) VALUES
+(1, 'Cuisine', '/img/badges-interets/ci-cuisine.svg', NULL),
+(2, 'Photographie', '/img/badges-interets/ci-photo.svg', NULL),
+(3, 'Musique', '/img/badges-interets/ci-musique.svg', NULL),
+(4, 'Cinéma', '/img/badges-interets/ci-cinema.svg', NULL),
+(5, 'Art', '/img/badges-interets/ci-art.svg', NULL),
+(6, 'Exposition', '/img/badges-activite/activite-expo.svg', NULL),
+(7, 'Sport', '/img/badges-activite/activite-sport.svg', NULL),
+(8, 'Dégustation', '/img/badges-activite/activite-degustation.svg', NULL),
+(9, 'Découverte', '/img/badges-activite/activite-devouverte.svg', NULL),
+(10, 'Randonnée', '/img/badges-activite/activite-randonnee.svg', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `activitie_user`
+--
+
+CREATE TABLE `activitie_user` (
+  `id` int(11) NOT NULL,
+  `activitie_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `is_activitie` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `activitie_user`
+--
+
+INSERT INTO `activitie_user` (`id`, `activitie_id`, `user_id`, `is_activitie`) VALUES
+(53, 1, 2, 1),
+(54, 2, 2, 1),
+(55, 3, 2, 1),
+(56, 4, 2, 1),
+(57, 5, 2, 1),
+(58, 6, 2, 0),
+(59, 7, 2, 0),
+(60, 8, 2, 0),
+(61, 9, 2, 0),
+(62, 10, 2, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `doctrine_migration_versions`
 --
 
 CREATE TABLE `doctrine_migration_versions` (
@@ -34,27 +92,16 @@ CREATE TABLE `doctrine_migration_versions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Déchargement des données de la table `doctrine_migration_versions`
+-- Despejando dados para a tabela `doctrine_migration_versions`
 --
 
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
-('DoctrineMigrations\\Version20220906115735', '2022-09-06 11:57:50', 141),
-('DoctrineMigrations\\Version20220906120516', '2022-09-06 12:05:34', 85),
-('DoctrineMigrations\\Version20220906121011', '2022-09-06 12:10:24', 86),
-('DoctrineMigrations\\Version20220906122012', '2022-09-06 12:20:27', 72),
-('DoctrineMigrations\\Version20220906122647', '2022-09-06 12:27:00', 85),
-('DoctrineMigrations\\Version20220906123003', '2022-09-06 12:30:15', 73),
-('DoctrineMigrations\\Version20220906124731', '2022-09-06 12:47:52', 350),
-('DoctrineMigrations\\Version20220906125851', '2022-09-06 12:59:01', 126),
-('DoctrineMigrations\\Version20220906130015', '2022-09-06 13:00:27', 72),
-('DoctrineMigrations\\Version20220906130132', '2022-09-06 13:01:42', 143),
-('DoctrineMigrations\\Version20220906130706', '2022-09-06 13:07:16', 75),
-('DoctrineMigrations\\Version20220906131520', '2022-09-06 13:15:37', 424);
+('DoctrineMigrations\\Version20220915185958', '2022-09-15 21:00:06', 39);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `form`
+-- Estrutura para tabela `form`
 --
 
 CREATE TABLE `form` (
@@ -66,66 +113,138 @@ CREATE TABLE `form` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `group`
+-- Estrutura para tabela `group`
 --
 
 CREATE TABLE `group` (
   `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` longtext COLLATE utf8mb4_unicode_ci,
-  `publication_id` int(11) NOT NULL
+  `description` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `group`
+--
+
+INSERT INTO `group` (`id`, `name`, `description`, `image`) VALUES
+(3, 'Art Lovers', 'Art Lovers', '/img/thumbnails-commu/art-lovers.jpg'),
+(4, 'Art Lovers', 'Film Club', '/img/thumbnails-commu/art-lovers.jpg'),
+(5, 'Film Club', 'Art Lovers', '/img/thumbnails-commu/film-club.jpg'),
+(6, 'Film Club', 'Film Club', '/img/thumbnails-commu/film-club.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `messenger`
+--
+
+CREATE TABLE `messenger` (
+  `id` int(11) NOT NULL,
+  `sender_id` int(11) NOT NULL,
+  `receiver_id` int(11) NOT NULL,
+  `text` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sent_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
+  `received_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `publication`
+-- Estrutura para tabela `publication`
 --
 
 CREATE TABLE `publication` (
   `id` int(11) NOT NULL,
   `post` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `date_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)'
+  `date_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
+  `groupe_id` int(11) DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `publication`
+--
+
+INSERT INTO `publication` (`id`, `post`, `date_at`, `groupe_id`, `image`) VALUES
+(1, 'testando publicao', '2022-09-08 18:48:25', NULL, NULL),
+(2, '“To be human is to tinker, to envision a better condition, and decide to work toward it by shaping the world around us.” ― Frank Chimero', '2022-09-15 20:49:56', NULL, '/img/publication/picnic.jpg'),
+(3, 'If you love life, do not waste time, for time is what life is made up of. ', '2022-09-15 20:51:35', NULL, NULL),
+(4, 'I’m a great believer in luck, and I find the harder I work, the more luck I have. ', '2022-09-15 20:51:35', NULL, '/img/publication/work-hard.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `review`
+-- Estrutura para tabela `review`
 --
 
 CREATE TABLE `review` (
   `id` int(11) NOT NULL,
   `comment` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `date_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)'
+  `date_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
+  `sender_id_id` int(11) DEFAULT NULL,
+  `received_id_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `review`
+--
+
+INSERT INTO `review` (`id`, `comment`, `date_at`, `sender_id_id`, `received_id_id`) VALUES
+(2, '“To be human is to tinker, to envision a better condition, and decide to work toward it by shaping the world around us.”', '2022-09-15 20:13:29', 9, 2),
+(3, '“To be human is to tinker, to envision a better condition, and decide to work toward it by shaping the world around us.”', '2022-09-15 20:13:29', 3, 2),
+(4, '“To be human is to tinker, to envision a better condition, and decide to work toward it by shaping the world around us.”', '2022-09-15 20:13:29', 4, 2);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `user`
+-- Estrutura para tabela `user`
 --
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `email` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `roles` json NOT NULL,
+  `roles` longtext COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '(DC2Type:json)',
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `country` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `city` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `language` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `country` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `language` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `picture` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `biography` longtext COLLATE utf8mb4_unicode_ci,
-  `is_expat` tinyint(1) NOT NULL,
-  `created_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)'
+  `biography` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_expat` tinyint(1) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)',
+  `isconnected` date DEFAULT NULL,
+  `language2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `language3` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `genre` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `birth_date` date DEFAULT NULL,
+  `match_age_min` int(11) DEFAULT NULL,
+  `match_age_max` int(11) DEFAULT NULL,
+  `match_genre` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `match_langue` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `match_politique` tinyint(1) DEFAULT NULL,
+  `match_break_the_ice` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `match_perfect_afternoon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `activities` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `interets` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `user`
+--
+
+INSERT INTO `user` (`id`, `email`, `roles`, `password`, `first_name`, `last_name`, `country`, `city`, `language`, `picture`, `biography`, `is_expat`, `created_at`, `isconnected`, `language2`, `language3`, `genre`, `birth_date`, `match_age_min`, `match_age_max`, `match_genre`, `match_langue`, `match_politique`, `match_break_the_ice`, `match_perfect_afternoon`, `activities`, `interets`) VALUES
+(2, 'pedroxtn@gmail.com', '[\"ROLE_USER\",\"ROLE_MODERATOR\",\"ROLE_ADMINISTRATOR\"]', '$2y$13$SWMQ..zZOrxUeNxRtzhHYOGC.XVnD/pyf.DLF5mASxZjOIn2DfnG2', 'Jimmy Stewart', 'Rodrigues', 'BR', 'Paris', 'Portugais', 'jimmy-632374efcdd76.jpg', 'Hello World !!!', 1, '2022-09-08 20:44:00', NULL, 'Francais', 'Anglais', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 'teste@teste.com', '[]', '$2y$13$RLdXZS78YUGALcBdPDrB5ukJY.xRbCGuGSbN.4cK3a5HG/QnOOL4O', 'João Braz', 'Rodrigues', 'UA', 'Paris', 'Espagnol', 'thibault-63236ebf3b54c.jpg', 'Hello World !!!!', 1, NULL, NULL, ' ', ' ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 'testepedro@teste.com', '[]', '$2y$13$bw7yR0Wn..W5ie8xGZh.Su4fToArprJsSXcSWNqEaErFQpag3LaxG', 'Alice Smith', 'Roy', 'CA', 'Paris', 'Francais', 'alice-63236f7a0a2fb.jpg', NULL, 1, NULL, NULL, 'Anglais', 'Portugais', 'Paris', '1922-01-01', 15, 35, 'Agenre', 'Francais', 0, 'Raconte une blague ', 'Pique-nique dans un parc', 'Exposition', 'Musique'),
+(9, 'pedroUP@gmail.com', '[]', '$2y$13$qDRlNsRo.r5hX5Ge4LjEDurGIxbUIdbidj9DTyhPBQlcBiQGF7j1a', 'Luc Taylor', 'Taylor', 'CV', 'Toulouse', 'Anglais', 'luc-63237035c06a3.jpg', 'Hello World!!!', 1, NULL, NULL, 'Francais', ' ', 'Paris', '1992-01-01', 19, 40, 'Homme', 'Francais', 0, 'Raconte une blague ', 'Visite de la dernière expo en vogue', 'Dégustation', 'Cinema');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `user_form`
+-- Estrutura para tabela `user_form`
 --
 
 CREATE TABLE `user_form` (
@@ -136,7 +255,7 @@ CREATE TABLE `user_form` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `user_group`
+-- Estrutura para tabela `user_group`
 --
 
 CREATE TABLE `user_group` (
@@ -144,10 +263,24 @@ CREATE TABLE `user_group` (
   `group_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Despejando dados para a tabela `user_group`
+--
+
+INSERT INTO `user_group` (`user_id`, `group_id`) VALUES
+(2, 4),
+(2, 6),
+(4, 3),
+(4, 4),
+(4, 5),
+(4, 6),
+(9, 3),
+(9, 5);
+
 -- --------------------------------------------------------
 
 --
--- Structure de la table `user_publication`
+-- Estrutura para tabela `user_publication`
 --
 
 CREATE TABLE `user_publication` (
@@ -155,61 +288,83 @@ CREATE TABLE `user_publication` (
   `publication_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- --------------------------------------------------------
-
 --
--- Structure de la table `user_review`
+-- Despejando dados para a tabela `user_publication`
 --
 
-CREATE TABLE `user_review` (
-  `user_id` int(11) NOT NULL,
-  `review_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+INSERT INTO `user_publication` (`user_id`, `publication_id`) VALUES
+(2, 2),
+(2, 3),
+(2, 4);
 
 --
--- Index pour les tables déchargées
+-- Índices para tabelas despejadas
 --
 
 --
--- Index pour la table `doctrine_migration_versions`
+-- Índices de tabela `activitie`
+--
+ALTER TABLE `activitie`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `activitie_user`
+--
+ALTER TABLE `activitie_user`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_C8B28E4EB0ED4F5` (`activitie_id`),
+  ADD KEY `IDX_C8B28E4A76ED395` (`user_id`);
+
+--
+-- Índices de tabela `doctrine_migration_versions`
 --
 ALTER TABLE `doctrine_migration_versions`
   ADD PRIMARY KEY (`version`);
 
 --
--- Index pour la table `form`
+-- Índices de tabela `form`
 --
 ALTER TABLE `form`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `group`
+-- Índices de tabela `group`
 --
 ALTER TABLE `group`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_6DC044C538B217A7` (`publication_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `publication`
+-- Índices de tabela `messenger`
+--
+ALTER TABLE `messenger`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_E22A4301F624B39D` (`sender_id`),
+  ADD KEY `IDX_E22A4301CD53EDB6` (`receiver_id`);
+
+--
+-- Índices de tabela `publication`
 --
 ALTER TABLE `publication`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_AF3C67797A45358C` (`groupe_id`);
 
 --
--- Index pour la table `review`
+-- Índices de tabela `review`
 --
 ALTER TABLE `review`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_794381C66061F7CF` (`sender_id_id`),
+  ADD KEY `IDX_794381C6BA2E6344` (`received_id_id`);
 
 --
--- Index pour la table `user`
+-- Índices de tabela `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`);
 
 --
--- Index pour la table `user_form`
+-- Índices de tabela `user_form`
 --
 ALTER TABLE `user_form`
   ADD PRIMARY KEY (`user_id`,`form_id`),
@@ -217,7 +372,7 @@ ALTER TABLE `user_form`
   ADD KEY `IDX_2809B1865FF69B7D` (`form_id`);
 
 --
--- Index pour la table `user_group`
+-- Índices de tabela `user_group`
 --
 ALTER TABLE `user_group`
   ADD PRIMARY KEY (`user_id`,`group_id`),
@@ -225,7 +380,7 @@ ALTER TABLE `user_group`
   ADD KEY `IDX_8F02BF9DFE54D947` (`group_id`);
 
 --
--- Index pour la table `user_publication`
+-- Índices de tabela `user_publication`
 --
 ALTER TABLE `user_publication`
   ADD PRIMARY KEY (`user_id`,`publication_id`),
@@ -233,84 +388,108 @@ ALTER TABLE `user_publication`
   ADD KEY `IDX_627AEEC38B217A7` (`publication_id`);
 
 --
--- Index pour la table `user_review`
---
-ALTER TABLE `user_review`
-  ADD PRIMARY KEY (`user_id`,`review_id`),
-  ADD KEY `IDX_1C119AFBA76ED395` (`user_id`),
-  ADD KEY `IDX_1C119AFB3E2E969B` (`review_id`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
+-- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT pour la table `form`
+-- AUTO_INCREMENT de tabela `activitie`
+--
+ALTER TABLE `activitie`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de tabela `activitie_user`
+--
+ALTER TABLE `activitie_user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+
+--
+-- AUTO_INCREMENT de tabela `form`
 --
 ALTER TABLE `form`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `group`
+-- AUTO_INCREMENT de tabela `group`
 --
 ALTER TABLE `group`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de tabela `messenger`
+--
+ALTER TABLE `messenger`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `publication`
+-- AUTO_INCREMENT de tabela `publication`
 --
 ALTER TABLE `publication`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT pour la table `review`
+-- AUTO_INCREMENT de tabela `review`
 --
 ALTER TABLE `review`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT pour la table `user`
+-- AUTO_INCREMENT de tabela `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- Contraintes pour les tables déchargées
+-- Restrições para tabelas despejadas
 --
 
 --
--- Contraintes pour la table `group`
+-- Restrições para tabelas `activitie_user`
 --
-ALTER TABLE `group`
-  ADD CONSTRAINT `FK_6DC044C538B217A7` FOREIGN KEY (`publication_id`) REFERENCES `publication` (`id`);
+ALTER TABLE `activitie_user`
+  ADD CONSTRAINT `FK_C8B28E4A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `FK_C8B28E4EB0ED4F5` FOREIGN KEY (`activitie_id`) REFERENCES `activitie` (`id`);
 
 --
--- Contraintes pour la table `user_form`
+-- Restrições para tabelas `messenger`
+--
+ALTER TABLE `messenger`
+  ADD CONSTRAINT `FK_E22A4301CD53EDB6` FOREIGN KEY (`receiver_id`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `FK_E22A4301F624B39D` FOREIGN KEY (`sender_id`) REFERENCES `user` (`id`);
+
+--
+-- Restrições para tabelas `publication`
+--
+ALTER TABLE `publication`
+  ADD CONSTRAINT `FK_AF3C67797A45358C` FOREIGN KEY (`groupe_id`) REFERENCES `group` (`id`);
+
+--
+-- Restrições para tabelas `review`
+--
+ALTER TABLE `review`
+  ADD CONSTRAINT `FK_794381C66061F7CF` FOREIGN KEY (`sender_id_id`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `FK_794381C6BA2E6344` FOREIGN KEY (`received_id_id`) REFERENCES `user` (`id`);
+
+--
+-- Restrições para tabelas `user_form`
 --
 ALTER TABLE `user_form`
   ADD CONSTRAINT `FK_2809B1865FF69B7D` FOREIGN KEY (`form_id`) REFERENCES `form` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `FK_2809B186A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
 
 --
--- Contraintes pour la table `user_group`
+-- Restrições para tabelas `user_group`
 --
 ALTER TABLE `user_group`
   ADD CONSTRAINT `FK_8F02BF9DA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `FK_8F02BF9DFE54D947` FOREIGN KEY (`group_id`) REFERENCES `group` (`id`) ON DELETE CASCADE;
 
 --
--- Contraintes pour la table `user_publication`
+-- Restrições para tabelas `user_publication`
 --
 ALTER TABLE `user_publication`
   ADD CONSTRAINT `FK_627AEEC38B217A7` FOREIGN KEY (`publication_id`) REFERENCES `publication` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `FK_627AEECA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
-
---
--- Contraintes pour la table `user_review`
---
-ALTER TABLE `user_review`
-  ADD CONSTRAINT `FK_1C119AFB3E2E969B` FOREIGN KEY (`review_id`) REFERENCES `review` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `FK_1C119AFBA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

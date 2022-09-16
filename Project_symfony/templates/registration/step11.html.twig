@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+
+    <h1>Register</h1>
+
+    {{ form_start(registrationForm) }}
+    {% set i = 0 %}
+
+        {% for test in registrationForm.match_genre %}
+        {% if i < 2 %}
+            <div class="show">
+        {% else %}
+            <div class="hide">
+        {% endif %}
+        {{ form_label(test) }}
+        {{ form_widget(test) }}
+        </div>
+        {% set i = i + 1 %}
+    {% endfor %}
+
+      
+        <button type="submit" class="btn">Register</button>
+    {{ form_end(registrationForm) }} 
+
+{% endblock %}
+

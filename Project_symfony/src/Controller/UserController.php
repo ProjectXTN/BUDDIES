@@ -7,9 +7,11 @@ use App\Form\UserType;
 use App\Repository\UserRepository;
 use DateTime;
 use DateTimeImmutable;
+use Doctrine\ORM\EntityManagerInterface;
 use PhpParser\Node\Scalar\MagicConst\Dir;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -54,6 +56,32 @@ class UserController extends AbstractController
         $user = $this->getUser();
         return $this->render('user/show.html.twig', [
             'user' => $user,
+        ]);
+    }
+
+    #[Route('/details/{id}', name: 'app_user_details', methods: ['GET'])]
+    public function details(User $user): Response
+    {
+        $test = $this->getUser();
+        if($user->getId() == $test->getId())
+        {
+            return $this->redirectToRoute('app_home');
+        }
+
+        $tabFriends = [];
+        foreach($this->getUser()->getFriends() as $row){
+            array_push($tabFriends, $row->getId());
+        }
+
+        $showButtonFriend = true;
+        if(in_array($user->getId(), $tabFriends)){
+            $showButtonFriend = false;
+        }
+
+
+        return $this->render('user/detail_user.html.twig', [
+            'user' => $user,
+            'showButtonFriend' => $showButtonFriend
         ]);
     }
 
@@ -102,4 +130,27 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/add_friends/{id}', name: 'app_add_friends')]
+    public function friendRequest(User $user, UserRepository $userRepository): Response
+    {
+        $myUser = $this->getUser();
+        $myUser->addFriend($user);
+        $userRepository->add($myUser, true);
+        
+
+        return $this->redirectToRoute('app_user_details', ['id'=>$user->getId()], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/remove_friends/{id}', name: 'app_remove_friends')]
+    public function removeFriend(User $user, UserRepository $userRepository): Response
+    {
+        $myUser = $this->getUser();
+        $myUser->removeFriend($user);
+        $userRepository->add($myUser, true);
+        
+
+        return $this->redirectToRoute('app_user_details', ['id'=>$user->getId()], Response::HTTP_SEE_OTHER);
+    }
+    
 }

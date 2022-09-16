@@ -49,6 +49,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $language = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    private ?string $language2 = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $language3 = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $Picture = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
@@ -68,11 +74,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Publication::class, inversedBy: 'users')]
     private Collection $Publication;
 
-    #[ORM\ManyToMany(targetEntity: Form::class, inversedBy: 'users')]
+    #[ORM\ManyToMany(targetEntity: Form::class, inversedBy: 'users', cascade:["persist"])]
     private Collection $Form;
-
-    #[ORM\ManyToMany(targetEntity: Review::class, inversedBy: 'users')]
-    private Collection $Reviews;
 
     #[ORM\OneToMany(mappedBy: 'sender', targetEntity: Messenger::class)]
     private Collection $messengers;
@@ -80,8 +83,54 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'receiver', targetEntity: Messenger::class)]
     private Collection $messenger_received;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $Isconnected = null;
+
+    #[ORM\OneToMany(mappedBy: 'sender_id', targetEntity: Review::class)]
+    private Collection $review_sender;
+
+    #[ORM\OneToMany(mappedBy: 'received_id', targetEntity: Review::class)]
+    private Collection $review_received;
+
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: ActivitieUser::class, cascade:["persist"])]
+    private Collection $activitieUsers;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $genre = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $birthDate = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $match_age_min = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $match_age_max = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $match_genre = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $match_langue = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $match_politique = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $match_break_the_ice = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $match_perfect_afternoon = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $Activities = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $Interets = null;
+
+    #[ORM\ManyToMany(targetEntity: self::class, inversedBy: 'friends')]
+    private Collection $friends;
 
 
     public function __construct()
@@ -92,6 +141,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->Reviews = new ArrayCollection();
         $this->messengers = new ArrayCollection();
         $this->messenger_received = new ArrayCollection();
+        $this->review_sender = new ArrayCollection();
+        $this->review_received = new ArrayCollection();
+        $this->activities = new ArrayCollection();
+        $this->activitieUsers = new ArrayCollection();
+        $this->friends = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -291,7 +345,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    // Ne marche pas pour edite le crud
     public function __toString()
     {
         return $this->firstName.' '.$this->lastName.' '.$this->country.' '.$this->city.' '.$this->language.' '.$this->Picture.' '.$this->Biography;
@@ -378,30 +431,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Review>
-     */
-    public function getReviews(): Collection
-    {
-        return $this->Reviews;
-    }
-
-    public function addReview(Review $review): self
-    {
-        if (!$this->Reviews->contains($review)) {
-            $this->Reviews->add($review);
-        }
-
-        return $this;
-    }
-
-    public function removeReview(Review $review): self
-    {
-        $this->Reviews->removeElement($review);
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, Messenger>
      */
     public function getMessengers(): Collection
@@ -469,6 +498,277 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsconnected(\DateTimeInterface $Isconnected): self
     {
         $this->Isconnected = $Isconnected;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Review>
+     */
+    public function getReviewSender(): Collection
+    {
+        return $this->review_sender;
+    }
+
+    public function addReviewSender(Review $reviewSender): self
+    {
+        if (!$this->review_sender->contains($reviewSender)) {
+            $this->review_sender->add($reviewSender);
+            $reviewSender->setSenderId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReviewSender(Review $reviewSender): self
+    {
+        if ($this->review_sender->removeElement($reviewSender)) {
+            // set the owning side to null (unless already changed)
+            if ($reviewSender->getSenderId() === $this) {
+                $reviewSender->setSenderId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Review>
+     */
+    public function getReviewReceived(): Collection
+    {
+        return $this->review_received;
+    }
+
+    public function addReviewReceived(Review $reviewReceived): self
+    {
+        if (!$this->review_received->contains($reviewReceived)) {
+            $this->review_received->add($reviewReceived);
+            $reviewReceived->setReceivedId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReviewReceived(Review $reviewReceived): self
+    {
+        if ($this->review_received->removeElement($reviewReceived)) {
+            // set the owning side to null (unless already changed)
+            if ($reviewReceived->getReceivedId() === $this) {
+                $reviewReceived->setReceivedId(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+    /**
+     * @return Collection<int, ActivitieUser>
+     */
+    public function getActivitieUsers(): Collection
+    {
+        return $this->activitieUsers;
+    }
+
+    public function addActivitieUser(ActivitieUser $activitieUser): self
+    {
+        if (!$this->activitieUsers->contains($activitieUser)) {
+            $this->activitieUsers->add($activitieUser);
+            $activitieUser->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeActivitieUser(ActivitieUser $activitieUser): self
+    {
+        if ($this->activitieUsers->removeElement($activitieUser)) {
+            // set the owning side to null (unless already changed)
+            if ($activitieUser->getUser() === $this) {
+                $activitieUser->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getLanguage2(): ?string
+    {
+        return $this->language2;
+    }
+
+    public function setLanguage2(?string $language2): self
+    {
+        $this->language2 = $language2;
+
+        return $this;
+    }
+
+    public function getLanguage3(): ?string
+    {
+        return $this->language3;
+    }
+
+    public function setLanguage3(?string $language3): self
+    {
+        $this->language3 = $language3;
+
+        return $this;
+    }
+
+    public function getGenre(): ?string
+    {
+        return $this->genre;
+    }
+
+    public function setGenre(?string $genre): self
+    {
+        $this->genre = $genre;
+
+        return $this;
+    }
+
+    public function getBirthDate(): ?\DateTimeInterface
+    {
+        return $this->birthDate;
+    }
+
+    public function setBirthDate(?\DateTimeInterface $birthDate): self
+    {
+        $this->birthDate = $birthDate;
+
+        return $this;
+    }
+
+    public function getMatchAgeMin(): ?int
+    {
+        return $this->match_age_min;
+    }
+
+    public function setMatchAgeMin(?int $match_age_min): self
+    {
+        $this->match_age_min = $match_age_min;
+
+        return $this;
+    }
+
+    public function getMatchAgeMax(): ?int
+    {
+        return $this->match_age_max;
+    }
+
+    public function setMatchAgeMax(?int $match_age_max): self
+    {
+        $this->match_age_max = $match_age_max;
+
+        return $this;
+    }
+
+    public function getMatchGenre(): ?string
+    {
+        return $this->match_genre;
+    }
+
+    public function setMatchGenre(?string $match_genre): self
+    {
+        $this->match_genre = $match_genre;
+
+        return $this;
+    }
+
+    public function getMatchLangue(): ?string
+    {
+        return $this->match_langue;
+    }
+
+    public function setMatchLangue(?string $match_langue): self
+    {
+        $this->match_langue = $match_langue;
+
+        return $this;
+    }
+
+    public function isMatchPolitique(): ?bool
+    {
+        return $this->match_politique;
+    }
+
+    public function setMatchPolitique(?bool $match_politique): self
+    {
+        $this->match_politique = $match_politique;
+
+        return $this;
+    }
+
+    public function getMatchBreakTheIce(): ?string
+    {
+        return $this->match_break_the_ice;
+    }
+
+    public function setMatchBreakTheIce(?string $match_break_the_ice): self
+    {
+        $this->match_break_the_ice = $match_break_the_ice;
+
+        return $this;
+    }
+
+    public function getMatchPerfectAfternoon(): ?string
+    {
+        return $this->match_perfect_afternoon;
+    }
+
+    public function setMatchPerfectAfternoon(?string $match_perfect_afternoon): self
+    {
+        $this->match_perfect_afternoon = $match_perfect_afternoon;
+
+        return $this;
+    }
+
+    public function getActivities(): ?string
+    {
+        return $this->Activities;
+    }
+
+    public function setActivities(?string $Activities): self
+    {
+        $this->Activities = $Activities;
+
+        return $this;
+    }
+
+    public function getInterets(): ?string
+    {
+        return $this->Interets;
+    }
+
+    public function setInterets(?string $Interets): self
+    {
+        $this->Interets = $Interets;
+
+        return $this;
+    }
+
+     /**
+     * @return Collection<int, self>
+     */
+    public function getFriends(): Collection
+    {
+        return $this->friends;
+    }
+
+    public function addFriend(self $friend): self
+    {
+        if (!$this->friends->contains($friend)) {
+            $this->friends->add($friend);
+        }
+
+        return $this;
+    }
+
+    public function removeFriend(self $friend): self
+    {
+        $this->friends->removeElement($friend);
 
         return $this;
     }
