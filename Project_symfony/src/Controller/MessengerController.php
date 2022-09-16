@@ -26,8 +26,8 @@ class MessengerController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_messenger_new', methods: ['GET', 'POST'])]
-    public function new(UserRepository $userRepository,Request $request, MessengerRepository $messengerRepository): Response
+    #[Route('/new/{id}', name: 'app_messenger_new', methods: ['GET', 'POST'])]
+    public function new($id, UserRepository $userRepository,Request $request, MessengerRepository $messengerRepository): Response
     {
         $messenger = new Messenger();
         $form = $this->createForm(MessengerType::class, $messenger);
@@ -46,6 +46,8 @@ class MessengerController extends AbstractController
         }
 
         return $this->renderForm('messenger/new.html.twig', [
+            'id' => $id,
+            'myId' => $this->getUser()->getId(),
             'messenger' => $messenger,
             'form' => $form,
         ]);
