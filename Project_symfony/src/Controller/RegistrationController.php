@@ -196,7 +196,7 @@ class RegistrationController extends AbstractController
             $session->set('user', $user);
             
             //redirection
-            return $this->redirectToRoute('app_register_step7', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_register_step16', [], Response::HTTP_SEE_OTHER);
 
         }
 
@@ -204,6 +204,33 @@ class RegistrationController extends AbstractController
             'registrationForm' => $form->createView(),
         ]); 
     } 
+
+    #[Route('/step16', name: 'app_register_step16')]
+    public function step16(Request $request, RequestStack $requestStack): Response
+    {
+
+        $session = $requestStack->getSession();
+
+        $user = $session->get('user');
+        $form = $this->createForm(RegistrationStep16::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            //dd($user);
+            $user->setIsExpat(
+                $form->get('isExpat')->getData())
+            ;
+
+            $session->set('user', $user);
+            
+            //redirection
+            return $this->redirectToRoute('app_register_step7', [], Response::HTTP_SEE_OTHER);
+
+        }
+        return $this->render('registration/step16.html.twig', [
+            'registrationForm' => $form->createView(),
+        ]); 
+    }
 
     //Route to creation compte step7 langue/nationalité
     #[Route('/step7', name: 'app_register_step7')]
