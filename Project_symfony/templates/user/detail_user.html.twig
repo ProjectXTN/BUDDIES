@@ -143,7 +143,7 @@
                     </a>
                 {% else %}
                     <a href="{{path('app_remove_friends', {'id':user.id})}}" class="btn px-4 py-2">
-                      <img src="../img/icones/edit.svg" alt="">
+                      <img src="/img/icones/non.svg" alt="">
                     </a>
                 {% endif %}
                     
@@ -580,10 +580,11 @@
     </section>
 
     </main>
+    <script src="/js/scripts.js"></script>
 {% endblock %}
 
 {% block javascript %}
           
-          <script src="./js/scripts.js"></script>
+         {#  <script src="./js/scripts.js"></script> #}
 
   {% endblock %}
