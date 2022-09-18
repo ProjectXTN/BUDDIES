@@ -107,19 +107,31 @@
 
     <i class="sticker sticker-left sticker-smiley"></i>
 
-    <h1 class="text-center">Ça Match !</h1>
+{#     <h1 class="text-center">Ça Match !</h1> #}
 
     {# Condition pour apparetre les amis #}
-    {% for userUser in amis %}
-        <div class="d-flex flex-row">
-            <img src="/data/{{app.user.Picture}}" alt="">
             {% if showButtonFriend %}
-            <img src="/data/{{ userUser.Picture }}" alt="">
+                   <h1 class="text-center">Ça Match !</h1>
+            {% else %}
+                  <h1 class="text-center">En attende de Match...</h1>
             {% endif %}
-        </div>
-    {% endfor %}
 
-    <button class="px-3 py-3"> Envoyer un message</button>
+
+            {% if showButtonFriend %}
+               {% for userUser in amis %}
+{#                    <h1 class="text-center">Ça Match !</h1> #}
+                <div class="d-flex flex-row">
+                  <img src="/data/{{app.user.Picture}}" alt="Image user connect">
+                  <img src="/data/{{ userUser.Picture }}" alt="Image user match">
+                </div>
+                    <button class="px-3 py-3"> Envoyer un message</button>
+            {% endfor %}
+            {% else %}
+{#                   <h1 class="text-center">En attende de Match...</h1> #}
+                <div class="d-flex flex-row">
+                  <img src="/data/{{app.user.Picture}}" alt="Image user connect">
+                </div>
+            {% endif %}
 
 </section>
 
@@ -130,7 +142,7 @@
     <h2>Profils qui pourraient vous plaire</h2>
     
     <!-- -->
-
+{#     {% for match in usermatch %} #}
     <a data-bs-toggle="modal" data-bs-target="#modal-dashboard" >
     
     <div class="d-flex flex-row justify-content-between">
@@ -158,7 +170,7 @@
           
               <div  class="d-flex justify-content-center my-5">
                 <a href="#" class="btn"><img src="/img/icones/non.svg" alt="non"></a>
-                <a href="#" class="btn"><img src="/img/icones/oui.svg" alt="oui"></a>
+                <a href="{{path('app_add_friends', {'id':app.user.id})}}" class="btn"><img src="/img/icones/oui.svg" alt="oui"></a>
               </div>
             </div>
           </div>
@@ -166,7 +178,7 @@
    
 
     <div id="card-profil" class="card d-flex flex-column mb-3 col-4">
-
+{#     {% endfor %} #}
         <!-- -->
 
         <div class="d-flex flex-column align-items-center mt-3">
@@ -238,28 +250,33 @@
     <i class="sticker sticker-left sticker-wow"></i>
 
     <h2>Mes communautés</h2>
-    <div class="d-flex flex-row justify-content-between">
-        <div id="card-commu" class="card col-3">
-            <a href="/community-page.html">
 
-            <div class="thumbnail d-flex justify-content-center align-items-center">
 
-              <img class="img-fluid" src="/img/card-commu/art-lovers-card.jpg" alt="">
+      <div class="d-flex flex-row justify-content-between">
+          {% for groupe in app.user.groupe %}
+            <div id="card-commu" class="card col-3">
+                <a href="{{path('app_home')}}">
 
-              <h5 class="card-title">Art lovers</h5>
+                <div class="thumbnail d-flex justify-content-center align-items-center">
+
+                  <img class="img-fluid" src="{{ groupe.image }}" alt="">
+
+                  <h5 class="card-title">{{ groupe.name }}</h5>
+                </div>
+                <div class="card-body d-flex flex-column align-items-end px-4">
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  
+                  <div class="d-flex flex-row align-items-center">
+                    <img src="/img/icones/people.svg" alt="">
+                    <p class="mb-0 ms-3">4864 membres</p> 
+                  </div>
+                </div>
+                </a>
             </div>
-            <div class="card-body d-flex flex-column align-items-end px-4">
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              
-              <div class="d-flex flex-row align-items-center">
-                <img src="/img/icones/people.svg" alt="">
-                <p class="mb-0 ms-3">4864 membres</p> 
-              </div>
-            </div>
-            </a>
-        </div>
+          {% endfor %}
 
-        <div id="card-commu" class="card col-3">
+
+{#         <div id="card-commu" class="card col-3">
           <a href="/community-page.html">
 
           <div class="thumbnail d-flex justify-content-center align-items-center">
@@ -320,7 +337,7 @@
         </div>
     </div>
 
-    <i class="sticker sticker-center-right sticker-smile"></i>
+    <i class="sticker sticker-center-right sticker-smile"></i> #}
 
 </section>
 
@@ -387,7 +404,7 @@
           </div>
   
           <div class="d-flex justify-content-center py-4 mt-4">
-              <a href="#" class="btn"><img src="//img/icones/non.svg" style="height:8rem" alt="non"></a>
+              <a href="#" class="btn"><img src="/img/icones/non.svg" style="height:8rem" alt="non"></a>
               <a href="#" class="btn"><img src="/img/icones/oui.svg" style="height:8rem" alt="oui"></a>
           </div>
       </div>

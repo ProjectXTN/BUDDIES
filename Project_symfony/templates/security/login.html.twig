@@ -51,24 +51,24 @@
                 <input type="password" name="password" id="inputPassword" class="form-control px-2 py-2" autocomplete="current-password" placeholder="Mot de passe" required>
 
                  <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+                value="{{ csrf_token('authenticate') }}">
 
                
-       <div class="d-flex flex-row justify-content-between">
-                <button type="submit" class="px-3 py-3">Mot de passe oublié ?</button>
+                <div class="d-flex flex-row justify-content-between">
+                    <button type="submit" class="px-3 py-3">Mot de passe oublié ?</button>
 
-                <button type="submit" class="px-3 py-3">Se connecter</button>
-        </div>
-                <hr>
+                    <button type="submit" class="px-3 py-3">Se connecter</button>
+                </div>
+                    <hr>
 
-                {# il faut regle le css du button pour crée um compte #}
-                <button type="submit" id="creation" class=" px-3 py-3"><a class="nav-link" href="{{path('app_register')}}">Crée un compte</a></button>
+                    {# il faut regle le button pour cree le compte #}
+                    <button type="submit" id="creation" class=" px-3 py-3"><a class="nav-link" href="{{path('app_register')}}">Crée un compte</a></button>
 
-                <i class="sticker sticker-left sticker-win"></i>
 
-            </form>
-        </div>
+                    <i class="sticker sticker-left sticker-win"></i>
+
+                </form>
+            </div>
     </main>
 
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
