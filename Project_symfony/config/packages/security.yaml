@@ -33,8 +33,27 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/admin, roles: ROLE_ADMINISTRATOR }
-        - { path: ^/login, roles:  }
         - { path: ^/, roles: ROLE_USER }
+        - { path: ^/login, roles:  }
+        - { path: ^/register, roles:  }
+        - { path: ^/step2, roles:  }
+        - { path: ^/step3, roles:  }
+        - { path: ^/step4, roles:  }
+        - { path: ^/step5, roles:  }
+        - { path: ^/step6, roles:  }
+        - { path: ^/step16, roles:  }
+        - { path: ^/step7, roles:  }
+        - { path: ^/quiz, roles:  }
+        - { path: ^/quiz/step2, roles:  }
+        - { path: ^/quiz/step3, roles:  }
+        - { path: ^/step8, roles:  }
+        - { path: ^/step9, roles:  }
+        - { path: ^/step10, roles:  }
+        - { path: ^/step11, roles:  }
+        - { path: ^/step12, roles:  }
+        - { path: ^/step13, roles:  }
+        - { path: ^/step14, roles:  }
+        - { path: ^/step15, roles:  }
         # - { path: ^/, roles: ROLE_USER }
 when@test:
     security:

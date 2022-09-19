@@ -132,6 +132,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: self::class, inversedBy: 'friends')]
     private Collection $friends;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $isValid = null;
+
 
     public function __construct()
     {
@@ -769,6 +772,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeFriend(self $friend): self
     {
         $this->friends->removeElement($friend);
+
+        return $this;
+    }
+
+    public function getIsValid(): ?string
+    {
+        return $this->isValid;
+    }
+
+    public function setIsValid(?string $isValid): self
+    {
+        $this->isValid = $isValid;
 
         return $this;
     }

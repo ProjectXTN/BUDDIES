@@ -463,3 +463,152 @@ i.sticker-tampon-london::before{
     margin: 0;
     padding: 0;
 }
+
+/** CHATBOX **/
+
+#chatbox{
+    position: sticky;
+    bottom: 0;
+    left: 70%;
+    height: 7rem;
+    width: 42rem;
+    background-color: #2C7DA0;
+    z-index: 1000;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
+
+}
+
+#chatbox .accordion .accordion-button{
+    height: 7rem;
+    box-shadow: none;
+    background-color: #2C7DA0;
+    color: white;
+    border: solid 2px black;
+    font-size: 1.8rem;
+}
+
+#chatbox .accordion .accordion-button:not(.collapsed) {
+    background-color: #2C7DA0;
+    color: white;
+    border: solid 2px black;
+} 
+
+
+#chatbox img{
+    border-radius: 100%;
+    height: 6rem;
+    width: 6rem;
+}
+
+#chatbox .card{
+    border: none;
+
+}
+
+#chatbox .accordion-collapse{
+    border-right: solid 2px black;
+    border-left: solid 2px black;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
+}
+
+#chatbox #message-date p{
+    font-size: 1rem;
+    color: grey;
+}
+
+#their-message p {
+    border-radius: 1rem 1rem 1rem 0rem;
+    background-color:#F1F0E6;
+}
+
+#my-message p {
+    border-radius: 1rem 1rem 0rem 1rem;
+    background-color: #C3DFEB;
+}
+
+#new-message{
+    border-top: none;
+    border-bottom: solid 2px black;
+}
+
+#new-message input{
+   border-radius: 2rem;
+   border: solid 1px grey;
+}
+
+
+.offcanvas-body .card img{
+    height: 6rem;
+    width: 6rem;
+    border-radius: 100%;
+    margin-right: 2rem;
+}
+
+.offcanvas-body .card h4{
+    margin-right: 8rem;
+}
+
+
+/** OFFCANVAS **/
+
+.offcanvas-body .card .dropdown button img{
+    height: 2.8rem;
+    width: 2.8rem;
+}
+
+.offcanvas-body .card .dropdown a img{
+    width: 2.8rem;
+    height: 2.8rem;
+}
+
+.offcanvas-body .card .dropdown button{
+    border-radius: 2rem;
+  
+    border: none;
+    height: 4rem;
+    width: 4rem;
+}
+
+.offcanvas-body .card .dropdown button:hover{
+    border-radius: 100%;
+    background-color: #FD8D04;
+    border: none;
+    box-shadow: none;
+}
+
+.offcanvas-body .card .dropdown-menu{
+    background-color: #FD8D04;
+    padding: 0.5rem;
+}
+
+.offcanvas-body .card .dropdown-item{
+    border-radius: 0rem;
+  
+}
+
+
+.offcanvas input{
+    width: 100%;
+    border-radius: 2rem;
+    border: solid 2px black;
+}
+
+.offcanvas-body .card{
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+    border: none;
+    box-shadow: -1px 1px rgba(0, 0, 0, 0) -2px 2px rgba(0, 0, 0, 0) -3px 3px rgba(0, 0, 0, 0);
+    border: solid 2px rgba(0, 0, 0, 0);
+}
+
+
+.offcanvas-body .card .card-body{
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.offcanvas{
+    background-color: #F1F0E6;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+}

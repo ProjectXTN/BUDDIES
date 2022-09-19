@@ -226,24 +226,24 @@ i.sticker-smile::before{
 }
 
 
-#modal-dashboard .card{
+.cardModal{
     background-color: #F1F0E6;
     margin: 0;
     border-radius: 2rem;
 
 }
 
-#modal-dashboard .card-header {
+.card-headerTeste {
     background-color: #FD9904;
     border-radius: 2rem 2rem 0rem 0rem;
 }
 
 
-#modal-dashboard .card-header p{
+.card-headerTeste p{
     color: white;
 }
 
-#modal-dashboard .card-img{
+.card-imgModal{
     height: 20rem;
     width:  20rem;
     border-radius: 180px;
@@ -251,7 +251,7 @@ i.sticker-smile::before{
     margin-left: -5rem;
 }
 
-#modal-dashboard #percentage{
+#percentage{
     margin-left: -5rem;
     margin-top: 12rem;
     background-color:#F1F0E6;
@@ -264,13 +264,13 @@ i.sticker-smile::before{
     z-index: 100;
 }
 
-#modal-dashboard .badge{
+.badgeModal{
     height: 10rem;
     width: 10rem;
     padding: 0rem;
 }
 
-#modal-dashboard a img {
+.badgeModala img {
     height: 7rem;
     width: 7rem;
 }

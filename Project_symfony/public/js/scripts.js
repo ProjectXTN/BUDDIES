@@ -8,19 +8,20 @@ let buttonClickComment = document.getElementById('clickVoirPlusComment');
 
 /* FUNCTION POUR VOIR AUTRES PUBLICATION ET AVIS */
 function voirPlusAvis(){
-    //console.log(buttonClickAvis.textContent)
+        //console.log(buttonClickAvis.textContent)
 
-    if(buttonClickAvis.textContent == ' Voir plus'){
-        buttonClickAvis.innerHTML = ' Voir moins'
-    }else{
-        buttonClickAvis.innerHTML = ' Voir plus'
+        if(buttonClickAvis.textContent == ' Voir plus'){
+            buttonClickAvis.innerHTML = ' Voir moins'
+        }else{
+            buttonClickAvis.innerHTML = ' Voir plus'
+        }
+
+        findClass.forEach(function(element){
+            element.classList.toggle('hide')
+        })
     }
 
-    findClass.forEach(function(element){
-        element.classList.toggle('hide')
-    })
-}
-
+/* FUNCTION POUR VOIR AUTRES PUBLICATION ET AVIS */
 function voirPlusPost(){
     //console.log(buttonClickAvis.textContent)
     

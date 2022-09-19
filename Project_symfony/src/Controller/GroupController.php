@@ -25,8 +25,8 @@ class GroupController extends AbstractController
     //   ***************  il faut faire la route por prend le ID du group ************
 
 
-    #[Route('/community/page', name: 'app_group_details', methods: ['GET'])]
-    public function details(GroupRepository $groupRepository, PublicationRepository $publicationRepository): Response
+    #[Route('/community/page/{id}', name: 'app_group_details', methods: ['GET'])]
+    public function details($id, GroupRepository $groupRepository, PublicationRepository $publicationRepository): Response
     {
        
 /*         $tabFriends = [];
@@ -42,8 +42,8 @@ class GroupController extends AbstractController
 
         return $this->render('group/index.html.twig', [
             'controller_name' => 'CommunityPageController',
-            'group' => $groupRepository->findOneById(3),
-            'publication' => $publicationRepository->findOneById(9)
+            'group' => $groupRepository->findOneById($id),
+            'publication' => $publicationRepository->findOneById($id)
         ]);
     }
 }
