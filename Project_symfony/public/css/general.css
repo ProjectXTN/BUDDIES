@@ -230,8 +230,25 @@ footer a img{
     width: 42rem;
     background-color: #2C7DA0;
     z-index: 1000;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
 
 }
+
+#chatbox .accordion .accordion-button{
+    height: 7rem;
+    box-shadow: none;
+    background-color: #2C7DA0;
+    color: white;
+    border: solid 2px black;
+    font-size: 1.8rem;
+}
+
+#chatbox .accordion .accordion-button:not(.collapsed) {
+    background-color: #2C7DA0;
+    color: white;
+    border: solid 2px black;
+} 
+
 
 #chatbox img{
     border-radius: 100%;
@@ -241,7 +258,17 @@ footer a img{
 
 #chatbox .card{
     border: none;
+}
 
+#chatbox .accordion-collapse{
+    border-right: solid 2px black;
+    border-left: solid 2px black;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
+}
+
+#chatbox #message-date p{
+    font-size: 1rem;
+    color: grey;
 }
 
 #chatbox .card p{
@@ -250,15 +277,20 @@ footer a img{
 
 #their-message p {
     border-radius: 1rem 1rem 1rem 0rem;
+    background-color:#F1F0E6;
 }
 
 #my-message p {
     border-radius: 1rem 1rem 0rem 1rem;
+    background-color: #C3DFEB;
 }
 
-#new-message{
+
+
+#new-message input{
+    border-radius: 2rem;
     border: solid 1px grey;
-}
+ }
 
 
 /*************** STICKERS *******************/
@@ -461,4 +493,301 @@ i.sticker-tampon-london::before{
 #card-post p{
     margin: 0;
     padding: 0;
+}
+
+/* -----------OFFCANVAS----------- */
+
+Hardy KAYUMBA
+#2450
+
+Pedro Henrique BRAZ MEIRELES — 09/06/2022
+Salut, je vas avoir un peu de retard aussi
+Pedro Henrique BRAZ MEIRELES — 09/06/2022
+Lien pour remplacer sur le fichier .env pour les developpeur
+DATABASE_URL="mysql://root:root@127.0.0.1:8889/buddies_data?serverVersion=8&charset=utf8mb4"
+Pedro Henrique BRAZ MEIRELES — 09/06/2022
+Base de donnée mySQL
+Image
+Sonia Khali — 09/08/2022
+Je vais avoir quelques minutes de retard
+Louise de Lussanet — 09/09/2022
+Bonjour la team, je serai pas là à 9h ce matin donc faite la réunion sans moi
+Je pense que je serai là à partir de 10h30
+Sonia Khali — 09/09/2022
+Ça marche
+Daniel Coelho — 09/12/2022
+Je serais pas là avant 9:20 je dirais
+Commencé la réunion sans moi
+Pedro Henrique BRAZ MEIRELES — 09/12/2022
+Voila la page pour editer le profile
+Image
+Daniel Coelho — 09/13/2022
+Je serais pas là avant 9 20
+Pedro Henrique BRAZ MEIRELES — 09/13/2022
+Le champ Pays, c'est pour mettre des options d'autres pays ? car l'appli est uniquement en France, parce que l'utilisateur doit résider en France... @Louise de Lussanet  @Sonia Khali  @Fangfei LIN
+Image
+Hardy  KAYUMBA — 09/14/2022
+Bonjour les jammers!! Ce matin je ne serai pas là pour le meeting. J’ai un rdv.
+Fangfei LIN — 09/14/2022
+Salut jammers, j’ai un problème de train, désolée. Commencez le meeting sans moi.
+Daniel Coelho — 09/14/2022
+Moi aussi je serais en retard
+Louise de Lussanet — 09/14/2022
+et voila les premières pages prêtes !
+Attachment file type: archive
+ok_inte.zip
+2.96 MB
+la barre de nav et le footer seront peut être corrigés plus tard
+Hardy  KAYUMBA — 09/14/2022
+Plan b (si le drive galère), voici le lien de l'outil en ligne: https://toffeeshare.com/
+Share files privately and fast, without size limit with ToffeeShare
+Share your files privately, fast and without registration. Peer to peer. End to end encrypted. No file size limit.
+Louise de Lussanet — 09/14/2022
+j'ai envoyer une autre page dans le drive 🙂
+c'est la page "landing"
+Pedro Henrique BRAZ MEIRELES — 09/14/2022
+Fangfei LIN — 09/15/2022
+Salut jammers, mon train à 8:35 à été supprimé encore une fois. Je vais arriver un peu en retard, commencez le meeting sans moi. Désolée.
+Louise de Lussanet — 09/15/2022
+j'ai partager les pages "connexion" et "accueil communauté" dans le drive
+le footer de la page "acc communauté" est le footer final (si tout va bien) vous pouvez l'utiliser sur toutes les pages, on gèrera les stickers dans le body html
+par contre certaines images vont être redimensionner sur photoshop et intégrées dans le dossier img final plus tard
+Louise de Lussanet — 09/15/2022
+je viens d'uploader sur le drive le dossier pour la page FAQ aussi
+Louise de Lussanet — 09/15/2022
+dossier page 404 ajouté au drive
+Louise de Lussanet — 09/15/2022
+Dossier page profil ok ajouté au drive
+Pedro Henrique BRAZ MEIRELES — 09/15/2022
+maintenant on a beaucoup de boulot  mdr 🤣
+Louise de Lussanet — 09/15/2022
+d'ailleurs pour le page profil ne fait PAS attention a la CHATBOX...c'est encore en chantier
+Hardy  KAYUMBA — 09/15/2022
+Hello les jammers. Demain matin chui pas là pour le meeting. Bonne soirée !!
+Pedro Henrique BRAZ MEIRELES — 09/16/2022
+Salut les filles vous pouvez mettre le formulaire sur le wireframes en bon ordre stp , pour que je puisse mettre le code dans le bon ordre merci 😁
+Louise de Lussanet — 09/16/2022
+oui tout de suite
+Adel BELARBI
+ pinned 
+a message
+ to this channel. See all 
+pinned messages
+.
+ — 09/16/2022
+Louise de Lussanet — 09/16/2022
+Nouveaux H1 et H5 dans le css général c est le text shadow qui change
+Image
+Image
+Adel BELARBI — 09/16/2022
+c'est noté merci
+ps : JS a réglé le souci du landing.css
+Fangfei LIN — 09/16/2022
+Image
+On a corrigé la page de formulaire-date de naissance
+Louise de Lussanet — 09/16/2022
+je viens d'upload la page dashboard dans le drive ne faite pas trop attention a la modale elle risque de changer!
+Louise de Lussanet — Today at 9:36 AM
+/** CHATBOX **/
+
+#chatbox{
+    position: sticky;
+    bottom: 0;
+    left: 70%;
+    height: 7rem;
+    width: 42rem;
+    background-color: #2C7DA0;
+    z-index: 1000;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
+
+}
+
+#chatbox .accordion .accordion-button{
+    height: 7rem;
+    box-shadow: none;
+    background-color: #2C7DA0;
+    color: white;
+    border: solid 2px black;
+    font-size: 1.8rem;
+}
+
+#chatbox .accordion .accordion-button:not(.collapsed) {
+    background-color: #2C7DA0;
+    color: white;
+    border: solid 2px black;
+} 
+
+
+#chatbox img{
+    border-radius: 100%;
+    height: 6rem;
+    width: 6rem;
+}
+
+#chatbox .card{
+    border: none;
+
+}
+
+#chatbox .accordion-collapse{
+    border-right: solid 2px black;
+    border-left: solid 2px black;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
+}
+
+#chatbox #message-date p{
+    font-size: 1rem;
+    color: grey;
+}
+
+#their-message p {
+    border-radius: 1rem 1rem 1rem 0rem;
+    background-color:#F1F0E6;
+}
+
+#my-message p {
+    border-radius: 1rem 1rem 0rem 1rem;
+    background-color: #C3DFEB;
+}
+
+#new-message{
+    border-top: none;
+    border-bottom: solid 2px black;
+}
+
+#new-message input{
+   border-radius: 2rem;
+   border: solid 1px grey;
+}
+
+ /* FIN CHATBOX */ 
+
+.offcanvas-body .card img{
+    height: 6rem;
+    width: 6rem;
+    border-radius: 100%;
+    margin-right: 2rem;
+}
+
+.offcanvas-body .card h4{
+    margin-right: 8rem;
+}
+
+
+
+.offcanvas-body .card .dropdown button img{
+    height: 2.8rem;
+    width: 2.8rem;
+}
+
+.offcanvas-body .card .dropdown a img{
+    width: 2.8rem;
+    height: 2.8rem;
+}
+
+.offcanvas-body .card .dropdown button{
+    border-radius: 2rem;
+  
+    border: none;
+    height: 4rem;
+    width: 4rem;
+}
+
+.offcanvas-body .card .dropdown button:hover{
+    border-radius: 100%;
+    background-color: #FD8D04;
+    border: none;
+    box-shadow: none;
+}
+
+.offcanvas-body .card .dropdown-menu{
+    background-color: #FD8D04;
+    padding: 0.5rem;
+}
+
+.offcanvas-body .card .dropdown-item{
+    border-radius: 0rem;
+  
+}
+
+
+.offcanvas input{
+    width: 100%;
+    border-radius: 2rem;
+    border: solid 2px black;
+}
+
+.offcanvas-body .card{
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+    border: none;
+    box-shadow: -1px 1px rgba(0, 0, 0, 0) -2px 2px rgba(0, 0, 0, 0); -3px 3px rgba(0, 0, 0, 0);
+    border: solid 2px rgba(0, 0, 0, 0);
+}
+
+
+.offcanvas-body .card .card-body{
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.offcanvas{
+    background-color: #F1F0E6;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+}
+
+.under {
+    position: absolute;
+    bottom: 200px;
+    right: 200px;
+  }
+  #container {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    pointer-events: none;
+  }
+  .chat {
+    border: 1px solid #999;
+    display: inline-block;
+    vertical-align: bottom;
+    position: relative;
+    margin: 0 5px;
+    pointer-events: auto;
+  }
+  .headerTitle {
+    height: 7rem;
+    box-shadow: none;
+    background-color: #2C7DA0;
+    color: white;
+    border: solid 2px black;
+    font-size: 1.8rem;
+  }
+  .text {
+    height: 250px;
+    padding: 10px;
+    
+  }
+  .text-close {
+    display: none;
+  }
+  .chatImg{
+    border-radius: 100%;
+    height: 6rem;
+    width: 6rem;
+  }
+  #zoneTxt{
+    background-color: white;
+    overflow: scroll;
+  }
+  #container .card{
+    border: none;
+}
+#new-message{
+    border-top: none;
+    border-bottom: solid 2px black;
+}
+.messageClose{
+    display: none;
 }
