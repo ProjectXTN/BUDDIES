@@ -25,7 +25,7 @@ class MatchController extends AbstractController
         $tabMyOthersUser = [];
 
         //dd($myInformation->getActivities());
-        //foreach($myInformation as $rowForm){
+
             $tabMyIdForm['minAge'] = $myInformation->getMatchAgeMin();
             $tabMyIdForm['maxAge'] = $myInformation->getMatchAgeMax();
             $tabMyIdForm['langue'] = $myInformation->getMatchLangue();
@@ -34,7 +34,7 @@ class MatchController extends AbstractController
             $tabMyIdForm['perfectAfterNoon'] = $myInformation->getMatchPerfectAfternoon();
             $tabMyIdForm['activity'] = explode(',', $myInformation->getActivities());
             $tabMyIdForm['interest'] = explode(',', $myInformation->getInterets());
-        //}
+
         //dd($tabMyIdForm);
 
         foreach($getAllUser as $formOtherUser){
@@ -50,7 +50,6 @@ class MatchController extends AbstractController
                     $tabMyOthersUser[$formOtherUser->getId()]['Picture'] = $formOtherUser->getPicture();
                     $tabMyOthersUser[$formOtherUser->getId()]['Biography'] = $formOtherUser->getBiography();
                     $tabMyOthersUser[$formOtherUser->getId()]['activitieUsers'] = $formOtherUser->getActivitieUsers();
-                    //$tabMyOthersUser[$formOtherUser->getId()]['isValid'] = $formOtherUser->getIsValid();
                     $tabMyOthersUser[$formOtherUser->getId()]['language'] = $formOtherUser->getLanguage();
                     $tabMyOthersUser[$formOtherUser->getId()]['language2'] = $formOtherUser->getLanguage2();
                     $tabMyOthersUser[$formOtherUser->getId()]['minAge'] = $formOtherUser->getMatchAgeMin();
@@ -62,7 +61,7 @@ class MatchController extends AbstractController
                     $tabMyOthersUser[$formOtherUser->getId()]['activity'] = explode(',', $formOtherUser->getActivities());
                     $tabMyOthersUser[$formOtherUser->getId()]['interest'] = explode(',', $formOtherUser->getInterets());
                     
-                    $incrementTotal = 0;
+                    /* $incrementTotal = 0; */
                     foreach($tabMyOthersUser[$formOtherUser->getId()]['activity'] as $row){
                         if($row != "" && in_array($row, $tabMyIdForm['activity'])){
                             $increment++;
