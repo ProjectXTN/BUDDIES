@@ -5,6 +5,21 @@
 {% endblock %}
 
 {% block body %}
+
+<!-- DEBUT CHATBOX --> 
+<div id="container">
+  <div class="chat">
+    <div class="headerTitle">Nouveau Message</div>
+    <div id="zoneTxt" class="text">
+      
+    </div>
+        <div id="new-message">
+          <input class="w-100 px-3 py-3" type="text" id='messenger_text' placeholder="Nouveau message...">
+          <button id='btnSendMsg'>Envoyer</button>
+        </div>
+  </div>
+</div>
+
 {% set i = 0 %}
 
 <nav class="navbar navbar-expand-lg">
@@ -122,7 +137,7 @@
                   <img src="/data/{{app.user.Picture}}" alt="Image user connect">
                   <img src="/data/{{ userUser.Picture }}" alt="Image user match">
                 </div>
-                    <button class="px-3 py-3"> Envoyer un message</button>
+                    <button class="px-3 py-3" onclick="loadMsg('{{ app.user.id }}', '{{ userUser.id }}')"> Envoyer un message</button>
             {% endfor %}
             {% else %}
 {#                   <h1 class="text-center">En attende de Match...</h1> #}
@@ -305,7 +320,7 @@
 
           <div class="d-flex align-items-center">
             <div class="p-2">
-              <img src="../public/img/profil/alice.jpg" alt="">
+              <img src="/img/profil/alice.jpg" alt="">
             </div>
             <div class="p-2">
               <h4 class="card-text">Alice Parker</h4>
@@ -313,19 +328,19 @@
             <div class="ms-auto p-2">
               <div class="dropdown">
                 <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                 <img src="../public/img/icones/icones-menu-amis/see-more.svg" alt="">
+                 <img src="/img/icones/icones-menu-amis/see-more.svg" alt="">
                 </button>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="#">
-                    <img src="../public/img/icones/icones-menu-amis/profil-noir.svg" alt=""> Voir le profil</a></li>
+                    <img src="/img/icones/icones-menu-amis/profil-noir.svg" alt=""> Voir le profil</a></li>
                   <li><a class="dropdown-item" href="#">
-                   <img src="../public/img/icones/icones-menu-amis/message.svg" alt=""> Envoyer un message</a></li>
+                   <img src="/img/icones/icones-menu-amis/message.svg" alt=""> Envoyer un message</a></li>
                   <li><a class="dropdown-item" href="#">
-                   <img src="../public/img/icones/icones-menu-amis/retirer-ami.svg" alt=""> Retirer de la liste d'amis</a></li>
+                   <img src="/img/icones/icones-menu-amis/retirer-ami.svg" alt=""> Retirer de la liste d'amis</a></li>
                   <li><a class="dropdown-item" href="#">
-                   <img src="../public/img/icones/icones-menu-amis/bloquer.svg" alt=""> Bloquer</a></li>
+                   <img src="/img/icones/icones-menu-amis/bloquer.svg" alt=""> Bloquer</a></li>
                   <li><a class="dropdown-item" href="#">
-                   <img src="../public/img/icones/icones-menu-amis/signaler.svg" alt=""> Signaler</a></li>
+                   <img src="/img/icones/icones-menu-amis/signaler.svg" alt=""> Signaler</a></li>
                 </ul>
               </div>
             </div>
@@ -340,7 +355,7 @@
 
           <div class="d-flex align-items-center">
             <div class="p-2">
-              <img src="../public/img/profil/alice.jpg" alt="">
+              <img src="/img/profil/alice.jpg" alt="">
             </div>
             <div class="p-2">
               <h4 class="card-text">Alice Parker</h4>
@@ -348,19 +363,19 @@
             <div class="ms-auto p-2">
               <div class="dropdown">
                 <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                 <img src="../public/img/icones/icones-menu-amis/see-more.svg" alt="">
+                 <img src="/img/icones/icones-menu-amis/see-more.svg" alt="">
                 </button>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="#">
-                    <img src="../public/img/icones/icones-menu-amis/profil-noir.svg" alt=""> Voir le profil</a></li>
+                    <img src="/img/icones/icones-menu-amis/profil-noir.svg" alt=""> Voir le profil</a></li>
                   <li><a class="dropdown-item" href="#">
-                   <img src="../public/img/icones/icones-menu-amis/message.svg" alt=""> Envoyer un message</a></li>
+                   <img src="/img/icones/icones-menu-amis/message.svg" alt=""> Envoyer un message</a></li>
                   <li><a class="dropdown-item" href="#">
-                   <img src="../public/img/icones/icones-menu-amis/retirer-ami.svg" alt=""> Retirer de la liste d'amis</a></li>
+                   <img src="/img/icones/icones-menu-amis/retirer-ami.svg" alt=""> Retirer de la liste d'amis</a></li>
                   <li><a class="dropdown-item" href="#">
-                   <img src="../public/img/icones/icones-menu-amis/bloquer.svg" alt=""> Bloquer</a></li>
+                   <img src="/img/icones/icones-menu-amis/bloquer.svg" alt=""> Bloquer</a></li>
                   <li><a class="dropdown-item" href="#">
-                   <img src="../public/img/icones/icones-menu-amis/signaler.svg" alt=""> Signaler</a></li>
+                   <img src="/img/icones/icones-menu-amis/signaler.svg" alt=""> Signaler</a></li>
                 </ul>
               </div>
             </div>
@@ -376,7 +391,7 @@
 
       <div class="d-flex align-items-center">
         <div class="p-2">
-          <img src="../public/img/profil/alice.jpg" alt="">
+          <img src="/img/profil/alice.jpg" alt="">
         </div>
         <div class="p-2">
           <h4 class="card-text">Alice Parker</h4>
@@ -384,19 +399,19 @@
         <div class="ms-auto p-2">
           <div class="dropdown">
             <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-             <img src="../public/img/icones/icones-menu-amis/see-more.svg" alt="">
+             <img src="/img/icones/icones-menu-amis/see-more.svg" alt="">
             </button>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">
-                <img src="../public/img/icones/icones-menu-amis/profil-noir.svg" alt=""> Voir le profil</a></li>
+                <img src="/img/icones/icones-menu-amis/profil-noir.svg" alt=""> Voir le profil</a></li>
               <li><a class="dropdown-item" href="#">
-               <img src="../public/img/icones/icones-menu-amis/message.svg" alt=""> Envoyer un message</a></li>
+               <img src="/img/icones/icones-menu-amis/message.svg" alt=""> Envoyer un message</a></li>
               <li><a class="dropdown-item" href="#">
-               <img src="../public/img/icones/icones-menu-amis/retirer-ami.svg" alt=""> Retirer de la liste d'amis</a></li>
+               <img src="/img/icones/icones-menu-amis/retirer-ami.svg" alt=""> Retirer de la liste d'amis</a></li>
               <li><a class="dropdown-item" href="#">
-               <img src="../public/img/icones/icones-menu-amis/bloquer.svg" alt=""> Bloquer</a></li>
+               <img src="/img/icones/icones-menu-amis/bloquer.svg" alt=""> Bloquer</a></li>
               <li><a class="dropdown-item" href="#">
-               <img src="../public/img/icones/icones-menu-amis/signaler.svg" alt=""> Signaler</a></li>
+               <img src="/img/icones/icones-menu-amis/signaler.svg" alt=""> Signaler</a></li>
             </ul>
           </div>
         </div>
@@ -412,4 +427,58 @@
 <!--FIN OFFCANVAS LISTE AMIS -->
 
 </main>
+<script>
+
+  let globalIdReceiver;
+  let globalIdSender;
+
+function loadMsg(idSender, idReceiver){
+
+globalIdSender = idSender;
+  globalIdReceiver = idReceiver;
+
+    let messages = document.getElementById("zoneTxt");
+
+    fetch('/messenger/listmessage/'+idSender+'/'+idReceiver)
+    .then(response=> response.text())
+    .then(text=> messages.innerHTML = text);
+
+    setTimeout(function(){
+        loadMsg(globalIdSender, globalIdReceiver);
+    }, 20000);
+
+}
+
+let btnSendMsg = document.getElementById('btnSendMsg');
+btnSendMsg.addEventListener('click', function(){
+    let textarea = document.getElementById('messenger_text');
+    let content = textarea.value;
+
+    fetch('/messenger/save/1',  {
+        method: 'POST',
+        body: JSON.stringify({message:content, idReceiver:globalIdReceiver})
+        }
+    )
+    .then(function(headers){
+        return headers;
+    })
+    .then(function(data){
+        loadMsg(globalIdSender, globalIdReceiver);
+        textarea.value = "";
+    })
+
+});
+
+
+let headerTitle = document.querySelector('.headerTitle');
+let zoneTxt = document.getElementById('zoneTxt');
+let newMessage = document.getElementById('new-message');
+headerTitle.addEventListener('click', function(e){
+  
+  zoneTxt.classList.toggle('text-close');
+  newMessage.classList.toggle('messageClose');
+  
+})
+
+</script>
 {% endblock %}

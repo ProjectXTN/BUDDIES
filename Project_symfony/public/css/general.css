@@ -301,6 +301,7 @@ i.sticker{
     position: relative;
     width: 100%;
     display: block;
+    z-index: 0;
 }
 i.sticker::before{
     content: '';
@@ -629,7 +630,7 @@ i.sticker-tampon-london::before{
     margin-bottom: 1rem;
     border-radius: 1rem;
     border: none;
-    box-shadow: -1px 1px rgba(0, 0, 0, 0) -2px 2px rgba(0, 0, 0, 0); -3px 3px rgba(0, 0, 0, 0);
+    box-shadow: -1px 1px rgba(0, 0, 0, 0) -2px 2px rgba(0, 0, 0, 0) -3px 3px rgba(0, 0, 0, 0);
     border: solid 2px rgba(0, 0, 0, 0);
 }
 
@@ -655,6 +656,7 @@ i.sticker-tampon-london::before{
     bottom: 0;
     right: 0;
     pointer-events: none;
+    z-index: 1;
   }
   .chat {
     border: 1px solid #999;

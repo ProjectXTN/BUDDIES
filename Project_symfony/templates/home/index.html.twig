@@ -20,7 +20,7 @@
   
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav">
-  
+
           <li class="nav-item">
             <a id="icon-active" class="nav-link d-flex align-items-center justify-content-center me-3" aria-current="page" href="{{path('app_home')}}"><img src="/img/icones/icones-nav/commu-orange.svg"></a>
           </li>
@@ -142,7 +142,7 @@
             </div>
 
             <div class="card col-3">
-              <a href="/community-page.html">
+              <a href="{{path('app_group_details',{'id':4})}}">
 
               <div class="thumbnail d-flex justify-content-center align-items-center">
 
@@ -182,7 +182,7 @@
             </div>
 
             <div class="card col-3">
-              <a href="/community-page.html">
+              <a href="{{path('app_group_details',{'id':6})}}">
 
               <div class="thumbnail d-flex justify-content-center align-items-center">
 
@@ -233,7 +233,7 @@
             </div>
 
             <div class="card col-3">
-              <a href="/community-page.html">
+              <a href="{{path('app_group_details',{'id':4})}}">
 
               <div class="thumbnail d-flex justify-content-center align-items-center">
 
@@ -253,7 +253,7 @@
           </div>
 
            <div class="card col-3">
-                <a href="/community-page.html">
+                <a href="{{path('app_group_details',{'id':5})}}">
 
                 <div class="thumbnail d-flex justify-content-center align-items-center">
 
@@ -273,7 +273,7 @@
             </div>
 
             <div class="card col-3">
-              <a href="/community-page.html">
+              <a href="{{path('app_group_details',{'id':6})}}">
 
               <div class="thumbnail d-flex justify-content-center align-items-center">
 
@@ -297,98 +297,13 @@
       
            {#  !--OFFCANVAS LISTE AMIS --> #}
 
-
-
-#chatbox{
-    position: sticky;
-    bottom: 0;
-    left: 70%;
-    height: 7rem;
-    width: 42rem;
-    background-color: #2C7DA0;
-    z-index: 1000;
-    box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
-
-}
-
-#chatbox .accordion .accordion-button{
-    height: 7rem;
-    box-shadow: none;
-    background-color: #2C7DA0;
-    color: white;
-    border: solid 2px black;
-    font-size: 1.8rem;
-}
-
-#chatbox .accordion .accordion-button:not(.collapsed) {
-    background-color: #2C7DA0;
-    color: white;
-    border: solid 2px black;
-} 
-
-
-#chatbox img{
-    border-radius: 100%;
-    height: 6rem;
-    width: 6rem;
-}
-
-#chatbox .card{
-    border: none;
-
-}
-
-#chatbox .accordion-collapse{
-    border-right: solid 2px black;
-    border-left: solid 2px black;
-    box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
-}
-
-#chatbox #message-date p{
-    font-size: 1rem;
-    color: grey;
-}
-
-#their-message p {
-    border-radius: 1rem 1rem 1rem 0rem;
-    background-color:#F1F0E6;
-}
-
-#my-message p {
-    border-radius: 1rem 1rem 0rem 1rem;
-    background-color: #C3DFEB;
-}
-
-#new-message{
-    border-top: none;
-    border-bottom: solid 2px black;
-}
-
-#new-message input{
-   border-radius: 2rem;
-   border: solid 1px grey;
-}
-CSS pour le chatbox a mettre dans general.css
-CSS du offcanvas liste d'amis a copier coller dans general.css
-.offcanvas-body .card img{
-    height: 6rem;
-    width: 6rem;
-    border-radius: 100%;
-    margin-right: 2rem;
-}
-Expand
-offcanvas.css
-2 KB
-html du offcanvas liste d'amis a coller  dans les pages : dashboard.html , profil.html , community-acc.html , community-page.html , faq.html , charte.html et mentions-legales.html
 <!--OFFCANVAS LISTE AMIS -->
 
   <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasAmis" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">  
       
     <input class="px-3 py-3" type="text" placeholder="Rechercher un ami">
-Expand
-message.txt
-6 KB
+
 <!-- DEBUT CHATBOX --> 
 
   <aside id="chatbox" class="">
@@ -431,129 +346,7 @@ message.txt
 <!-- FIN CHATBOX -->
 {# html du nouveau chatbox a coller dans le body des mêmes pages que le offcanvas liste d'amis #}
 
-<!--OFFCANVAS LISTE AMIS -->
 
-  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasAmis" aria-labelledby="offcanvasExampleLabel">
-    <div class="offcanvas-header">  
-      
-    <input class="px-3 py-3" type="text" placeholder="Rechercher un ami">
-
-    </div>
-
-    <div class="offcanvas-body">
-
-      <!-- -->
-
-      <div class="card">
-        <div class="card-body d-flex flex-row align-items-center">
-
-          <div class="d-flex align-items-center">
-            <div class="p-2">
-              <img src="../public/img/profil/alice.jpg" alt="">
-            </div>
-            <div class="p-2">
-              <h4 class="card-text">Alice Parker</h4>
-            </div>
-            <div class="ms-auto p-2">
-              <div class="dropdown">
-                <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                 <img src="../public/img/icones/icones-menu-amis/see-more.svg" alt="">
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">
-                    <img src="../public/img/icones/icones-menu-amis/profil-noir.svg" alt=""> Voir le profil</a></li>
-                  <li><a class="dropdown-item" href="#">
-                   <img src="../public/img/icones/icones-menu-amis/message.svg" alt=""> Envoyer un message</a></li>
-                  <li><a class="dropdown-item" href="#">
-                   <img src="../public/img/icones/icones-menu-amis/retirer-ami.svg" alt=""> Retirer de la liste d'amis</a></li>
-                  <li><a class="dropdown-item" href="#">
-                   <img src="../public/img/icones/icones-menu-amis/bloquer.svg" alt=""> Bloquer</a></li>
-                  <li><a class="dropdown-item" href="#">
-                   <img src="../public/img/icones/icones-menu-amis/signaler.svg" alt=""> Signaler</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- -->
-
-      <div class="card">
-        <div class="card-body d-flex flex-row align-items-center">
-
-          <div class="d-flex align-items-center">
-            <div class="p-2">
-              <img src="../public/img/profil/alice.jpg" alt="">
-            </div>
-            <div class="p-2">
-              <h4 class="card-text">Alice Parker</h4>
-            </div>
-            <div class="ms-auto p-2">
-              <div class="dropdown">
-                <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                 <img src="../public/img/icones/icones-menu-amis/see-more.svg" alt="">
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">
-                    <img src="../public/img/icones/icones-menu-amis/profil-noir.svg" alt=""> Voir le profil</a></li>
-                  <li><a class="dropdown-item" href="#">
-                   <img src="../public/img/icones/icones-menu-amis/message.svg" alt=""> Envoyer un message</a></li>
-                  <li><a class="dropdown-item" href="#">
-                   <img src="../public/img/icones/icones-menu-amis/retirer-ami.svg" alt=""> Retirer de la liste d'amis</a></li>
-                  <li><a class="dropdown-item" href="#">
-                   <img src="../public/img/icones/icones-menu-amis/bloquer.svg" alt=""> Bloquer</a></li>
-                  <li><a class="dropdown-item" href="#">
-                   <img src="../public/img/icones/icones-menu-amis/signaler.svg" alt=""> Signaler</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-  <!-- -->
-
-  <div class="card">
-    <div class="card-body d-flex flex-row align-items-center">
-
-      <div class="d-flex align-items-center">
-        <div class="p-2">
-          <img src="../public/img/profil/alice.jpg" alt="">
-        </div>
-        <div class="p-2">
-          <h4 class="card-text">Alice Parker</h4>
-        </div>
-        <div class="ms-auto p-2">
-          <div class="dropdown">
-            <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-             <img src="../public/img/icones/icones-menu-amis/see-more.svg" alt="">
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">
-                <img src="../public/img/icones/icones-menu-amis/profil-noir.svg" alt=""> Voir le profil</a></li>
-              <li><a class="dropdown-item" href="#">
-               <img src="../public/img/icones/icones-menu-amis/message.svg" alt=""> Envoyer un message</a></li>
-              <li><a class="dropdown-item" href="#">
-               <img src="../public/img/icones/icones-menu-amis/retirer-ami.svg" alt=""> Retirer de la liste d'amis</a></li>
-              <li><a class="dropdown-item" href="#">
-               <img src="../public/img/icones/icones-menu-amis/bloquer.svg" alt=""> Bloquer</a></li>
-              <li><a class="dropdown-item" href="#">
-               <img src="../public/img/icones/icones-menu-amis/signaler.svg" alt=""> Signaler</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- -->
-  
-</div>
-</div>
-
-<!--FIN OFFCANVAS LISTE AMIS -->
 
     </main>
 

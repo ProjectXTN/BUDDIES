@@ -102,9 +102,8 @@ class MessengerController extends AbstractController
     }
 
     #[Route('/save/{id}', name: 'app_messenger_save', methods: ['POST'])]
-    public function saveMessage(User $user, Request $request, MessengerRepository $messengerRepository, UserRepository $userRepository): JsonResponse
+    public function saveMessage($id, Request $request, MessengerRepository $messengerRepository, UserRepository $userRepository): JsonResponse
     {
-        
         $content = $request->getContent();
         $idReceiver = json_decode($content)->idReceiver;
         $message = json_decode($content)->message;
