@@ -189,7 +189,7 @@ class RegistrationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             //dd($user);
-            $user->setGenre(
+            $user->setCity(
                 $form->get('city')->getData())
             ;
 

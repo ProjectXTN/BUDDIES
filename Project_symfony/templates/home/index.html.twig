@@ -12,7 +12,7 @@
         
     <div class="container-fluid">
   
-      <a class="navbar-brand" href="/dashboard.html"> <img src="img/logo-buddies_1.svg" alt=""> </a>
+      <a class="navbar-brand" href="{{path('app_match')}}"> <img src="img/logo-buddies_1.svg" alt=""> </a>
   
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -64,7 +64,7 @@
               <ul class="dropdown-menu">
                 <li class="my-3 mx-4">
                   <a class="dropdown-item" href="{{path('app_user_show')}}">
-                    <img class="me-2" src="/img/icones/icones-menu-profil/profil.svg" alt="">
+                    <img class="me-2" src="/img/icones/icones-menu-profil/smile.svg" alt="">
                   Mon profil
                   </a>
                 </li>
@@ -87,7 +87,7 @@
                   </a>
                 </li>
                 <li class="my-3 mx-4">
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" href="{{path('app_logout')}}">
                     <img class="me-2" src="/img/icones/icones-menu-profil/deconnexion.svg" alt=""> 
                     Déconnexion
                   </a>
@@ -122,11 +122,11 @@
                 <!-- DEBUT CARDS COMMU -->
 
                 <div class="card col-3">
-                <a href="/community-page.html">
+                <a href="{{path('app_group_details',{'id':3})}}">
 
                 <div class="thumbnail d-flex justify-content-center align-items-center">
 
-                  <img src="/img/thumbnails-commu/art-lovers.jpg" alt="">
+                  <img src="/img/card-commu/art-lovers-card.jpg" alt="">
 
                   <h5 class="card-title">Art lovers</h5>
                 </div>
@@ -146,7 +146,7 @@
 
               <div class="thumbnail d-flex justify-content-center align-items-center">
 
-                <img src="/img/thumbnails-commu/foodies.jpg" alt="">
+                <img src="/img/card-commu/foodies-card.jpg" alt="">
 
                 <h5 class="card-title">Foodies</h5>
               </div>
@@ -162,11 +162,11 @@
           </div>
 
            <div class="card col-3">
-                <a href="/community-page.html">
+                <a href="{{path('app_group_details',{'id':5})}}">
 
                 <div class="thumbnail d-flex justify-content-center align-items-center">
 
-                  <img src="/img/thumbnails-commu/film-club.jpg" alt="">
+                  <img src="/img/card-commu/film-club-card.jpg" alt="">
 
                   <h5 class="card-title">Film Club</h5>
                 </div>
@@ -186,7 +186,7 @@
 
               <div class="thumbnail d-flex justify-content-center align-items-center">
 
-                <img src="/img/thumbnails-commu/cat-person.jpg" alt="">
+                <img src="/img/card-commu/cat-person-card.jpg" alt="">
 
                 <h5 class="card-title">Cat Person</h5>
               </div>
@@ -213,11 +213,11 @@
 
             <article class="d-flex flex-row justify-content-between">
               <div class="card col-3">
-                <a href="/community-page.html">
+                <a href="{{path('app_group_details',{'id':3})}}">
 
                 <div class="thumbnail d-flex justify-content-center align-items-center">
 
-                  <img src="/img/thumbnails-commu/art-lovers.jpg" alt="">
+                  <img src="/img/card-commu/art-lovers-card.jpg" alt="">
 
                   <h5 class="card-title">Art lovers</h5>
                 </div>
@@ -237,7 +237,7 @@
 
               <div class="thumbnail d-flex justify-content-center align-items-center">
 
-                <img src="/img/thumbnails-commu/foodies.jpg" alt="">
+                <img src="/img/card-commu/foodies-card.jpg" alt="">
 
                 <h5 class="card-title">Foodies</h5>
               </div>
@@ -257,7 +257,7 @@
 
                 <div class="thumbnail d-flex justify-content-center align-items-center">
 
-                  <img src="/img/thumbnails-commu/film-club.jpg" alt="">
+                  <img src="/img/card-commu/film-club-card.jpg" alt="">
 
                   <h5 class="card-title">Film Club</h5>
                 </div>
@@ -277,7 +277,7 @@
 
               <div class="thumbnail d-flex justify-content-center align-items-center">
 
-                <img src="/img/thumbnails-commu/cat-person.jpg" alt="">
+                <img src="/img/card-commu/cat-person-card.jpg" alt="">
 
                 <h5 class="card-title">Cat Person</h5>
               </div>
@@ -294,7 +294,130 @@
             </article>
 
         </section>
+      
+           {#  !--OFFCANVAS LISTE AMIS --> #}
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasAmis" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">  
+      
+    <input class="px-3 py-3" type="text" placeholder="Rechercher un ami">
+
+    </div>
+
+    <div class="offcanvas-body">
+
+      <!-- -->
+
+      <div class="card">
+        <div class="card-body d-flex flex-row align-items-center">
+
+          <div class="d-flex align-items-center">
+            <div class="p-2">
+              <img src="../public/img/profil/alice.jpg" alt="">
+            </div>
+            <div class="p-2">
+              <h4 class="card-text">Alice Parker</h4>
+            </div>
+            <div class="ms-auto p-2">
+              <div class="dropdown">
+                <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                 <img src="../public/img/icones/icones-menu-amis/see-more.svg" alt="">
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">
+                    <img src="../public/img/icones/icones-menu-amis/profil-noir.svg" alt=""> Voir le profil</a></li>
+                  <li><a class="dropdown-item" href="#">
+                   <img src="../public/img/icones/icones-menu-amis/message.svg" alt=""> Envoyer un message</a></li>
+                  <li><a class="dropdown-item" href="#">
+                   <img src="../public/img/icones/icones-menu-amis/retirer-ami.svg" alt=""> Retirer de la liste d'amis</a></li>
+                  <li><a class="dropdown-item" href="#">
+                   <img src="../public/img/icones/icones-menu-amis/bloquer.svg" alt=""> Bloquer</a></li>
+                  <li><a class="dropdown-item" href="#">
+                   <img src="../public/img/icones/icones-menu-amis/signaler.svg" alt=""> Signaler</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- -->
+
+      <div class="card">
+        <div class="card-body d-flex flex-row align-items-center">
+
+          <div class="d-flex align-items-center">
+            <div class="p-2">
+              <img src="../public/img/profil/alice.jpg" alt="">
+            </div>
+            <div class="p-2">
+              <h4 class="card-text">Alice Parker</h4>
+            </div>
+            <div class="ms-auto p-2">
+              <div class="dropdown">
+                <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                 <img src="../public/img/icones/icones-menu-amis/see-more.svg" alt="">
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">
+                    <img src="../public/img/icones/icones-menu-amis/profil-noir.svg" alt=""> Voir le profil</a></li>
+                  <li><a class="dropdown-item" href="#">
+                   <img src="../public/img/icones/icones-menu-amis/message.svg" alt=""> Envoyer un message</a></li>
+                  <li><a class="dropdown-item" href="#">
+                   <img src="../public/img/icones/icones-menu-amis/retirer-ami.svg" alt=""> Retirer de la liste d'amis</a></li>
+                  <li><a class="dropdown-item" href="#">
+                   <img src="../public/img/icones/icones-menu-amis/bloquer.svg" alt=""> Bloquer</a></li>
+                  <li><a class="dropdown-item" href="#">
+                   <img src="../public/img/icones/icones-menu-amis/signaler.svg" alt=""> Signaler</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+  <!-- -->
+
+  <div class="card">
+    <div class="card-body d-flex flex-row align-items-center">
+
+      <div class="d-flex align-items-center">
+        <div class="p-2">
+          <img src="../public/img/profil/alice.jpg" alt="">
+        </div>
+        <div class="p-2">
+          <h4 class="card-text">Alice Parker</h4>
+        </div>
+        <div class="ms-auto p-2">
+          <div class="dropdown">
+            <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+             <img src="../public/img/icones/icones-menu-amis/see-more.svg" alt="">
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">
+                <img src="../public/img/icones/icones-menu-amis/profil-noir.svg" alt=""> Voir le profil</a></li>
+              <li><a class="dropdown-item" href="#">
+               <img src="../public/img/icones/icones-menu-amis/message.svg" alt=""> Envoyer un message</a></li>
+              <li><a class="dropdown-item" href="#">
+               <img src="../public/img/icones/icones-menu-amis/retirer-ami.svg" alt=""> Retirer de la liste d'amis</a></li>
+              <li><a class="dropdown-item" href="#">
+               <img src="../public/img/icones/icones-menu-amis/bloquer.svg" alt=""> Bloquer</a></li>
+              <li><a class="dropdown-item" href="#">
+               <img src="../public/img/icones/icones-menu-amis/signaler.svg" alt=""> Signaler</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- -->
+  
+</div>
+</div>
+
+<!--FIN OFFCANVAS LISTE AMIS -->
 
     </main>
-
 {% endblock %}

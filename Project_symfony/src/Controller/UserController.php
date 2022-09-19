@@ -74,6 +74,7 @@ class UserController extends AbstractController
         }
 
         $showButtonFriend = true;
+        return $this->redirectToRoute('app_match');
         if(in_array($user->getId(), $tabFriends)){
             $showButtonFriend = false;
         }
