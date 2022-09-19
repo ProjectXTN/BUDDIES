@@ -231,8 +231,25 @@ footer a img{
     width: 42rem;
     background-color: #2C7DA0;
     z-index: 1000;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
 
 }
+
+#chatbox .accordion .accordion-button{
+    height: 7rem;
+    box-shadow: none;
+    background-color: #2C7DA0;
+    color: white;
+    border: solid 2px black;
+    font-size: 1.8rem;
+}
+
+#chatbox .accordion .accordion-button:not(.collapsed) {
+    background-color: #2C7DA0;
+    color: white;
+    border: solid 2px black;
+} 
+
 
 #chatbox img{
     border-radius: 100%;
@@ -242,7 +259,17 @@ footer a img{
 
 #chatbox .card{
     border: none;
+}
 
+#chatbox .accordion-collapse{
+    border-right: solid 2px black;
+    border-left: solid 2px black;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
+}
+
+#chatbox #message-date p{
+    font-size: 1rem;
+    color: grey;
 }
 
 #chatbox .card p{
@@ -251,15 +278,20 @@ footer a img{
 
 #their-message p {
     border-radius: 1rem 1rem 1rem 0rem;
+    background-color:#F1F0E6;
 }
 
 #my-message p {
     border-radius: 1rem 1rem 0rem 1rem;
+    background-color: #C3DFEB;
 }
 
-#new-message{
+
+
+#new-message input{
+    border-radius: 2rem;
     border: solid 1px grey;
-}
+ }
 
 
 /*************** STICKERS *******************/
@@ -536,6 +568,7 @@ i.sticker-tampon-london::before{
    border: solid 1px grey;
 }
 
+ /* FIN CHATBOX */ 
 
 .offcanvas-body .card img{
     height: 6rem;
@@ -549,7 +582,6 @@ i.sticker-tampon-london::before{
 }
 
 
-/** OFFCANVAS **/
 
 .offcanvas-body .card .dropdown button img{
     height: 2.8rem;
@@ -597,7 +629,7 @@ i.sticker-tampon-london::before{
     margin-bottom: 1rem;
     border-radius: 1rem;
     border: none;
-    box-shadow: -1px 1px rgba(0, 0, 0, 0) -2px 2px rgba(0, 0, 0, 0) -3px 3px rgba(0, 0, 0, 0);
+    box-shadow: -1px 1px rgba(0, 0, 0, 0) -2px 2px rgba(0, 0, 0, 0); -3px 3px rgba(0, 0, 0, 0);
     border: solid 2px rgba(0, 0, 0, 0);
 }
 
@@ -611,4 +643,59 @@ i.sticker-tampon-london::before{
     background-color: #F1F0E6;
     padding-left: 0.6rem;
     padding-right: 0.6rem;
+}
+
+.under {
+    position: absolute;
+    bottom: 200px;
+    right: 200px;
+  }
+  #container {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    pointer-events: none;
+  }
+  .chat {
+    border: 1px solid #999;
+    display: inline-block;
+    vertical-align: bottom;
+    position: relative;
+    margin: 0 5px;
+    pointer-events: auto;
+  }
+  .headerTitle {
+    height: 7rem;
+    box-shadow: none;
+    background-color: #2C7DA0;
+    color: white;
+    border: solid 2px black;
+    font-size: 1.8rem;
+  }
+  .text {
+    height: 250px;
+    padding: 10px;
+    
+  }
+  .text-close {
+    display: none;
+  }
+  .chatImg{
+    border-radius: 100%;
+    height: 6rem;
+    width: 6rem;
+  }
+  #zoneTxt{
+    background-color: white;
+    overflow: scroll;
+  }
+  #container .card{
+    border: none;
+}
+#new-message{
+    border-top: none;
+    border-bottom: solid 2px black;
+}
+.messageClose{
+    display: none;
 }

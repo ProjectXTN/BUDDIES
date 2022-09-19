@@ -11,7 +11,27 @@
 {% endblock %}
 
 {% block body %}
- {% set i = 0 %}
+
+<!-- DEBUT CHATBOX --> 
+<div id="container">
+  <div class="chat">
+    <div class="headerTitle">Nouveau Message</div>
+    <div id="zoneTxt" class="text">
+      
+    </div>
+        <div id="new-message">
+          <input class="w-100 px-3 py-3" type="text" id='messenger_text' placeholder="Nouveau message...">
+          <button id='btnSendMsg'>Envoyer</button>
+        </div>
+
+
+  </div>
+</div>
+
+
+
+<!-- FIN CHATBOX -->
+{% set i = 0 %}
 {% set i2 = 0 %}
 
 <!-- DEBUT NAV -->
@@ -584,12 +604,63 @@
     </section>
 
     </main>
-    <script src="/js/scripts.js"></script>
+  <!-- FIN MAIN -->
+
+
+    
 {% endblock %}
 
-{% block javascript %}
-          
-         {#  <script src="./js/scripts.js"></script> #}
+{% block javascripts %}
+<script>
+
+
+let idSender = {{myId}};
+let idReceiver = {{id}};
+
+function loadMsg(){
+    let messages = document.getElementById("zoneTxt");
+
+    fetch('/messenger/listmessage/'+idSender+'/'+idReceiver)
+    .then(response=> response.text())
+    .then(text=> messages.innerHTML = text);
+
+    setTimeout(function(){
+        loadMsg();
+    }, 2000);
+
+}
+
+loadMsg();
+
+let btnSendMsg = document.getElementById('btnSendMsg');
+btnSendMsg.addEventListener('click', function(){
+    let textarea = document.getElementById('messenger_text');
+    let content = textarea.value;
+
+    fetch('/messenger/save/1',  {
+        method: 'POST',
+        body: JSON.stringify({message:content, idReceiver:idReceiver})
+        }
+    )
+    .then(function(headers){
+        return headers;
+    })
+    .then(function(data){
+        loadMsg();
+    })
+
+});
+
+
+let headerTitle = document.querySelector('.headerTitle');
+let zoneTxt = document.getElementById('zoneTxt');
+let newMessage = document.getElementById('new-message');
+headerTitle.addEventListener('click', function(e){
+  
+  zoneTxt.classList.toggle('text-close');
+  newMessage.classList.toggle('messageClose');
+  
+})
 
 </script>
 {% endblock %}

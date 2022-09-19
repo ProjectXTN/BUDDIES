@@ -69,6 +69,355 @@
         
       </article>
 
+      Hardy KAYUMBA
+#2450
+
+Pedro Henrique BRAZ MEIRELES — 09/06/2022
+Salut, je vas avoir un peu de retard aussi
+Pedro Henrique BRAZ MEIRELES — 09/06/2022
+Lien pour remplacer sur le fichier .env pour les developpeur
+DATABASE_URL="mysql://root:root@127.0.0.1:8889/buddies_data?serverVersion=8&charset=utf8mb4"
+Pedro Henrique BRAZ MEIRELES — 09/06/2022
+Base de donnée mySQL
+Image
+Sonia Khali — 09/08/2022
+Je vais avoir quelques minutes de retard
+Louise de Lussanet — 09/09/2022
+Bonjour la team, je serai pas là à 9h ce matin donc faite la réunion sans moi
+Je pense que je serai là à partir de 10h30
+Sonia Khali — 09/09/2022
+Ça marche
+Daniel Coelho — 09/12/2022
+Je serais pas là avant 9:20 je dirais
+Commencé la réunion sans moi
+Pedro Henrique BRAZ MEIRELES — 09/12/2022
+Voila la page pour editer le profile
+Image
+Daniel Coelho — 09/13/2022
+Je serais pas là avant 9 20
+Pedro Henrique BRAZ MEIRELES — 09/13/2022
+Le champ Pays, c'est pour mettre des options d'autres pays ? car l'appli est uniquement en France, parce que l'utilisateur doit résider en France... @Louise de Lussanet  @Sonia Khali  @Fangfei LIN
+Image
+Hardy  KAYUMBA — 09/14/2022
+Bonjour les jammers!! Ce matin je ne serai pas là pour le meeting. J’ai un rdv.
+Fangfei LIN — 09/14/2022
+Salut jammers, j’ai un problème de train, désolée. Commencez le meeting sans moi.
+Daniel Coelho — 09/14/2022
+Moi aussi je serais en retard
+Louise de Lussanet — 09/14/2022
+et voila les premières pages prêtes !
+Attachment file type: archive
+ok_inte.zip
+2.96 MB
+la barre de nav et le footer seront peut être corrigés plus tard
+Hardy  KAYUMBA — 09/14/2022
+Plan b (si le drive galère), voici le lien de l'outil en ligne: https://toffeeshare.com/
+Share files privately and fast, without size limit with ToffeeShare
+Share your files privately, fast and without registration. Peer to peer. End to end encrypted. No file size limit.
+Louise de Lussanet — 09/14/2022
+j'ai envoyer une autre page dans le drive 🙂
+c'est la page "landing"
+Pedro Henrique BRAZ MEIRELES — 09/14/2022
+Fangfei LIN — 09/15/2022
+Salut jammers, mon train à 8:35 à été supprimé encore une fois. Je vais arriver un peu en retard, commencez le meeting sans moi. Désolée.
+Louise de Lussanet — 09/15/2022
+j'ai partager les pages "connexion" et "accueil communauté" dans le drive
+le footer de la page "acc communauté" est le footer final (si tout va bien) vous pouvez l'utiliser sur toutes les pages, on gèrera les stickers dans le body html
+par contre certaines images vont être redimensionner sur photoshop et intégrées dans le dossier img final plus tard
+Louise de Lussanet — 09/15/2022
+je viens d'uploader sur le drive le dossier pour la page FAQ aussi
+Louise de Lussanet — 09/15/2022
+dossier page 404 ajouté au drive
+Louise de Lussanet — 09/15/2022
+Dossier page profil ok ajouté au drive
+Pedro Henrique BRAZ MEIRELES — 09/15/2022
+maintenant on a beaucoup de boulot  mdr 🤣
+Louise de Lussanet — 09/15/2022
+d'ailleurs pour le page profil ne fait PAS attention a la CHATBOX...c'est encore en chantier
+Hardy  KAYUMBA — 09/15/2022
+Hello les jammers. Demain matin chui pas là pour le meeting. Bonne soirée !!
+Pedro Henrique BRAZ MEIRELES — 09/16/2022
+Salut les filles vous pouvez mettre le formulaire sur le wireframes en bon ordre stp , pour que je puisse mettre le code dans le bon ordre merci 😁
+Louise de Lussanet — 09/16/2022
+oui tout de suite
+Adel BELARBI
+ pinned 
+a message
+ to this channel. See all 
+pinned messages
+.
+ — 09/16/2022
+Louise de Lussanet — 09/16/2022
+Nouveaux H1 et H5 dans le css général c est le text shadow qui change
+Image
+Image
+Adel BELARBI — 09/16/2022
+c'est noté merci
+ps : JS a réglé le souci du landing.css
+Fangfei LIN — 09/16/2022
+Image
+On a corrigé la page de formulaire-date de naissance
+Louise de Lussanet — 09/16/2022
+je viens d'upload la page dashboard dans le drive ne faite pas trop attention a la modale elle risque de changer!
+Louise de Lussanet — Today at 9:36 AM
+/** CHATBOX **/
+
+#chatbox{
+    position: sticky;
+    bottom: 0;
+    left: 70%;
+    height: 7rem;
+    width: 42rem;
+    background-color: #2C7DA0;
+    z-index: 1000;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
+
+}
+
+#chatbox .accordion .accordion-button{
+    height: 7rem;
+    box-shadow: none;
+    background-color: #2C7DA0;
+    color: white;
+    border: solid 2px black;
+    font-size: 1.8rem;
+}
+
+#chatbox .accordion .accordion-button:not(.collapsed) {
+    background-color: #2C7DA0;
+    color: white;
+    border: solid 2px black;
+} 
+
+
+#chatbox img{
+    border-radius: 100%;
+    height: 6rem;
+    width: 6rem;
+}
+
+#chatbox .card{
+    border: none;
+
+}
+
+#chatbox .accordion-collapse{
+    border-right: solid 2px black;
+    border-left: solid 2px black;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
+}
+
+#chatbox #message-date p{
+    font-size: 1rem;
+    color: grey;
+}
+
+#their-message p {
+    border-radius: 1rem 1rem 1rem 0rem;
+    background-color:#F1F0E6;
+}
+
+#my-message p {
+    border-radius: 1rem 1rem 0rem 1rem;
+    background-color: #C3DFEB;
+}
+
+#new-message{
+    border-top: none;
+    border-bottom: solid 2px black;
+}
+
+#new-message input{
+   border-radius: 2rem;
+   border: solid 1px grey;
+}
+CSS pour le chatbox a mettre dans general.css
+CSS du offcanvas liste d'amis a copier coller dans general.css
+.offcanvas-body .card img{
+    height: 6rem;
+    width: 6rem;
+    border-radius: 100%;
+    margin-right: 2rem;
+}
+Expand
+offcanvas.css
+2 KB
+html du offcanvas liste d'amis a coller  dans les pages : dashboard.html , profil.html , community-acc.html , community-page.html , faq.html , charte.html et mentions-legales.html
+<!--OFFCANVAS LISTE AMIS -->
+
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasAmis" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">  
+      
+    <input class="px-3 py-3" type="text" placeholder="Rechercher un ami">
+Expand
+message.txt
+6 KB
+<!-- DEBUT CHATBOX --> 
+
+  <aside id="chatbox" class="">
+
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingOne">
+          <button id="btn-chat" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+            Messagerie
+          </button>
+        </h2>
+        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body px-0 py-0">
+            <div id="messages" class="px-4 py-4">
+              <div id="message-date" class="text-center mb-4">
+                <p>17 sep. 2022 à 17:32</p>
+              </div>
+              <div id="their-message" class="card flex-row">
+                <img class="me-4" src="../public/img/profil/alice.jpg" alt="">
+                <p class="px-4 py-4" >Hey! how are you ?</p>
+              </div>
+              <div id="my-message" class="card flex-row justify-content-end">
+                <p class="px-4 py-4" >I'm good, how about you?</p>
+                <img class="ms-4" src="../public/img/profil/sam.jpg" alt="">
+              </div>
+            </div>
+
+            <div id="new-message" class="px-4 py-4">
+              <input class="w-100 px-3 py-3" type="text" placeholder="Nouveau message...">
+            </div>
+
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+  </aside>
+
+<!-- FIN CHATBOX -->
+{# html du nouveau chatbox a coller dans le body des mêmes pages que le offcanvas liste d'amis #}
+
+<!--OFFCANVAS LISTE AMIS -->
+
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasAmis" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">  
+      
+    <input class="px-3 py-3" type="text" placeholder="Rechercher un ami">
+
+    </div>
+
+    <div class="offcanvas-body">
+
+      <!-- -->
+
+      <div class="card">
+        <div class="card-body d-flex flex-row align-items-center">
+
+          <div class="d-flex align-items-center">
+            <div class="p-2">
+              <img src="../public/img/profil/alice.jpg" alt="">
+            </div>
+            <div class="p-2">
+              <h4 class="card-text">Alice Parker</h4>
+            </div>
+            <div class="ms-auto p-2">
+              <div class="dropdown">
+                <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                 <img src="../public/img/icones/icones-menu-amis/see-more.svg" alt="">
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">
+                    <img src="../public/img/icones/icones-menu-amis/profil-noir.svg" alt=""> Voir le profil</a></li>
+                  <li><a class="dropdown-item" href="#">
+                   <img src="../public/img/icones/icones-menu-amis/message.svg" alt=""> Envoyer un message</a></li>
+                  <li><a class="dropdown-item" href="#">
+                   <img src="../public/img/icones/icones-menu-amis/retirer-ami.svg" alt=""> Retirer de la liste d'amis</a></li>
+                  <li><a class="dropdown-item" href="#">
+                   <img src="../public/img/icones/icones-menu-amis/bloquer.svg" alt=""> Bloquer</a></li>
+                  <li><a class="dropdown-item" href="#">
+                   <img src="../public/img/icones/icones-menu-amis/signaler.svg" alt=""> Signaler</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- -->
+
+      <div class="card">
+        <div class="card-body d-flex flex-row align-items-center">
+
+          <div class="d-flex align-items-center">
+            <div class="p-2">
+              <img src="../public/img/profil/alice.jpg" alt="">
+            </div>
+            <div class="p-2">
+              <h4 class="card-text">Alice Parker</h4>
+            </div>
+            <div class="ms-auto p-2">
+              <div class="dropdown">
+                <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                 <img src="../public/img/icones/icones-menu-amis/see-more.svg" alt="">
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">
+                    <img src="../public/img/icones/icones-menu-amis/profil-noir.svg" alt=""> Voir le profil</a></li>
+                  <li><a class="dropdown-item" href="#">
+                   <img src="../public/img/icones/icones-menu-amis/message.svg" alt=""> Envoyer un message</a></li>
+                  <li><a class="dropdown-item" href="#">
+                   <img src="../public/img/icones/icones-menu-amis/retirer-ami.svg" alt=""> Retirer de la liste d'amis</a></li>
+                  <li><a class="dropdown-item" href="#">
+                   <img src="../public/img/icones/icones-menu-amis/bloquer.svg" alt=""> Bloquer</a></li>
+                  <li><a class="dropdown-item" href="#">
+                   <img src="../public/img/icones/icones-menu-amis/signaler.svg" alt=""> Signaler</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+  <!-- -->
+
+  <div class="card">
+    <div class="card-body d-flex flex-row align-items-center">
+
+      <div class="d-flex align-items-center">
+        <div class="p-2">
+          <img src="../public/img/profil/alice.jpg" alt="">
+        </div>
+        <div class="p-2">
+          <h4 class="card-text">Alice Parker</h4>
+        </div>
+        <div class="ms-auto p-2">
+          <div class="dropdown">
+            <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+             <img src="../public/img/icones/icones-menu-amis/see-more.svg" alt="">
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">
+                <img src="../public/img/icones/icones-menu-amis/profil-noir.svg" alt=""> Voir le profil</a></li>
+              <li><a class="dropdown-item" href="#">
+               <img src="../public/img/icones/icones-menu-amis/message.svg" alt=""> Envoyer un message</a></li>
+              <li><a class="dropdown-item" href="#">
+               <img src="../public/img/icones/icones-menu-amis/retirer-ami.svg" alt=""> Retirer de la liste d'amis</a></li>
+              <li><a class="dropdown-item" href="#">
+               <img src="../public/img/icones/icones-menu-amis/bloquer.svg" alt=""> Bloquer</a></li>
+              <li><a class="dropdown-item" href="#">
+               <img src="../public/img/icones/icones-menu-amis/signaler.svg" alt=""> Signaler</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- -->
+  
+</div>
+</div>
+
+<!--FIN OFFCANVAS LISTE AMIS -->
+
 
     </main>
 
