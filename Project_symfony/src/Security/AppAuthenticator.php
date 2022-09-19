@@ -24,7 +24,6 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
     public function __construct(private UrlGeneratorInterface $urlGenerator)
     {
     }
-
     public function authenticate(Request $request): Passport
     {
         $email = $request->request->get('email', '');
@@ -47,7 +46,7 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
         }
 
         // For example:
-        return new RedirectResponse($this->urlGenerator->generate('app_home'));
+        return new RedirectResponse($this->urlGenerator->generate('app_match'));
         //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 

@@ -13,8 +13,8 @@ class MessengerType extends AbstractType
     {
         $builder
             ->add('text')
-            ->add('sentAt')
-            ->add('receivedAt')
+            //->add('sentAt')
+            //->add('receivedAt')
             //->add('sender')
             //->add('receiver')
         ;
