@@ -36,10 +36,18 @@
                     <div class="vr"></div>
                   </div>
                   <nav class="nav flex-column  offset-1">
-                      <a class="nav-link active" aria-current="page" href="{{ path('app_landing') }}">À propos</a>
+                <a class="nav-link active" aria-current="page" href="{{ path('app_landing') }}">À propos</a>
                       <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
-                      <a class="nav-link" href="{{path('app_charte')}}"> Charte BUDDIES</a>
-                    <a class="nav-link" href="{{path('app_mentions_legales')}}">Mentions légales</a>
+                {% if app.user %}
+                    <a class="nav-link" href="{{path('app_charte')}}"> Charte BUDDIES</a>
+                {% else %}
+                    <a class="nav-link" href="{{path('app_charte-non-connect')}}"> Charte BUDDIES</a>
+                {% endif %}
+                {% if app.user %}
+            <a class="nav-link" href="{{path('app_mentions_legales')}}">Mentions légales</a>
+                {% else %}
+            <a class="nav-link" href="{{path('app_mentions-legales_non_connect')}}">Mentions légales</a>
+                {% endif %}
                   </nav>
                 </div>
   

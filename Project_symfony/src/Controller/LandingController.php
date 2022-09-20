@@ -12,8 +12,7 @@ class LandingController extends AbstractController
     public function index(): Response
     {
         return $this->render('landing/index.html.twig', [
-            'controller_name' => 'LandingController',
-            'amis' => $this->getUser()->getFriends()
+            'controller_name' => 'LandingController'
         ]);
     }
 }
