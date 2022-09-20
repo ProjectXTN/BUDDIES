@@ -13,6 +13,7 @@ class MentionsLegalesController extends AbstractController
     {
         return $this->render('mentions_legales/index.html.twig', [
             'controller_name' => 'MentionsLegalesController',
+            'amis' => $this->getUser()->getFriends()
         ]);
     }
 

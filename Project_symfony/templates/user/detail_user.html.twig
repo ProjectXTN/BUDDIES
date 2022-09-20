@@ -192,33 +192,6 @@
                     {% endfor %}
 
                     {% endif %}
-
-
-
-                        {# Changement pour un boucle for #}
-
-{#                     {% for groupe in user.groupe %}
-                        <div class="col-6 mb-4 community">
-                            <img class="img-fluid" src="{{ groupe.image }}" alt="">
-                            <p>{{ groupe.name }}</p>
-                        </div>
-                    {% endfor %} #}
-
-                    {# Changement pour faire le boucle sur les COMMUNAUTES #}
-{#                         <div class="col-6 mb-4 community">
-                            <img class="img-fluid" src="/img/thumbnails-commu/film-club.jpg" alt="">
-                            <p>Film Club
-                            </p>
-                        </div>
-                        <div class="col-6 mb-4 community">
-                            <img class="img-fluid" src="/img/thumbnails-commu/art-lovers.jpg" alt="">
-                            <p>Art Lovers</p>
-                        </div>
-                        <div class="col-6 mb-4 community">
-                            <img class="img-fluid" src="/img/thumbnails-commu/film-club.jpg" alt="">
-                            <p>Film Club
-                            </p>
-                        </div> #}
                     </div>
             </section>
             <!-- FIN CARD COMMUNAUTES -->
@@ -261,45 +234,7 @@
                     </div>
                   {% endif %}
                   {% set i = i + 1 %}
-                {% endfor %}
-
-                {# Changement pour un boucle for #}
-
-               {#  <div id="avis2" class="card px-5 py-5 text-white">
-                  <div class="d-flex align-items-center">
-                    <div class="me-4">
-                      <img src="/img/profil/chris.jpg" class="card-img" alt="chris">
-                    </div>
-                    <div>
-                      <h4 class="card-title">Chris Dialo</h4>
-                      <p class="card-text"><small>Il y a un jour</small></p>
-                    </div>
-                  </div>
-
-                
-                  <div class="card-content mt-4">
-                    <p class="card-text">“To be human is to tinker, to envision a better condition, and decide to work toward it by
-                      shaping the world around us.” </p>
-                  </div>
-                </div>
-
-                <div id="avis3" class="card px-5 py-5 text-white">
-                  <div class="d-flex align-items-center">
-                    <div class="me-4">
-                      <img src="/img/profil/chris.jpg" class="card-img" alt="chris">
-                    </div>
-                    <div>
-                      <h4 class="card-title">Chris Dialo</h4>
-                      <p class="card-text"><small>Il y a un jour</small></p>
-                    </div>
-                  </div>
-                
-                  <div class="card-content mt-4">
-                    <p class="card-text">“To be human is to tinker, to envision a better condition, and decide to work toward it by
-                      shaping the world around us.” </p>
-                  </div>
-                </div> #}
-                
+                {% endfor %}                
                 
                 <button id="clickVoirPlus" > Voir plus</button>
         </section>
@@ -324,25 +259,6 @@
                     {% endif %}
                 {% endfor %}
 
-                    {# Changement pour un boucle for #}
-
-
-                   {#  <div class="text-center">
-                        <p>Photographie</p>
-                        <img src="/img/badges-interets/ci-photo.svg" alt="">
-                    </div>
-                    <div class="text-center">
-                        <p>Musique</p>
-                        <img src="/img/badges-interets/ci-musique.svg" alt="">
-                    </div>
-                    <div class="text-center">
-                        <p>Cinéma</p>
-                        <img src="/img/badges-interets/ci-cinema.svg" alt="">
-                    </div>
-                    <div class="text-center">
-                        <p>Art</p>
-                        <img src="/img/badges-interets/ci-art.svg" alt="">
-                    </div> #}
                 </div>
 
             </section>
@@ -360,27 +276,6 @@
                     {% endif %}  
                 {% endfor %}
 
-
-
-                    {# Changement pour un boucle for #}
-            
-
-                    {# <div class="text-center">
-                        <p>Sport</p>
-                        <img src="/img/badges-activite/activite-sport.svg" alt="">
-                    </div>
-                    <div class="text-center">
-                        <p>Dégustation</p>
-                        <img src="/img/badges-activite/activite-degustation.svg" alt="">
-                    </div>
-                    <div class="text-center">
-                        <p>Découverte</p>
-                        <img src="/img/badges-activite/activite-devouverte.svg" alt="">
-                    </div>
-                    <div class="text-center">
-                        <p>Randonnée</p>
-                        <img src="/img/badges-activite/activite-randonnee.svg" alt="">
-                    </div> #}
                 </div>
 
             </section>
@@ -500,100 +395,6 @@
 
                 <button id="clickVoirPlusComment"> Voir plus</button>
             {% endif %}
-
-               
-
-              <!-- card post -->
-{# 
-              <div id="card-post" class="card px-5 pt-5 pb-3">
-                <div class="d-flex flex-row align-items-center">
-          
-                    <img src="/img/profil/sam.jpg" class="card-img" alt="...">
-                    
-                    <div class="d-flex flex-column ms-3">
-                        <h4 class="card-title">Sam Anderson</h4>
-                        <p class="card-text"><small class="text-muted">Il y a 39 minutes</small></p>
-                    </div>
-                </div>
-                <div class="card-content my-4">
-
-                    <p class="card-text my-4">“To be human is to tinker, to envision a better condition, and decide to work toward it by shaping the world around us.” ― Frank Chimero</p>
-
-                    <div id="interactions" class="d-flex justify-content-end align-items-center">
-
-                      <p class="me-4">21 Commentaire</p>
-
-                        <div class="d-flex align-items-center">
-                          <p class="me-2">135</p>
-                          <img class="card-icon" src="/img/icones/small-heart-black.png" alt="coeur-plein">
-                        </div>
-
-                    </div>
-
-                    <hr>
-
-                    <div class="d-flex row">
-                      <div class="d-flex align-items-center mb-4">
-                        <div class="d-flex align-items-center">
-                          <img class="card-icon" src="/img/icones/langue.svg" alt="icon-commentaire">
-                          <p class="me-4 ms-2">Commenter</p>
-                        </div>
-                        <div class="d-flex align-items-center">
-                          <img class="card-icon" src="/img/icones/small-thumbsup.svg" alt="icon-like">
-                          <p class="me-4 ms-2">Like</p>
-                        </div>
-                      </div>
-
-                      <input type="text" class="border-0 mb-7 py-3 px-3 rounded-pill" placeholder="Écrire un commentaire...">
-                      
-                    </div>
-                </div>
-            </div>
-
-            <div id="card-post" class="card px-5 pt-5 pb-3">
-              <div class="d-flex flex-row align-items-center">
-        
-                  <img src="/img/profil/sam.jpg" class="card-img" alt="...">
-                  
-                  <div class="d-flex flex-column ms-3">
-                      <h4 class="card-title">Sam Anderson</h4>
-                      <p class="card-text"><small class="text-muted">Il y a 39 minutes</small></p>
-                  </div>
-              </div>
-              <div class="card-content my-4">
-
-                  <p class="card-text my-4">“To be human is to tinker, to envision a better condition, and decide to work toward it by shaping the world around us.” ― Frank Chimero</p>
-
-                  <div id="interactions" class="d-flex justify-content-end align-items-center">
-
-                    <p class="me-4">21 Commentaire</p>
-
-                      <div class="d-flex align-items-center">
-                        <p class="me-2">135</p>
-                        <img class="card-icon" src="/img/icones/small-heart-black.png" alt="coeur-plein">
-                      </div>
-
-                  </div>
-
-                  <hr>
-
-                  <div class="d-flex row">
-                    <div class="d-flex align-items-center mb-4">
-                      <div class="d-flex align-items-center">
-                        <img class="card-icon" src="/img/icones/langue.svg" alt="icon-commentaire">
-                        <p class="me-4 ms-2">Commenter</p>
-                      </div>
-                      <div class="d-flex align-items-center">
-                        <img class="card-icon" src="/img/icones/small-thumbsup.svg" alt="icon-like">
-                        <p class="me-4 ms-2">Like</p>
-                      </div>
-                    </div>
-
-                    <input type="text" class="border-0 mb-7 py-3 px-3 rounded-pill" placeholder="Écrire un commentaire...">
-                    
-                  </div>
-              </div>
-          </div> #}
 
 
             </section>

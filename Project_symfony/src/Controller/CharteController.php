@@ -13,6 +13,7 @@ class CharteController extends AbstractController
     {
         return $this->render('charte/index.html.twig', [
             'controller_name' => 'CharteController',
+            'amis' => $this->getUser()->getFriends()
         ]);
     }
 
