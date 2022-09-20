@@ -99,6 +99,7 @@ i.sticker-cat::before{
     left: -8rem;
     top: 6rem;
     rotate: 45deg;
+    z-index: 1;
 }
 
 i.sticker-wow::before{

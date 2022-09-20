@@ -20,10 +20,8 @@ use App\Form\RegistrationStep13;
 use App\Form\RegistrationStep14;
 use App\Form\RegistrationStep15;
 use App\Form\RegistrationStep16;
-use App\Form\RegistrationStep17;
 use App\Repository\ActivitieRepository;
 use App\Repository\ActivitieUserRepository;
-use App\Repository\FormRepository;
 use App\Repository\UserRepository;
 use App\Security\AppAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
@@ -291,10 +289,6 @@ class RegistrationController extends AbstractController
         $tabActivityFalse = [];
         foreach($request->get('valueCheckbox') as $row){
             $activity = $activitieRepository->findOneById($row);
-            /*$activityUser = new ActivitieUser();
-            $activityUser->setActivitie($activity);
-            $activityUser->setUser($user);
-            $activityUser->setIsActivitie(false);*/
 
             $tabActivityFalse[] = $activity;
 
@@ -340,10 +334,6 @@ class RegistrationController extends AbstractController
         $tabActivityTrue = [];
         foreach($request->get('valueCheckbox') as $row){
             $activity = $activitieRepository->findOneById($row);
-            /*$activityUser = new ActivitieUser();
-            $activityUser->setActivitie($activity);
-            $activityUser->setUser($user);
-            $activityUser->setIsActivitie(true);*/
 
             $tabActivityTrue[] = $activity;
         } 
@@ -594,13 +584,6 @@ class RegistrationController extends AbstractController
                             $stringTabActivityTrue .= ",";
                         }
                         $stringTabActivityTrue .= $rowActivityTrue->getId();
-
-
-                        /*$activityUser = new ActivitieUser();
-                        $activityUser->setActivitie($rowActivityTrue);
-                        $activityUser->setUser($user);
-                        $activityUser->setIsActivitie(true);
-                        $em->persist($activityUser);*/
                     }
 
                     $user->setActivities($stringTabActivityTrue);

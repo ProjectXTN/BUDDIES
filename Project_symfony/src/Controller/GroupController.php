@@ -43,7 +43,8 @@ class GroupController extends AbstractController
         return $this->render('group/index.html.twig', [
             'controller_name' => 'CommunityPageController',
             'group' => $groupRepository->findOneById($id),
-            'publication' => $publicationRepository->findOneById($id)
+            'publication' => $publicationRepository->findOneById($id),
+            'amis' => $this->getUser()->getFriends()
         ]);
     }
 }

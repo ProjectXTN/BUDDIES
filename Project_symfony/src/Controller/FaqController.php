@@ -13,6 +13,7 @@ class FaqController extends AbstractController
     {
         return $this->render('faq/index.html.twig', [
             'controller_name' => 'FaqController',
+            'amis' => $this->getUser()->getFriends()
         ]);
     }
 }

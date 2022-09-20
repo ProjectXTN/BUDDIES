@@ -56,6 +56,8 @@ class UserController extends AbstractController
         $user = $this->getUser();
         return $this->render('user/show.html.twig', [
             'user' => $user,
+            'amis' => $this->getUser()->getFriends(),
+            
         ]);
     }
 
@@ -72,9 +74,10 @@ class UserController extends AbstractController
         foreach($this->getUser()->getFriends() as $row){
             array_push($tabFriends, $row->getId());
         }
-
+        //dd($user);
         $showButtonFriend = true;
         return $this->redirectToRoute('app_match');
+        //return $this->redirectToRoute('app_user_details', ['id'=>$user->getId()], Response::HTTP_SEE_OTHER);
         if(in_array($user->getId(), $tabFriends)){
             $showButtonFriend = false;
         }
