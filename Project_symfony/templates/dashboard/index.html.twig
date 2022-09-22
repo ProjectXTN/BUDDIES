@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Match{% endblock %}
+
 {% block stylesheets %}
 <link rel="stylesheet" href="/css/dashboard.css">
 {% endblock %}
@@ -190,7 +192,7 @@
             
                 <div  class="d-flex justify-content-center my-5">
                   <a href="{{ path('app_messenger_save_unmatch', {'id':match.id}) }}" class="btn"><img src="/img/icones/non.svg" alt="non"></a>
-                  <a href="{{path('app_add_friends', {'id':match.id})}}" class="btn"><img src="/img/icones/oui.svg" alt="oui"></a>
+                  <a href="{{path('app_add_friends2', {'id':match.id})}}" class="btn"><img src="/img/icones/oui.svg" alt="oui"></a>
                 </div>
               </div>
             </div>

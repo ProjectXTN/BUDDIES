@@ -76,8 +76,12 @@ class UserController extends AbstractController
         }
         //dd($user);
         $showButtonFriend = true;
-        return $this->redirectToRoute('app_match');
+
+        
         //return $this->redirectToRoute('app_user_details', ['id'=>$user->getId()], Response::HTTP_SEE_OTHER);
+
+        //return $this->redirectToRoute('app_match');
+
         if(in_array($user->getId(), $tabFriends)){
             $showButtonFriend = false;
         }
@@ -148,6 +152,17 @@ class UserController extends AbstractController
         return $this->redirectToRoute('app_user_details', ['id'=>$user->getId()], Response::HTTP_SEE_OTHER);
     }
 
+    #[Route('/add_friends2/{id}', name: 'app_add_friends2')]
+    public function friendRequest2(User $user, UserRepository $userRepository): Response
+    {
+        $myUser = $this->getUser();
+        $myUser->addFriend($user);
+        $userRepository->add($myUser, true);
+        
+
+        return $this->redirectToRoute('app_match');
+    }
+
     #[Route('/remove_friends/{id}', name: 'app_remove_friends')]
     public function removeFriend(User $user, UserRepository $userRepository): Response
     {
@@ -156,7 +171,7 @@ class UserController extends AbstractController
         $userRepository->add($myUser, true);
         
 
-        return $this->redirectToRoute('app_user_details', ['id'=>$user->getId()], Response::HTTP_SEE_OTHER);
+        //return $this->redirectToRoute('app_user_details', ['id'=>$user->getId()], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_match');
     }
-    
 }

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Group;
 use App\Repository\GroupRepository;
 use App\Repository\PublicationRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,17 +13,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class GroupController extends AbstractController
 {
     #[Route('/group', name: 'app_group')]
-    public function index(GroupRepository $groupRepository): Response
+    public function index(GroupRepository $groupRepository, UserRepository $user): Response
     {
         return $this->render('group/index2.html.twig', [
             'controller_name' => 'GroupController',
             // il faut faire un boucle pour utilise le findAll est recupere touts les group
-            'group' => $groupRepository->findAll()
+            'group' => $groupRepository->findAll(),
+            'user' => $user
         ]);
     }
-
-
-    //   ***************  il faut faire la route por prend le ID du group ************
 
 
     #[Route('/community/page/{id}', name: 'app_group_details', methods: ['GET'])]
