@@ -445,3 +445,96 @@
     {# <a href="{{ path('app_user_index') }}">back to list</a> #}
 
     
+
+{# ****************************PAGE FORMULAIRE ******************** #}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <h1>Register</h1>
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.email) }}
+      
+
+        <button type="submit" class="btn">Register</button>
+    {{ form_end(registrationForm) }}
+{% endblock %}
+
+
+{#   {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+        {{ form_row(registrationForm.firstName) }}
+        {{ form_row(registrationForm.lastName) }}
+        {{ form_row(registrationForm.agreeTerms) }} #}
+
+        {# ************* PASSWORLD ********** #}
+
+
+
+        {% block body %}
+    <h1>Register</h1>
+
+    {{ form_start(registrationForm) }}
+    {{ form_row(registrationForm.plainPassword, {
+        label: 'Password'
+    }) }}
+      
+
+        <button type="submit" class="btn">Register</button>
+    {{ form_end(registrationForm) }}
+{% endblock %}
+
+
+        {# ************* firstName ********** #}
+
+
+            <h1>Register</h1>
+
+    {{ form_start(registrationForm) }}
+    {{ form_row(registrationForm.firstName) }}
+      
+
+        <button type="submit" class="btn">Register</button>
+    {{ form_end(registrationForm) }}
+
+
+            {# ************* BirthDate ********** #}
+
+            {% block body %}
+    <h1>Register</h1>
+
+    {{ form_start(registrationForm) }}
+    {{ form_row(registrationForm.birthDate) }}
+      
+
+        <button type="submit" class="btn">Register</button>
+    {{ form_end(registrationForm) }}
+{% endblock %}
+
+
+            {# ************* genre ********** #}
+
+{% block body %}
+    <h1>Register</h1>
+
+    {{ form_start(registrationForm) }}
+
+    {% set i = 0 %}
+
+        {% for test in registrationForm.genre %}
+        {% if i < 3 %}
+            <div class="show">
+        {% else %}
+            <div class="hide">
+        {% endif %}
+        {{ form_label(test) }}
+        {{ form_widget(test) }}
+        </div>
+        {% set i = i + 1 %}
+    {% endfor %}
+
+        <button type="submit" class="btn">Register</button>
+    {{ form_end(registrationForm) }}
+{% endblock %}
