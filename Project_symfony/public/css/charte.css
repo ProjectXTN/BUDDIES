@@ -22,7 +22,7 @@ h2{
 
 
 i.sticker-austin::before{
-    background-image: url(../img/stickers/Tampon-austin.svg);
+/*     background-image: url(../img/stickers/Tampon-austin.svg); */
     top: 0.4rem;
     margin-bottom: 1rem;
 }
