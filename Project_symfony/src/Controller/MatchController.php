@@ -3,7 +3,6 @@
 namespace App\Controller;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -113,6 +112,7 @@ class MatchController extends AbstractController
             //Valeur des interets UTILISATEUR connected
             $valeurUserIteres = count($tabMyIdForm['activity']) + count($tabMyIdForm['interest']) + 5;
             //dd($tabMyIdForm);
+            
             //Valeur de la première comparaison du match
             $valeurUserMatch = $tabMyOthersUser[$row['id']]['match'];
 
