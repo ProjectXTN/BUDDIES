@@ -134,7 +134,7 @@ class MatchController extends AbstractController
         //dd($pourcentageUtilisateur);
 
 
-        //Sorts array in place in descending order, such that its keys maintain their correlation with the values they are associated with.
+
         return $this->render('dashboard/index.html.twig', [
             'controller_name' => 'MatchController',
             'infoMatch' => $tabMyOthersUser,

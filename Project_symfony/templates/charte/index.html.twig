@@ -228,6 +228,8 @@ globalIdReceiver = idReceiver;
 
 }
 
+// Enfin, on ajoute un evenement 'Click' sur le bouton qui va permettre à l'utilisateur d'envoyer le message
+
 let btnSendMsg = document.getElementById('btnSendMsg');
 btnSendMsg.addEventListener('click', function(){
   let textarea = document.getElementById('messenger_text');
@@ -248,6 +250,7 @@ btnSendMsg.addEventListener('click', function(){
 
 });
 
+// partie pour maximiser ou minimiser la fenetre du chat
 
 let headerTitle = document.querySelector('.headerTitle');
 let zoneTxt = document.getElementById('zoneTxt');
