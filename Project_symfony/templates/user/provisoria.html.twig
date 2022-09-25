@@ -448,6 +448,8 @@
 
 {# ****************************PAGE FORMULAIRE ******************** #}
 
+{# step 1 REGISTER #}
+
 {% block title %}Register{% endblock %}
 
 {% block body %}
@@ -461,6 +463,33 @@
     {{ form_end(registrationForm) }}
 {% endblock %}
 
+    {{ form_start(registrationForm) }}
+        <section class="container-fluid">
+            <div id="centrage-ecran" class="d-flex flex-column justify-content-center">
+                <h2 class="text-center ">Bienvenue!</h2>
+                <h3 class="text-center">Veuillez renseigner votre adresse mail.</h3>
+                <div class="d-flex justify-content-center mt-5">
+                    <div class="d-flex flex-column align-items-end col-4">
+                        <div class="card-formulaire align-self-center w-100 px-3">
+                           {#  <p class="text-white mx-3 mt-3">Email</p> #}
+{#                             <input type="email" class="border-0 px-3 py-3 w-80 text-muted"
+                                placeholder="ex: jules.dupont@gmail.com"> #}
+                                <div class="border-0 px-3 py-3 w-80 text-white">{{ form_row(registrationForm.email) }}</div>
+                            <div class="form-check text-white m-3">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" required>
+                                <label class="form-check-label" for="defaultCheck1" required>
+                                    Accepter conditions générales.
+                                </label>
+                            </div>
+                        </div>
+                       {#  <button class="my-4 text-black" id="btn" type="button">Suivant</button> #}
+                        <button type="submit" class="my-4 text-black" id="btn">Suivant</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {{ form_end(registrationForm) }}
+
 
 {#   {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
@@ -469,7 +498,7 @@
         {{ form_row(registrationForm.lastName) }}
         {{ form_row(registrationForm.agreeTerms) }} #}
 
-        {# ************* PASSWORLD ********** #}
+        {# ************* step 2 PASSWORLD ********** #}
 
 
 
@@ -487,7 +516,32 @@
 {% endblock %}
 
 
-        {# ************* firstName ********** #}
+	<main>
+		<section class="container-fluid">
+			<div id="centrage-ecran" class="d-flex flex-column justify-content-center">
+				<h3 class="text-center mt-3">Veuillez créer un mot de passe.</h3>
+				<div class="d-flex justify-content-center mt-5">
+					<div class="d-flex flex-column align-items-end col-4">
+						<div class="card-formulaire align-self-center w-100 px-3">
+{# 							<p class="text-white mx-3 mt-5">Mot de passe</p> #}
+							<div class="text-white mx-3 mt-5 border-0 px-3 py-3 mb-5 w-80">
+								{{ form_start(registrationForm) }}
+								{{ form_row(registrationForm.plainPassword, {label: 'Mot de passe'})}}</div>
+{# 							<input type="password" class="border-0 px-3 py-3 mb-5 w-80 mbtext-muted" placeholder="8 caractères minimum"> #}
+						</div>
+						<div class="d-flex justify-content-end">
+							<button class="my-4 mx-3 text-black" id="btn" type="button">Retour</button>
+						{# 	<button class="my-4 ms-2 text-black" id="btn" type="button">Suivant</button> #}
+                                    <button type="submit" class="my-4 ms-2 text-black" id="btn">Register</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	{{ form_end(registrationForm) }}
+
+        {# ************* step 3 firstName ********** #}
 
 
             <h1>Register</h1>
@@ -499,8 +553,47 @@
         <button type="submit" class="btn">Register</button>
     {{ form_end(registrationForm) }}
 
+        {{ form_start(registrationForm) }}
+<!-- DEBUT NAV --> 
+<nav class="navbar navbar-expand-lg">
+        
+    <div class="container-fluid">
+  
+      <a class="navbar-brand" href="../public/index.html"> <img src="img/logo-buddies_1.svg" alt=""> </a>
+  
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    </div>
+  </nav>
+  <!-- FIN NAV -->
+    <main>
+        <section class="container-fluid">
+            <div id="centrage-ecran" class="d-flex flex-column justify-content-center">
+                <h3 class="text-center mt-5">Renseignez votre prénom ou un pseudo. </h3>
+                <div class="d-flex justify-content-center mt-5">
+                    <div class="d-flex flex-column align-items-end col-4">
+                        <div class="card-formulaire align-self-center w-100 px-3">
+{#                             <input type="name" class="border-0 px-3 py-3 my-5 w-80 mbtext-muted"
+                                placeholder="Prénom ou pseudo"> #}
+                                <div class="border-0 px-3 py-3 my-5 w-80 text-white">
+                                    {{ form_row(registrationForm.firstName, { label: 'Prénom ou pseudo'}) }}
+                                </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button class="my-4 mx-3 text-black" id="btn" type="button">Retour</button>
+{#                             <button class="my-4 ms-2 text-black" id="btn" type="button">Suivant</button> #}
+                            <button type="submit" class="my-4 ms-2 text-black" id="btn">Register</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    {{ form_end(registrationForm) }}
 
-            {# ************* BirthDate ********** #}
+
+            {# ************* step 4  BirthDate ********** #}
 
             {% block body %}
     <h1>Register</h1>
@@ -513,8 +606,53 @@
     {{ form_end(registrationForm) }}
 {% endblock %}
 
+	{{ form_start(registrationForm) }}
+	<!-- DEBUT NAV -->
+	<nav class="navbar navbar-expand-lg">
 
-            {# ************* genre ********** #}
+		<div class="container-fluid">
+
+			<a class="navbar-brand" href="../public/index.html">
+				<img src="img/logo-buddies_1.svg" alt="">
+			</a>
+
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		</div>
+	</nav>
+	<!-- FIN NAV -->
+	<main>
+		<section class="container-fluid">
+			<div id="centrage-ecran" class="d-flex flex-column justify-content-center">
+				<h3 class="text-center mt-5">Votre date de naissance</h3>
+				<div class="d-flex justify-content-center mt-5">
+					<div class="d-flex flex-column align-items-end col-4">
+						<div
+							class="card-formulaire d-flex align-items-center w-100 px-3">
+							{#                                     <form action="/action_page.php" class="d-flex flex-column justify-content-center align-items-end w-100">
+							                                        <label for="birthday"></label>
+							                                        <input class="p-3" type="date" id="birthday" name="birthday">
+							                                        <input class="text-black mt-3" id="btn" type="submit">
+							                                    </form>    #}
+								<div class="p-3">
+									{{ form_row(registrationForm.birthDate, { 'label': ' '}) }}
+							</div>
+						</div>
+						<div class="d-flex justify-content-end">
+							<button class="my-4 mx-3 text-black" id="btn" type="button">Retour</button>
+							{# <button class="my-4 ms-2 text-black" id="btn" type="button">Suivant</button> #}
+                            <button type="submit" id="btn" class="my-4 ms-2 text-black" >Register</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	{{ form_end(registrationForm) }}
+
+
+            {# ************* step 5 GENRE ********** #}
 
 {% block body %}
     <h1>Register</h1>
@@ -537,4 +675,278 @@
 
         <button type="submit" class="btn">Register</button>
     {{ form_end(registrationForm) }}
+{% endblock %}
+
+    <main>
+        <section class="container-fluid">
+            <div id="centrage-ecran" class="d-flex flex-column justify-content-center">
+                <div class="d-flex flex-column align-items-center mt-5">
+                    <h3 class="text-black mx-3 my-3">Je suis :</h3>
+                    <div class="d-flex flex-column align-items-end col-4">
+                        <div class="card-formulaire align-self-center text-white w-100 py-5 px-3">
+                        {{ form_start(registrationForm) }}
+                        {% set i = 0 %}
+                            {% for test in registrationForm.genre %}
+                                {# <div class="form-check py-2"> #}
+                                        {% if i < 3 %}
+                                            <div class=" py-2">
+                                        {% endif %} 
+                                        {{ form_label(test) }}
+                                        {{ form_widget(test) }}
+{#                                     <label class="form-check-label py-1" for="flexRadioDefault1">
+                                    Femme
+                                    </label> #}
+{#                                     <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"> #}
+                                </div>
+                                {% set i = i + 1 %}
+                            {% endfor %}
+{#                                 <div class="form-check py-2">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                    Homme
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                </div>
+                                <div class="form-check py-2">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                    Autre
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                </div> #}
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button class="my-4 mx-3 text-black" id="btn" type="button">Retour</button>
+{#                             <button class="my-4 ms-2 text-black" id="btn" type="button">Suivant</button> #}
+                            <button type="submit" id="btn" class="my-4 ms-2 text-black">Register</button>
+                        </div>
+                        {{ form_end(registrationForm) }}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+
+    {# step 6 VILLE #}
+
+    {% block body %}
+    <h1>Register</h1>
+
+    {{ form_start(registrationForm) }}
+    {{ form_row(registrationForm.city) }}
+
+      
+        <button type="submit" class="btn">Register</button>
+    {{ form_end(registrationForm) }}
+    {% endblock %}
+
+
+    {# step 7 isExpatrie #}
+
+
+    {% block body %}
+
+
+    <h1>Register</h1>
+
+        {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.isExpat) }}
+
+
+
+            <button type="submit" class="btn">Register</button>
+        {{ form_end(registrationForm) }} 
+
+    {% endblock %}
+
+
+        {# step 8 Langue - country #}
+
+        {% block body %}
+    <h1>Register</h1>
+
+    {{ form_start(registrationForm) }}
+    {{ form_row(registrationForm.language) }}
+    {{ form_row(registrationForm.country) }}
+
+      
+        <button type="submit" class="btn">Register</button>
+    {{ form_end(registrationForm) }}
+{% endblock %}
+
+        {# step 16 QUIZ INTERETS #}
+
+        
+
+
+{% if step1 %}
+
+  <label class="text"> Quelles sont vos centres d'intérêrs </label>
+  <form action="{{ path('app_quiz_2') }}">
+       
+{% endif %} 
+
+{% if step2 %}
+
+  <label class="text"> Les activités que vous aimeriez faire </label>   
+  <form action="{{ path('app_register_step8') }}">
+       
+{% endif %} 
+
+
+{% for formprops in form %}
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="checkbox" name="valueCheckbox[]" id="inlineCheckbox1" value="{{ formprops.id }}">
+  <label class="form-check-label" for="inlineCheckbox1">{{ formprops.name }}</label>
+</div>
+{% endfor %}
+
+<input type="submit"></input> 
+
+</form>
+</body>
+
+
+        {# step 10 Image Profiel #}
+
+        {% block body %}
+            <h1>Register</h1>
+
+            {{ form_start(registrationForm) }}
+            {{ form_row(registrationForm.Picture) }}
+
+            
+                <button type="submit" class="btn">Register</button>
+            {{ form_end(registrationForm) }}
+        {% endblock %}
+
+
+    {# Step 9 button #}
+
+
+    {% block body %}
+        <h1>Register</h1>
+
+        {{ form_start(registrationForm) }}
+    {#     {{ form_row(registrationForm.Picture) }} #}
+
+
+        
+            <button type="submit" class="btn">COMMENCER</button>
+        {{ form_end(registrationForm) }}
+    {% endblock %}
+
+    {# Step 10 age min max #}
+
+    {% block body %}
+
+        <h1>Register</h1>
+
+        {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.match_age_min) }}
+        {{ form_row(registrationForm.match_age_max) }}
+
+            <button type="submit" class="btn">Register</button>
+        {{ form_end(registrationForm) }} 
+
+    {% endblock %}
+
+    {# Step 11 genre #}
+
+    {% block body %}
+
+        <h1>Register</h1>
+
+        {{ form_start(registrationForm) }}
+        {% set i = 0 %}
+
+            {% for test in registrationForm.match_genre %}
+            {% if i < 2 %}
+                <div class="show">
+            {% else %}
+                <div class="hide">
+            {% endif %}
+            {{ form_label(test) }}
+            {{ form_widget(test) }}
+            </div>
+            {% set i = i + 1 %}
+        {% endfor %}
+
+        
+            <button type="submit" class="btn">Register</button>
+        {{ form_end(registrationForm) }} 
+
+    {% endblock %}
+
+    {# Step 12 Langue #}
+
+    {% block body %}
+
+        <h1>Register</h1>
+
+        {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.match_langue) }}
+
+
+            <button type="submit" class="btn">Register</button>
+        {{ form_end(registrationForm) }} 
+
+    {% endblock %}
+
+
+    {# Step 13 match_politique #}
+
+    {% block body %}
+
+        <h1>Register</h1>
+
+        {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.match_politique) }}
+
+
+            <button type="submit" class="btn">Register</button>
+        {{ form_end(registrationForm) }} 
+
+    {% endblock %}
+
+    {# Step 14 questionaire #}
+
+    {% block body %}
+
+        <h1>Register</h1>
+
+        {{ form_start(registrationForm) }}
+        {#     {{ form_row(registrationForm.match_break_the_ice) }} #}
+
+        {% for test in registrationForm.match_break_the_ice%}
+        <div>{{form_label(test)}}</div>
+        <div>{{form_widget(test)}}</div>
+
+        {% endfor %}
+
+
+            <button type="submit" class="btn">Register</button>
+        {{ form_end(registrationForm) }} 
+
+    {% endblock %}
+
+        {# Step 15 questionaire #}
+
+    {% block body %}
+
+        <h1>Register</h1>
+
+        {{ form_start(registrationForm) }}
+        {#     {{ form_row(registrationForm.match_perfect_afternoon) }} #}
+
+        {% for test in registrationForm.match_perfect_afternoon%}
+        <div>{{form_label(test)}}</div>
+        <div>{{form_widget(test)}}</div>
+
+        {% endfor %}
+
+
+            <button type="submit" class="btn">Register</button>
+        {{ form_end(registrationForm) }} 
+
 {% endblock %}

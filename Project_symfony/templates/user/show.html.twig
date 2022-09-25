@@ -190,7 +190,7 @@
                 <h3>Mes avis</h3>
                 {% for review in user.reviewReceived %}
                   {% if i < 3 %}
-                    <div id="avis1" class="card px-5 py-5 text-white show">
+                    <div id="avis3" class="card px-5 py-5 text-white show">
                     <div class="d-flex align-items-center">
                     <div class="me-4">
                       <img src="/data/{{ review.senderId.Picture }}" class="card-img" alt="">
@@ -206,7 +206,7 @@
                   </div>
                 </div>
                     {% else %}
-                    <div id="avis1" class="card px-5 py-5 text-white cardRepear hide">
+                    <div id="avis3" class="card px-5 py-5 text-white cardRepear hide">
                       <div class="d-flex align-items-center">
                         <div class="me-4">
                           <img src="/data/{{ review.senderId.Picture }}" class="card-img" alt="">

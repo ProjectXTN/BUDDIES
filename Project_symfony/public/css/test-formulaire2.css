@@ -5,11 +5,10 @@
     .card-formulaire{
         background-color:#FD8D04;
         border-radius: 15px;
-        
     }
     
     .card-formulaire input{
-        border-radius: 15px;
+        border-radius: 15px; 
     }
     
     #btn{

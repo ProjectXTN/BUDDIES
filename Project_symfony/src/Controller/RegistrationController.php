@@ -20,6 +20,10 @@ use App\Form\RegistrationStep13;
 use App\Form\RegistrationStep14;
 use App\Form\RegistrationStep15;
 use App\Form\RegistrationStep16;
+use App\Form\RegistrationStep17;
+use App\Form\RegistrationStep18;
+use App\Form\RegistrationStep19;
+use App\Form\RegistrationStep20;
 use App\Repository\ActivitieRepository;
 use App\Repository\ActivitieUserRepository;
 use App\Repository\UserRepository;
@@ -615,4 +619,96 @@ class RegistrationController extends AbstractController
                 ]); 
                 $userRepository->add($user, true);
             }
+
+            /* ROTAS SOMENTE PARA DEMOSTRACAO */
+
+             //Route to formulaire match step9 button
+             #[Route('/step17', name: 'app_register_step17')]
+             public function step17(Request $request, RequestStack $requestStack): Response
+             {
+         
+                 $session = $requestStack->getSession();
+         
+                 $user = $session->get('user');
+                 $form = $this->createForm(RegistrationStep17::class, $user);
+                 $form->handleRequest($request);
+         
+                 if ($form->isSubmitted()) {
+                     
+                     //redirection
+                     return $this->redirectToRoute('app_register_step18', [], Response::HTTP_SEE_OTHER);
+         
+                 }
+         
+                 return $this->render('registration/step17.html.twig', [
+                     'registrationForm' => $form->createView(),
+                 ]); 
+             }
+
+              //Route to formulaire match step18 button SOMENTE PARA A DEMOSTRA9AO
+             #[Route('/step18', name: 'app_register_step18')]
+            public function step18(Request $request, RequestStack $requestStack): Response
+            {
+        
+                $session = $requestStack->getSession();
+        
+                $user = $session->get('user');
+                $form = $this->createForm(RegistrationStep18::class, $user);
+                $form->handleRequest($request);
+        
+                if ($form->isSubmitted()) {
+                    
+                    //redirection
+                    return $this->redirectToRoute('app_register_step19', [], Response::HTTP_SEE_OTHER);
+        
+                }
+        
+                return $this->render('registration/step18.html.twig', [
+                    'registrationForm' => $form->createView(),
+                ]); 
+            }
+
+            #[Route('/step19', name: 'app_register_step19')]
+            public function step19(Request $request, RequestStack $requestStack): Response
+            {
+        
+                $session = $requestStack->getSession();
+        
+                $user = $session->get('user');
+                $form = $this->createForm(RegistrationStep19::class, $user);
+                $form->handleRequest($request);
+        
+                if ($form->isSubmitted()) {
+                    
+                    //redirection
+                    return $this->redirectToRoute('app_register_step9', [], Response::HTTP_SEE_OTHER);
+        
+                }
+        
+                return $this->render('registration/step19.html.twig', [
+                    'registrationForm' => $form->createView(),
+                ]); 
+            } 
+
+            #[Route('/step20', name: 'app_register_step20')]
+            public function step20(Request $request, RequestStack $requestStack): Response
+            {
+        
+                $session = $requestStack->getSession();
+        
+                $user = $session->get('user');
+                $form = $this->createForm(RegistrationStep20::class, $user);
+                $form->handleRequest($request);
+        
+                if ($form->isSubmitted()) {
+                    
+                    //redirection
+                    return $this->redirectToRoute('app_register_step9', [], Response::HTTP_SEE_OTHER);
+        
+                }
+        
+                return $this->render('registration/step20.html.twig', [
+                    'registrationForm' => $form->createView(),
+                ]); 
+            } 
 }
