@@ -135,14 +135,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $isValid = null;
 
-
-    #[ORM\OneToMany(mappedBy: 'sender', targetEntity: Messenger::class)]
-    private Collection $messengers;
-
-    #[ORM\OneToMany(mappedBy: 'receiver', targetEntity: Messenger::class)]
-    private Collection $messenger_received;
-
-
     public function __construct()
     {
         $this->groupe = new ArrayCollection();
