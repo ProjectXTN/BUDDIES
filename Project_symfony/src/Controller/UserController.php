@@ -91,7 +91,8 @@ class UserController extends AbstractController
             'id' => $user->getId(),
             'myId' => $this->getUser()->getId(),
             'user' => $user,
-            'showButtonFriend' => $showButtonFriend
+            'showButtonFriend' => $showButtonFriend,
+            'amis' => $this->getUser()->getFriends(),
         ]);
     }
 

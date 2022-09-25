@@ -21,6 +21,7 @@
 {% block javascripts %}
 <script>
 
+// Ici, nous avons developpé une function qui rafraichit automatiquement les messages (entrants et sortants) tous les 2 secondes
 
 let idSender = {{myId}};
 let idReceiver = {{id}};
@@ -34,7 +35,7 @@ function loadMsg(){
 
     setTimeout(function(){
         loadMsg();
-    }, 5000);
+    }, 2000);
 
 }
 

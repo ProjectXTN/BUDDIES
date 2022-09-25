@@ -1,17 +1,78 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Register{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="/css/test-formulaire2.css">
+{% endblock %}
 
 {% block body %}
 
-    <h1>Register</h1>
+<!-- DEBUT NAV --> 
+<nav class="navbar navbar-expand-lg">
 
-    {{ form_start(registrationForm) }}
-    {{ form_row(registrationForm.match_age_min) }}
-    {{ form_row(registrationForm.match_age_max) }}
+    <div class="container-fluid">
+    
+        <a class="navbar-brand" href="{{path('app_landing')}}"> <img src="img/logo-buddies_1.svg" alt=""> </a>
+    
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    </div>
+</nav>
+<!-- FIN NAV -->
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }} 
+<main>
+    <section class="container-fluid">
+        <div id="centrage-ecran" class="d-flex flex-column justify-content-center">
+            <div class="d-flex justify-content-center">
+                <div class="d-flex flex-column align-items-center col-10">
+                    <h2 class="text-center">Vous souhaitez rencontrer des personnes de quelle tranche d'âge ? </h2>
 
+                    <div class="card-formulaire p-5">                          
+                        <div class="btn-group m-5">
+                            <button class="btn btn-light btn-lg dropdown-toggle" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                18
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">18</a></li>
+                                <li><a class="dropdown-item" href="#">19</a></li>
+                                <li><a class="dropdown-item" href="#">20</a></li>
+                                <li><a class="dropdown-item" href="#">21</a></li>
+                                <li><a class="dropdown-item" href="#">22</a></li>
+                                <li><a class="dropdown-item" href="#">23</a></li>
+                                <li><a class="dropdown-item" href="#">24</a></li>
+                                <li><a class="dropdown-item" href="#">25</a></li>
+                                <li><a class="dropdown-item" href="#">26</a></li>
+                            </ul>
+                        </div>  
+                                    
+                        <div class="btn-group m-5">
+                            <button class="btn btn-light btn-lg dropdown-toggle" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                26
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">27</a></li>
+                                <li><a class="dropdown-item" href="#">28</a></li>
+                                <li><a class="dropdown-item" href="#">29</a></li>
+                                <li><a class="dropdown-item" href="#">30</a></li>
+                                <li><a class="dropdown-item" href="#">31</a></li>
+                                <li><a class="dropdown-item" href="#">32</a></li>
+                                <li><a class="dropdown-item" href="#">33</a></li>
+                                <li><a class="dropdown-item" href="#">34</a></li>
+                                <li><a class="dropdown-item" href="#">35</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                       <a href="{{path('app_register_step9')}}"><button class="my-4 text-black" id="btn" type="button">Retour</button></a>
+                        <a href="{{path('app_register_step11')}}"><button class="my-4 ms-3 text-black" id="btn" type="button">Suivant</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
 {% endblock %}
 

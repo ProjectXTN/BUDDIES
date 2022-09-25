@@ -3,7 +3,6 @@
 namespace App\Controller;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -113,6 +112,7 @@ class MatchController extends AbstractController
             //Valeur des interets UTILISATEUR connected
             $valeurUserIteres = count($tabMyIdForm['activity']) + count($tabMyIdForm['interest']) + 5;
             //dd($tabMyIdForm);
+            
             //Valeur de la première comparaison du match
             $valeurUserMatch = $tabMyOthersUser[$row['id']]['match'];
 
@@ -134,7 +134,7 @@ class MatchController extends AbstractController
         //dd($pourcentageUtilisateur);
 
 
-        //Sorts array in place in descending order, such that its keys maintain their correlation with the values they are associated with.
+
         return $this->render('dashboard/index.html.twig', [
             'controller_name' => 'MatchController',
             'infoMatch' => $tabMyOthersUser,

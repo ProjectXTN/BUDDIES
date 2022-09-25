@@ -1,15 +1,64 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Register{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="/css/test-formulaire2.css">
+{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+<!-- DEBUT NAV --> 
+<nav class="navbar navbar-expand-lg">
 
-    {{ form_start(registrationForm) }}
-    {{ form_row(registrationForm.language) }}
-    {{ form_row(registrationForm.country) }}
-
-      
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+    <div class="container-fluid">
+    
+        <a class="navbar-brand" href="{{path('app_landing')}}"> <img src="img/logo-buddies_1.svg" alt=""> </a>
+    
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    </div>
+    </nav>
+<!-- FIN NAV -->
+    <main>
+        <section class="container-fluid">
+            <div id="centrage-ecran" class="d-flex flex-column justify-content-center">
+                <h2 class="text-center mt-5">Quelles sont les langues que vous parlez et votre nationalié ?</h2>
+                <div class="d-flex justify-content-center mt-5">
+                    <div class="d-flex flex-column align-items-end col-4">
+                        <div class="card-formulaire align-self-center w-100 px-3">
+                            <p class="text-white my-3">Langues</p>
+                            <div class="btn-group">
+                                <button class="btn btn-light btn-lg dropdown-toggle me-5" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Français
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Anglais</a></li>
+                                    <li><a class="dropdown-item" href="#">Chinois</a></li>
+                                    <li><a class="dropdown-item" href="#">Espanol</a></li>
+                                </ul>
+                            </div>
+                            <p class="text-white my-3">Nationalité</p>
+                            <div class="btn-group">
+                                <button class="btn btn-light btn-lg dropdown-toggle me-5" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Français
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Américaine</a></li>
+                                    <li><a class="dropdown-item" href="#">Chinois</a></li>
+                                    <li><a class="dropdown-item" href="#">Brésilien</a></li>
+                                </ul>
+                            </div>
+                            <p class="text-white my-3">Vous pouvez séléctionner plusieurs réponses</p>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                             <a href="{{path('app_register_step16')}}"><button class="my-4 text-black" id="btn" type="button">Retour</button></a>
+                             <a href="{{path('app_register_step17')}}"><button class="my-4 ms-2 text-black" id="btn" type="button">Suivant</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 {% endblock %}

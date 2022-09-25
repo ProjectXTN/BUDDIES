@@ -11,13 +11,17 @@
 <!-- DEBUT CHATBOX --> 
 <div id="container">
   <div class="chat">
-    <div class="headerTitle">Nouveau Message</div>
+    <div class="headerTitle">Messages</div>
     <div id="zoneTxt" class="text">
       
     </div>
-        <div id="new-message">
-          <input class="w-100 px-3 py-3" type="text" id='messenger_text' placeholder="Nouveau message...">
-          <button id='btnSendMsg'>Envoyer</button>
+        <div id="new-message" class=" row">
+          <div class=" col-9">
+            <input class="w-100 px-3 py-3" type="text" id='messenger_text' placeholder="Nouveau message...">
+          </div>
+          <div class="col-2">
+            <button id='btnSendMsg'>Envoyer</button>
+          </div>
         </div>
   </div>
 </div>
@@ -186,7 +190,7 @@
                 <h3>Mes avis</h3>
                 {% for review in user.reviewReceived %}
                   {% if i < 3 %}
-                    <div id="avis1" class="card px-5 py-5 text-white show">
+                    <div id="avis3" class="card px-5 py-5 text-white show">
                     <div class="d-flex align-items-center">
                     <div class="me-4">
                       <img src="/data/{{ review.senderId.Picture }}" class="card-img" alt="">
@@ -202,7 +206,7 @@
                   </div>
                 </div>
                     {% else %}
-                    <div id="avis1" class="card px-5 py-5 text-white cardRepear hide">
+                    <div id="avis3" class="card px-5 py-5 text-white cardRepear hide">
                       <div class="d-flex align-items-center">
                         <div class="me-4">
                           <img src="/data/{{ review.senderId.Picture }}" class="card-img" alt="">
