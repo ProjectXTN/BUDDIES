@@ -25,7 +25,7 @@ h1{
     font-size: 5.5rem;
     color: white;
     text-shadow:
-    -1px 1px #000, -2px 2px #000, -3px 3px #000, -4px 4px #000, -5px 5px #000, -6px 6px #000, -7px 7px #000, -8px 8px #000;
+    -1px -1px #000, -2px -2px #000, -3px -3px #000, -4px -4px #000, -5px -5px #000, -6px -6px #000, -7px -7px #000, -8px -8px #000;
     letter-spacing: 1px;
     -webkit-text-stroke: 2px;
     -webkit-text-stroke-color: #000;
@@ -56,7 +56,7 @@ h5{
     font-weight: 700;
     font-size: 3.5rem;
     color: white;
-    text-shadow: -1px 1px #000, -2px 2px #000, -3px 3px #000, -4px 4px #000;
+    text-shadow: -1px -1px #000, -2px -2px #000, -3px -3px #000, -4px -4px #000;
     -webkit-text-stroke: 2px;
     -webkit-text-stroke-color: #000;
 }
@@ -105,6 +105,7 @@ button:hover{
 
 .card{
     margin-bottom: 2.4rem;
+
 }
 
 /*************** NAV *******************/ 
@@ -149,7 +150,6 @@ button:hover{
     padding-top: 0;
     padding-bottom: 0;
     --bs-dropdown-border-radius: 0rem;
-    border-radius: 0rem 0rem 1rem 1rem;
 }
 
 .dropdown-menu[data-bs-popper] {
@@ -164,26 +164,6 @@ li a{
 .dropdown-menu a{
     background-color: white;
     padding: 1rem;
-    border-radius: 1rem;
-}
-
-#notif ul li img{
-}
-
-#icon-notif{
-    width: 3rem;
-}
-
-#profil-notif{
-    border-radius: 100%;
-    height: 6rem;
-    width: 6rem;
-}
-
-#notif .card{
-    margin-bottom: 0;
-    border-radius: 1rem;
-    border: none;
 }
 
 /*************** HEADER *******************/ 
@@ -241,77 +221,6 @@ footer a img{
     font-size: 1.8rem;
 }
 
-/*************** CHATBOX *******************/
-
-#chatbox{
-    position: sticky;
-    bottom: 0;
-    left: 70%;
-    height: 7rem;
-    width: 42rem;
-    background-color: #2C7DA0;
-    z-index: 1000;
-    box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
-
-}
-
-#chatbox .accordion .accordion-button{
-    height: 7rem;
-    box-shadow: none;
-    background-color: #2C7DA0;
-    color: white;
-    border: solid 2px black;
-    font-size: 1.8rem;
-}
-
-#chatbox .accordion .accordion-button:not(.collapsed) {
-    background-color: #2C7DA0;
-    color: white;
-    border: solid 2px black;
-} 
-
-
-#chatbox img{
-    border-radius: 100%;
-    height: 6rem;
-    width: 6rem;
-}
-
-#chatbox .card{
-    border: none;
-
-}
-
-#chatbox .accordion-collapse{
-    border-right: solid 2px black;
-    border-left: solid 2px black;
-    box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
-}
-
-#chatbox #message-date p{
-    font-size: 1rem;
-    color: grey;
-}
-
-#their-message p {
-    border-radius: 1rem 1rem 1rem 0rem;
-    background-color:#F1F0E6;
-}
-
-#my-message p {
-    border-radius: 1rem 1rem 0rem 1rem;
-    background-color: #C3DFEB;
-}
-
-#new-message{
-    border-top: none;
-    border-bottom: solid 2px black;
-}
-
-#new-message input{
-   border-radius: 2rem;
-   border: solid 1px grey;
-}
 
 
 /*************** STICKERS *******************/
@@ -321,6 +230,7 @@ i.sticker{
     position: relative;
     width: 100%;
     display: block;
+    z-index: 1;
 }
 i.sticker::before{
     content: '';
@@ -332,11 +242,11 @@ i.sticker::before{
     background-position: center;
     background-repeat: no-repeat;
     top: -5rem;
-    z-index: 1000;
+    z-index: 1;
 }
 
 
-/**** stickers positions *****/
+/**** positions *****/
 
 i.sticker-right::before{
     right: -20rem;
@@ -433,6 +343,9 @@ i.sticker-smile::before{
     background-image: url(../img/stickers/smile.svg);
 }
 
+i.sticker-be-kind::before{
+    background-image: url(../img/stickers/be-kind.svg);
+}
 
 i.sticker-dream::before{
     background-image: url(../img/stickers/dream.svg);
@@ -449,12 +362,6 @@ i.sticker-win::before{
 i.sticker-wow::before{
     background-image: url(../img/stickers/wow.svg);
 }
-
-
-i.sticker-film-club::before{
-    background-image: url(../img/stickers/film-club.png);
-}
-
 
 i.sticker-paris::before{
     background-image: url(../img/stickers/paris.svg);
@@ -481,8 +388,6 @@ i.sticker-tampon-grece::before{
 i.sticker-tampon-london::before{
     background-image: url(../img/stickers/londres.svg);
 }
-
-
 /************ CARD POST ***************/
 
 #card-post {
@@ -521,9 +426,79 @@ i.sticker-tampon-london::before{
     padding: 0;
 }
 
+/** CHATBOX **/
+
+#chatbox{
+    position: sticky;
+    bottom: 0;
+    left: 70%;
+    height: 7rem;
+    width: 42rem;
+    background-color: #2C7DA0;
+    z-index: 1000;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
+
+}
+
+#chatbox .accordion .accordion-button{
+    height: 7rem;
+    box-shadow: none;
+    background-color: #2C7DA0;
+    color: white;
+    border: solid 2px black;
+    font-size: 1.8rem;
+}
+
+#chatbox .accordion .accordion-button:not(.collapsed) {
+    background-color: #2C7DA0;
+    color: white;
+    border: solid 2px black;
+} 
 
 
-/************** OFFCANVAS LISTE AMIS ********************/
+#chatbox img{
+    border-radius: 100%;
+    height: 6rem;
+    width: 6rem;
+}
+
+#chatbox .card{
+    border: none;
+
+}
+
+#chatbox .accordion-collapse{
+    border-right: solid 2px black;
+    border-left: solid 2px black;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
+}
+
+#chatbox #message-date p{
+    font-size: 1rem;
+    color: grey;
+}
+
+#their-message p {
+    border-radius: 1rem 1rem 1rem 0rem;
+    background-color:#F1F0E6;
+}
+
+#my-message p {
+    border-radius: 1rem 1rem 0rem 1rem;
+    background-color: #C3DFEB;
+}
+
+#new-message{
+    border-top: none;
+    border-bottom: solid 2px black;
+}
+
+#new-message input{
+   border: solid 1px grey;
+   font-size: 1.5rem;
+} 
+
+ /* FIN CHATBOX */ 
 
 .offcanvas-body .card img{
     height: 6rem;
@@ -535,6 +510,8 @@ i.sticker-tampon-london::before{
 .offcanvas-body .card h4{
     margin-right: 8rem;
 }
+
+
 
 .offcanvas-body .card .dropdown button img{
     height: 2.8rem;
@@ -571,6 +548,7 @@ i.sticker-tampon-london::before{
   
 }
 
+
 .offcanvas input{
     width: 100%;
     border-radius: 2rem;
@@ -581,7 +559,7 @@ i.sticker-tampon-london::before{
     margin-bottom: 1rem;
     border-radius: 1rem;
     border: none;
-    box-shadow: -1px 1px rgba(0, 0, 0, 0), -2px 2px rgba(0, 0, 0, 0), -3px 3px rgba(0, 0, 0, 0);
+    box-shadow: -1px 1px rgba(0, 0, 0, 0) -2px 2px rgba(0, 0, 0, 0) -3px 3px rgba(0, 0, 0, 0);
     border: solid 2px rgba(0, 0, 0, 0);
 }
 

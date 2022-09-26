@@ -28,98 +28,132 @@
 
 {% set i = 0 %}
 
+<!-- DEBUT NAV -->
 <nav class="navbar navbar-expand-lg">
         
-<div class="container-fluid">
+  <div class="container-fluid">
 
-  <a class="navbar-brand" href="{{path('app_match')}}"> <img src="./img/logo-buddies_1.svg" alt=""> </a>
+    <a class="navbar-brand" href="{{path('app_match')}}"> <img src="img/logo-buddies_1.svg" alt=""> </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
 
-  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-    <ul class="navbar-nav">
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <ul class="navbar-nav">
 
-      <li class="nav-item">
-        <a id="icon" class="nav-link d-flex align-items-center justify-content-center me-3" aria-current="page" href="{{path('app_home')}}"><img src="img/icones/icones-nav/commu.svg"></a>
-      </li>
+        <li class="nav-item">
+          <a id="icon" class="nav-link d-flex align-items-center justify-content-center me-3" aria-current="page" href="{{path('app_home')}}"><img src="img/icones/icones-nav/commu.svg"></a>
+        </li>
 
-    <li class="nav-item">
-        <a id="icon" class="nav-link d-flex align-items-center justify-content-center me-3" 
-         data-bs-toggle="offcanvas" href="#offcanvasAmis" role="button" aria-controls="offcanvasExample"><img src="/img/icones/icones-nav/amis.svg">
-      </a>
-    </li>
+        <li class="nav-item">
+          <a id="icon" class="nav-link d-flex align-items-center justify-content-center me-3" 
+          data-bs-toggle="offcanvas" href="#offcanvasAmis" role="button" aria-controls="offcanvasExample"><img src="/img/icones/icones-nav/amis.svg">
+          </a>
+        </li>
 
-      <li id="notif" class="nav-item dropdown">
-        <a id="icon" class="nav-link d-flex align-items-center justify-content-center me-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="img/icones/icones-nav/cloche.svg">
-        </a>
-        <ul class="dropdown-menu">
-          <li class="my-3 mx-4">
-            <a class="dropdown-item" href="#">
-              <div class="card">
-                <p>je suis une card notification</p>
-              </div>
-            </a>
-          </li>
-          <li class="my-3 mx-4">
-            <a class="dropdown-item" href="#">
-              <div class="card">
-                <p>je suis une card notification</p>
-              </div>
-            </a>
-          </li>
-          <li class="my-3 mx-4">
-            <a class="dropdown-item" href="#">
-              <div class="card">
-                <p>je suis une card notification</p>
-              </div>
-            </a>
-          </li>
-        </ul>
-
-        <li class="nav-item dropdown">
+        <li id="notif" class="nav-item dropdown">
           <a id="icon" class="nav-link d-flex align-items-center justify-content-center me-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="img/icones/icones-nav/profil.svg">
+            <img src="img/icones/icones-nav/cloche.svg">
           </a>
           <ul class="dropdown-menu">
             <li class="my-3 mx-4">
-              <a class="dropdown-item" href="{{path('app_user_show')}}">
-                <img class="me-2" src="/img/icones/icones-menu-profil/smile.svg" alt="">
-              Mon profil
-              </a>
+              <div class="card">
+                <div class="card-body d-flex flex-row align-items-center">
+                  <div class="d-flex align-items-center">
+                    <div class="p-2">
+                      <img id="profil-notif" src="/img/profil/alice.jpg" alt="">
+                    </div>
+                    <div class="p-2">
+                      <h4 class="card-text">Alice Parker</h4>
+                    </div>
+                    <div class="ms-auto p-2">
+                      <img id="icon-notif" src="/img/icones/heart-orange.png" alt="">
+                    </div>
+                  </div>
+                </div>
+              </div>
             </li>
             <li class="my-3 mx-4">
-              <a class="dropdown-item" href="{{path('app_faq')}}">
-                <img class="me-2" src="/img/icones/icones-menu-profil/aide.svg" alt="">
-              Aide
-              </a>
+              <div class="card">
+                <div class="card-body d-flex flex-row align-items-center">
+                  <div class="d-flex align-items-center">
+                    <div class="p-2">
+                      <img id="profil-notif" src="/img/profil/alice.jpg" alt="">
+                    </div>
+                    <div class="p-2">
+                      <h4 class="card-text">Alice Parker</h4>
+                    </div>
+                    <div class="ms-auto p-2">
+                      <img id="icon-notif" src="/img/icones/langue.svg" alt="">
+                    </div>
+                  </div>
+                </div>
+              </div>
             </li>
             <li class="my-3 mx-4">
-              <a class="dropdown-item" href="{{path('app_charte')}}">
-                <img class="me-2" src="/img/icones/icones-menu-profil/charte.svg" alt=""> 
-                Charte BUDDIES
-              </a>
-            </li>
-            <li class="my-3 mx-4">
-              <a class="dropdown-item" href="{{path('app_mentions_legales')}}">
-                <img class="me-2" src="/img/icones/icones-menu-profil/mentions-legales.svg" alt=""> 
-                Mentions légales
-              </a>
-            </li>
-            <li class="my-3 mx-4">
-              <a class="dropdown-item" href="{{path('app_logout')}}">
-                <img class="me-2" src="/img/icones/icones-menu-profil/deconnexion.svg" alt=""> 
-                Déconnexion
-              </a>
+              <div class="card">
+                <div class="card-body d-flex flex-row align-items-center">
+                  <div class="d-flex align-items-center">
+                    <div class="p-2">
+                      <img id="profil-notif" src="/img/profil/alice.jpg" alt="">
+                    </div>
+                    <div class="p-2">
+                      <h4 class="card-text">Alice Parker</h4>
+                    </div>
+                    <div class="ms-auto p-2">
+                      <img id="icon-notif" src="/img/icones/icones-menu-amis/message.svg" alt="">
+                    </div>
+                  </div>
+                </div>
+              </div>
             </li>
           </ul>
-      </li>
-    </ul>
+
+          <li class="nav-item dropdown">
+            <a id="icon" class="nav-link d-flex align-items-center justify-content-center me-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="img/icones/icones-nav/profil.svg">
+            </a>
+            <ul class="dropdown-menu">
+              <li class="my-3 mx-4">
+                <a class="dropdown-item" href="{{path('app_user_show')}}">
+                  <img class="me-2" src="/img/icones/icones-menu-profil/smile.svg" alt="">
+                Mon profil
+                </a>
+              </li>
+              <li class="my-3 mx-4">
+                <a class="dropdown-item" href="{{path('app_faq')}}">
+                  <img class="me-2" src="/img/icones/icones-menu-profil/aide.svg" alt="">
+                Aide
+                </a>
+              </li>
+              <li class="my-3 mx-4">
+                <a class="dropdown-item" href="{{path('app_charte')}}">
+                  <img class="me-2" src="/img/icones/icones-menu-profil/charte.svg" alt=""> 
+                  Charte BUDDIES
+                </a>
+              </li>
+              <li class="my-3 mx-4">
+                <a class="dropdown-item" href="{{path('app_mentions_legales')}}">
+                  <img class="me-2" src="/img/icones/icones-menu-profil/mentions-legales.svg" alt=""> 
+                  Mentions légales
+                </a>
+              </li>
+              <li class="my-3 mx-4">
+                <a class="dropdown-item" href="{{path('app_logout')}}">
+                  <img class="me-2" src="/img/icones/icones-menu-profil/deconnexion.svg" alt=""> 
+                  Déconnexion
+                </a>
+              </li>
+            
+            </ul>
+          
+        </li>
+      </ul>
+    </div>
   </div>
-</div>
 </nav>
+<!-- FIN NAV -->
 
 <main class="container">
 
