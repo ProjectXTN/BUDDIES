@@ -27,47 +27,18 @@
 </nav>
 <!-- FIN NAV -->
     <main>
-        <section class="container-fluid">
-            <div id="centrage-ecran" class="d-flex flex-column justify-content-center">
-                <h2 class="text-center">Laquelle de ces activités aimeriez vous faire ?</h2>
-                <div class="d-flex justify-content-center">
-                    <div class="d-flex flex-column align-items-end col-4">
-                        <div class="card-formulaire align-self-center text-black w-100 py-3 px-3">
-                            <div class="form-check d-flex align-items-center m-2">
-                                <input class="form-check-input ms-4" type="radio" id="flexRadioDefault1">
-                                <label class="form-check-label ms-4" for="defaultCheck1">
-                                    Pique-niquedans un parc
-                                </label>
-                            </div>
-                            <div class="form-check d-flex align-items-center m-2">
-                                <input class="form-check-input ms-4" type="radio" id="flexRadioDefault1">
-                                <label class="form-check-label ms-4" for="defaultCheck1">
-                                    Balade sur les quais
-                                </label>
-                            </div>
-                            <div class="form-check d-flex align-items-center m-2">
-                                <input class="form-check-input ms-4" type="radio" id="flexRadioDefault1">
-                                <label class="form-check-label ms-4" for="defaultCheck1">
-                                    Visite de la dernière expo en vogue
-                                </label>
-                            </div>
-                            <div class="form-check d-flex align-items-center m-2">
-                                <input class="form-check-input ms-4" type="radio" id="flexRadioDefault1">
-                                <label class="form-check-label ms-4" for="defaultCheck1">
-                                    Tournée des bars
-                                </label>
-                            </div>
-                              
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <a href="{{path('app_register_step14')}}"><button class="my-4 text-black" id="btn" type="button">Retour</button>
-                            <a href="{{path('app_login')}}"><button class="my-4 ms-2 text-black" id="btn" type="button">Suivant</button>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-        </section>
+        {{ form_start(registrationForm) }}
+        {#     {{ form_row(registrationForm.match_perfect_afternoon) }} #}
+
+        {% for test in registrationForm.match_perfect_afternoon%}
+        <div>{{form_label(test)}}</div>
+        <div>{{form_widget(test)}}</div>
+
+        {% endfor %}
+
+
+            <button type="submit" class="btn">Register</button>
+        {{ form_end(registrationForm) }} 
     </main>
 {% endblock %}
 

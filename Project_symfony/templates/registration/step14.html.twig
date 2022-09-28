@@ -26,47 +26,18 @@
 </nav>
 <!-- FIN NAV -->
     <main>
-        <section class="container-fluid">
-            <div id="centrage-ecran" class="d-flex flex-column justify-content-center align-items-center">
-                <div>
-                    <h2 class="text-center">D'après vous, quel est le meilleur moyen de briser la glace ?</h2>
-                    <div class="d-flex flex-column align-items-end col-4 offset-4">
-                        <div class="card-formulaire text-black w-100 py-3 px-3">
-                            <div class="form-check d-flex align-items-center m-2">
-                                <input class="form-check-input ms-4" type="radio" id="flexRadioDefault1">
-                                <label class="form-check-label ms-4" for="defaultCheck1">
-                                    Poser une question
-                                </label>
-                            </div>
-                            <div class="form-check d-flex align-items-center m-2">
-                                <input class="form-check-input ms-4" type="radio" id="flexRadioDefault1">
-                                <label class="form-check-label ms-4" for="defaultCheck1">
-                                    Raconter une blague
-                                </label>
-                            </div>
-                            <div class="form-check d-flex align-items-center m-2">
-                                <input class="form-check-input ms-4" type="radio" id="flexRadioDefault1">
-                                <label class="form-check-label ms-4" for="defaultCheck1">
-                                    Mentionner quelque chose sur mon profil
-                                </label>
-                            </div>
-                            <div class="form-check d-flex align-items-center m-2">
-                                <input class="form-check-input ms-4" type="radio" id="flexRadioDefault1">
-                                <label class="form-check-label ms-4" for="defaultCheck1">
-                                    Se présenter de manière simple
-                                </label>
-                            </div>
-                              
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <a href="{{path('app_register_step13')}}"><button class="my-4 text-black" id="btn" type="button">Retour</button></a>
-                            <a href="{{path('app_register_step15')}}"><button class="my-4 ms-3 text-black" id="btn" type="button">Suivant</button></a>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-        </section>
+        {{ form_start(registrationForm) }}
+        {#     {{ form_row(registrationForm.match_break_the_ice) }} #}
+
+        {% for test in registrationForm.match_break_the_ice%}
+        <div>{{form_label(test)}}</div>
+        <div>{{form_widget(test)}}</div>
+
+        {% endfor %}
+
+
+            <button type="submit" class="btn">Register</button>
+        {{ form_end(registrationForm) }} 
     </main>
 {% endblock %}
 

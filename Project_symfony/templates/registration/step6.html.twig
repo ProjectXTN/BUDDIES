@@ -22,42 +22,11 @@
 <!-- FIN NAV -->
 
 <main>
-    <section class="container-fluid">
-        <div id="centrage-ecran" class="d-flex flex-column justify-content-center">
-            <h2 class="text-center mt-5">Où habitez-vous ?</h2>
-            <div class="d-flex justify-content-center mt-5">
-                <div class="d-flex flex-column align-items-end col-4">
-                    <div class="card-formulaire align-self-center w-100 px-5 py-5">
-                        <p class="text-white">Pays</p>
-                        <div class="btn-group">
-                            <button class="btn btn-light btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                France
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Australie</a></li>
-                                <li><a class="dropdown-item" href="#">Brésil</a></li>
-                                <li><a class="dropdown-item" href="#">Canada</a></li>
-                            </ul>
-                        </div>
-                            <p class="text-white mx-3 my-3">Ville</p>
-                        <div class="btn-group">
-                            <button class="btn btn-light btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Paris
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Marseille</a></li>
-                                <li><a class="dropdown-item" href="#">Lyon</a></li>
-                                <li><a class="dropdown-item" href="#">Toulouse</a></li>
-                            </ul>
-                        </div> 
-                    </div>
-                    <div class="d-flex justify-content-end">
-                        <a href="{{path('app_register_step5')}}"><button class="my-4 mx-3 text-black" id="btn" type="button">Retour</button></a>
-                        <a href="{{path('app_register_step16')}}"><button class="my-4 ms-2 text-black" id="btn" type="button">Suivant</button></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    {{ form_start(registrationForm) }}
+    {{ form_row(registrationForm.city) }}
+
+      
+        <button type="submit" class="btn">Register</button>
+    {{ form_end(registrationForm) }}
 </main>
 {% endblock %}

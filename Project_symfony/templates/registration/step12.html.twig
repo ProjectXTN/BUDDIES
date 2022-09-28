@@ -20,59 +20,13 @@
 <!-- FIN NAV -->
 
 <main>
-    <section class="container-fluid">
-        <div id="centrage-ecran" class="d-flex flex-column justify-content-center">
-            <h2 class="text-center mt-5">Dans quelle(s) langue(s) préférez vous échanger ?</h2>
-            <div class="d-flex justify-content-center mt-5">
-                <div class="d-flex flex-column align-items-end col-2">
-                    <div class="card-formulaire d-flex flex-column justify-content-center w-100 px-5 py-5">
-                        <p class="text-white my-3">Langues 1</p>
-                        <div class="btn-group">
-                            <button class="btn btn-light btn-lg dropdown-toggle me-5" type="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Français
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Anglais</a></li>
-                                <li><a class="dropdown-item" href="#">Chinois</a></li>
-                                <li><a class="dropdown-item" href="#">Espanol</a></li>
-                            </ul>
-                        </div>
 
-                        <p class="text-white my-3">Langues 2</p>
-                        <div class="btn-group">
-                            <button class="btn btn-light btn-lg dropdown-toggle me-5" type="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Français
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Anglais</a></li>
-                                <li><a class="dropdown-item" href="#">Chinois</a></li>
-                                <li><a class="dropdown-item" href="#">Espanol</a></li>
-                            </ul>
-                        </div>
+        {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.match_langue) }}
 
-                        <p class="text-white my-3">Langues 3 </p>
-                        <div class="btn-group">
-                            <button class="btn btn-light btn-lg dropdown-toggle me-5" type="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Français
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Anglais</a></li>
-                                <li><a class="dropdown-item" href="#">Chinois</a></li>
-                                <li><a class="dropdown-item" href="#">Espanol</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-end">
-                        <a href="{{path('app_register_step11')}}"><button class="my-4 text-black" id="btn" type="button">Retour</button></a>
-                        <a href="{{path('app_register_step13')}}"><button class="my-4 ms-2 text-black" id="btn" type="button">Suivant</button></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
+            <button type="submit" class="btn">Register</button>
+        {{ form_end(registrationForm) }} 
 </main>
 {% endblock %}
 
